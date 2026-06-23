@@ -1,0 +1,75 @@
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: omayadeployments.omaya.io
+  annotations:
+    description: "OMAYA Fleet Monitoring Platform deployment custom resource"
+spec:
+  group: omaya.io
+  versions:
+    - name: v1
+      served: true
+      storage: true
+      schema:
+        openAPIV3Schema:
+          type: object
+          properties:
+            spec:
+              type: object
+              properties:
+                backendImage:
+                  type: string
+                  description: "Backend container image"
+                backendReplicas:
+                  type: integer
+                  description: "Number of backend replicas"
+                  default: 2
+                frontendImage:
+                  type: string
+                  description: "Frontend container image"
+                frontendReplicas:
+                  type: integer
+                  description: "Number of frontend replicas"
+                  default: 1
+                backendEnv:
+                  type: object
+                  description: "Backend environment variables"
+                frontendEnv:
+                  type: object
+                  description: "Frontend environment variables"
+                backendResources:
+                  type: object
+                  properties:
+                    requests:
+                      type: object
+                    limits:
+                      type: object
+                frontendResources:
+                  type: object
+                  properties:
+                    requests:
+                      type: object
+                    limits:
+                      type: object
+                config:
+                  type: object
+                  description: "Configuration data for ConfigMap"
+                secrets:
+                  type: object
+                  description: "Secret data"
+            status:
+              type: object
+              properties:
+                replicas:
+                  type: integer
+                backendStatus:
+                  type: string
+                frontendStatus:
+                  type: string
+  scope: Namespaced
+  names:
+    plural: omayadeployments
+    singular: omayadeployment
+    kind: OMAYADeployment
+    shortNames:
+      - omaya

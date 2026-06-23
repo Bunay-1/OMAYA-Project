@@ -1,0 +1,65 @@
+# Alertmanager Configuration
+
+global:
+  resolve_timeout: 5m
+
+# Email notifications configuration
+# smtp_smarthost: 'smtp.gmail.com:587'
+# smtp_from: 'alerts@omaya-monitoring.com'
+# smtp_auth_username: 'alerts@omaya-monitoring.com'
+# smtp_auth_password: 'your-app-password'
+
+route:
+  group_by: ['alertname', 'severity']
+  group_wait: 10s
+  group_interval: 10s
+  repeat_interval: 1h
+  receiver: 'default'
+  
+  routes:
+    # Critical alerts - immediate notification
+    - match:
+        severity: critical
+      receiver: 'critical-team'
+      group_wait: 5s
+      repeat_interval: 30m
+    
+    # Warning alerts - less urgent
+    - match:
+        severity: warning
+      receiver: 'ops-team'
+      repeat_interval: 2h
+
+receivers:
+  - name: 'default'
+    webhook_configs:
+      - url: 'http://localhost:8000/api/alerts/webhook'
+        send_resolved: true
+  
+  - name: 'critical-team'
+    webhook_configs:
+      - url: 'http://localhost:8000/api/alerts/webhook'
+        send_resolved: true
+    # Uncomment for email notifications
+    # email_configs:
+    #   - to: 'critical-team@company.com'
+    #     headers:
+    #       Subject: '[CRITICAL] OMAYA Fleet Alert: {{ .GroupLabels.alertname }}'
+  
+  - name: 'ops-team'
+    webhook_configs:
+      - url: 'http://localhost:8000/api/alerts/webhook'
+        send_resolved: true
+    # Uncomment for email notifications
+    # email_configs:
+    #   - to: 'ops-team@company.com'
+    #     headers:
+    #       Subject: '[WARNING] OMAYA Fleet Alert: {{ .GroupLabels.alertname }}'
+
+inhibit_rules:
+  # Inhibit warning alerts if critical alert is firing for same machine
+  - source_match:
+      severity: 'critical'
+    target_match:
+      severity: 'warning'
+    equal: ['machine_id']

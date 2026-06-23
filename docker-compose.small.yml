@@ -1,0 +1,99 @@
+version: '3.8'
+
+services:
+  # Frontend (React + Nginx)
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: omaya-frontend
+    ports:
+      - "80:80"
+    depends_on:
+      api:
+        condition: service_healthy
+    restart: unless-stopped
+    networks:
+      - omaya-network
+
+  # FastAPI Backend
+  api:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: omaya-api
+    ports:
+      - "8000:8000"
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - TIMESCALE_HOST=timescaledb
+      - TIMESCALE_PORT=5432
+      - TIMESCALE_USER=omaya_user
+      - TIMESCALE_PASSWORD=omaya_password
+      - TIMESCALE_DB=omaya_monitoring
+      - ENABLE_METRICS=false
+      - KAFKA_ENABLED=false
+    depends_on:
+      redis:
+        condition: service_healthy
+      timescaledb:
+        condition: service_healthy
+    restart: unless-stopped
+    networks:
+      - omaya-network
+    volumes:
+      - ./backend/models:/app/models
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+  
+  # Redis Cache
+  redis:
+    image: redis:7-alpine
+    container_name: omaya-redis
+    ports:
+      - "6379:6379"
+    command: redis-server --appendonly yes
+    volumes:
+      - redis-data:/data
+    restart: unless-stopped
+    networks:
+      - omaya-network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+  
+  # TimescaleDB (PostgreSQL with time-series extension)
+  timescaledb:
+    image: timescale/timescaledb:2.11.0-pg15
+    container_name: omaya-timescaledb
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=omaya_user
+      - POSTGRES_PASSWORD=omaya_password
+      - POSTGRES_DB=omaya_monitoring
+    volumes:
+      - timescale-data:/var/lib/postgresql/data
+    restart: unless-stopped
+    networks:
+      - omaya-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U omaya_user -d omaya_monitoring"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+networks:
+  omaya-network:
+    driver: bridge
+
+volumes:
+  redis-data:
+  timescale-data:

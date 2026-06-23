@@ -1,0 +1,94 @@
+# Helm values for OMAYA Monitoring deployment
+
+replicaCount: 3
+
+image:
+  repository: omaya-monitoring/api
+  pullPolicy: IfNotPresent
+  tag: "latest"
+
+service:
+  type: LoadBalancer
+  port: 8000
+  targetPort: 8000
+
+ingress:
+  enabled: true
+  className: "nginx"
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+  hosts:
+    - host: api.omaya-monitoring.com
+      paths:
+        - path: /
+          pathType: Prefix
+  tls:
+    - secretName: omaya-monitoring-tls
+      hosts:
+        - api.omaya-monitoring.com
+
+resources:
+  limits:
+    cpu: 2000m
+    memory: 4Gi
+  requests:
+    cpu: 500m
+    memory: 1Gi
+
+autoscaling:
+  enabled: true
+  minReplicas: 3
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 70
+  targetMemoryUtilizationPercentage: 80
+
+redis:
+  enabled: true
+  architecture: standalone
+  auth:
+    enabled: true
+    password: "change-in-production"
+  master:
+    persistence:
+      enabled: true
+      size: 8Gi
+
+kafka:
+  enabled: true
+  replicaCount: 3
+  zookeeper:
+    replicaCount: 3
+  persistence:
+    enabled: true
+    size: 50Gi
+
+timescaledb:
+  enabled: true
+  persistence:
+    enabled: true
+    size: 100Gi
+  auth:
+    username: omaya_user
+    password: "change-in-production"
+    database: omaya_monitoring
+
+prometheus:
+  enabled: true
+  retention: 30d
+  storageSize: 50Gi
+
+grafana:
+  enabled: true
+  adminPassword: "change-in-production"
+
+env:
+  - name: REDIS_HOST
+    value: "omaya-monitoring-redis-master"
+  - name: KAFKA_BOOTSTRAP_SERVERS
+    value: "omaya-monitoring-kafka:9092"
+  - name: TIMESCALE_HOST
+    value: "omaya-monitoring-timescaledb"
+  - name: ENABLE_METRICS
+    value: "true"
+  - name: ENABLE_AI_PREDICTIONS
+    value: "true"

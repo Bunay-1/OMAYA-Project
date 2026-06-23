@@ -1,0 +1,130 @@
+# Prometheus Alert Rules for OMAYA Fleet Monitoring
+
+groups:
+  - name: machine_alerts
+    interval: 30s
+    rules:
+      # High Failure Probability
+      - alert: HighFailureProbability
+        expr: machine_failure_probability > 0.8
+        for: 5m
+        labels:
+          severity: critical
+        annotations:
+          summary: "High failure probability detected for {{ $labels.machine_id }}"
+          description: "Machine {{ $labels.machine_id }} has {{ $value | humanizePercentage }} failure probability"
+      
+      # Critical RUL (less than 24 hours)
+      - alert: CriticalRUL
+        expr: machine_rul_hours < 24
+        for: 5m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Critical RUL for {{ $labels.machine_id }}"
+          description: "Machine {{ $labels.machine_id }} has only {{ $value }} hours remaining useful life"
+      
+      # Warning RUL (less than 72 hours)
+      - alert: LowRUL
+        expr: machine_rul_hours < 72
+        for: 10m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Low RUL for {{ $labels.machine_id }}"
+          description: "Machine {{ $labels.machine_id }} has {{ $value }} hours remaining useful life"
+      
+      # Too many critical machines
+      - alert: HighCriticalMachineCount
+        expr: machines_by_status{status="critical"} > 10
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High number of critical machines"
+          description: "{{ $value }} machines are in critical status"
+
+  - name: alert_monitoring
+    interval: 30s
+    rules:
+      # High alert rate
+      - alert: HighAlertRate
+        expr: rate(alerts_total[5m]) > 2
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High alert generation rate"
+          description: "Generating {{ $value }} alerts per second"
+      
+      # Too many active critical alerts
+      - alert: TooManyCriticalAlerts
+        expr: active_alerts{severity="critical"} > 5
+        for: 5m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Too many active critical alerts"
+          description: "{{ $value }} critical alerts are currently active"
+
+  - name: api_performance
+    interval: 30s
+    rules:
+      # High API latency
+      - alert: HighAPILatency
+        expr: histogram_quantile(0.95, rate(api_request_duration_seconds_bucket[5m])) > 1
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High API latency detected"
+          description: "95th percentile latency is {{ $value }}s"
+      
+      # High error rate
+      - alert: HighErrorRate
+        expr: rate(api_requests_total{status=~"5.."}[5m]) > 0.1
+        for: 5m
+        labels:
+          severity: critical
+        annotations:
+          summary: "High API error rate"
+          description: "{{ $value }} requests per second are failing with 5xx errors"
+
+  - name: websocket_monitoring
+    interval: 30s
+    rules:
+      # WebSocket connection drop
+      - alert: WebSocketConnectionsDrop
+        expr: rate(websocket_connections[5m]) < -0.5
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "WebSocket connections dropping rapidly"
+          description: "WebSocket connections are dropping at {{ $value }} per second"
+
+  - name: cache_monitoring
+    interval: 30s
+    rules:
+      # Low cache hit rate
+      - alert: LowCacheHitRate
+        expr: rate(cache_hits_total[5m]) / (rate(cache_hits_total[5m]) + rate(cache_misses_total[5m])) < 0.5
+        for: 10m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Low cache hit rate"
+          description: "Cache hit rate is {{ $value | humanizePercentage }}"
+
+  - name: system_health
+    interval: 30s
+    rules:
+      # System unhealthy
+      - alert: SystemUnhealthy
+        expr: system_health_status == 0
+        for: 2m
+        labels:
+          severity: critical
+        annotations:
+          summary: "System health check failed"
+          description: "System is reporting unhealthy status"

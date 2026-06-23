@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: omaya-operator
+  namespace: omaya
+  labels:
+    app: omaya-operator
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: omaya-operator
+  template:
+    metadata:
+      labels:
+        app: omaya-operator
+    spec:
+      serviceAccountName: omaya-operator
+      containers:
+      - name: operator
+        image: omaya-operator:2.5.0
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: KOPF_PEOPLE
+          value: "omaya-operator"
+        resources:
+          requests:
+            cpu: 100m
+            memory: 128Mi
+          limits:
+            cpu: 500m
+            memory: 512Mi

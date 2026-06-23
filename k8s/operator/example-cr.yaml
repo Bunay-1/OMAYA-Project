@@ -1,0 +1,31 @@
+apiVersion: omaya.io/v1
+kind: OMAYADeployment
+metadata:
+  name: omaya-production
+  namespace: omaya
+spec:
+  backendImage: omaya-backend:2.5.0
+  backendReplicas: 3
+  frontendImage: omaya-frontend:2.5.0
+  frontendReplicas: 2
+  backendEnv:
+    REDIS_HOST: redis
+    KAFKA_BROKERS: kafka:9092
+    DATABASE_URL: postgresql://user:pass@timescaledb:5432/omaya
+    LOG_LEVEL: INFO
+  frontendEnv:
+    VITE_API_URL: http://omaya-production-backend:8000
+  backendResources:
+    requests:
+      cpu: 500m
+      memory: 512Mi
+    limits:
+      cpu: 2000m
+      memory: 2Gi
+  frontendResources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 500m
+      memory: 512Mi

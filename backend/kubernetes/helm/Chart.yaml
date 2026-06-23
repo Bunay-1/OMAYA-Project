@@ -1,0 +1,21 @@
+"""
+Kubernetes Deployment Configuration
+Helm chart for OMAYA Fleet Monitoring
+"""
+apiVersion: v2
+name: omaya-monitoring
+description: A Helm chart for OMAYA Fleet Monitoring Platform
+type: application
+version: 1.0.0
+appVersion: "1.0"
+
+keywords:
+  - omaya
+  - monitoring
+  - iot
+  - ai
+  - predictive-maintenance
+
+maintainers:
+  - name: OMAYA Monitoring Team
+    email: team@omaya-monitoring.com
