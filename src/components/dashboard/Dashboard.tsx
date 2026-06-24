@@ -19,14 +19,33 @@ import ModelDriftMonitor from '@/components/ModelDriftMonitor';
 import DataLakeStats from '@/components/DataLakeStats';
 import ExplainableAI from '@/components/ExplainableAI';
 import { useRealTimeData } from '@/hooks/useRealTimeData';
-import {
-  mockTools,
-  mockMaintenanceEvents,
-  mockProductionForecast,
-} from '@/data/mockData';
 import type { OmayaMachine } from '@/types/omaya';
 
+// Lazy load mock data constants
+let mockDataConstants: any = {
+  mockTools: [],
+  mockMaintenanceEvents: [],
+  mockProductionForecast: [],
+};
+
+const loadMockConstants = async () => {
+  const mock = await import('@/data/mockData');
+  mockDataConstants = {
+    mockTools: mock.mockTools,
+    mockMaintenanceEvents: mock.mockMaintenanceEvents,
+    mockProductionForecast: mock.mockProductionForecast,
+  };
+};
+
 export function Dashboard() {
+  useEffect(() => {
+    if (import.meta.env.VITE_USE_MOCK === 'true') {
+      loadMockConstants().then(() => setIsLoaded(true));
+    } else {
+      setIsLoaded(true);
+    }
+  }, []);
+
   const [activeTab, setActiveTab] = useState('overview');
   const [selectedMachine, setSelectedMachine] = useState<OmayaMachine | null>(null);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -42,12 +61,6 @@ export function Dashboard() {
     updatedMachineIds,
     toggleLive,
   } = useRealTimeData({ refreshInterval: 3000 });
-
-  useEffect(() => {
-    // Simulate loading
-    const timer = setTimeout(() => setIsLoaded(true), 100);
-    return () => clearTimeout(timer);
-  }, []);
 
   const handleMachineSelect = (machine: OmayaMachine) => {
     setSelectedMachine(machine);
@@ -255,7 +268,7 @@ function OverviewTab({
 
         {/* Production Forecast */}
         <div className="col-span-8 h-[400px]">
-          <ProductionForecastChart forecasts={mockProductionForecast} />
+          <ProductionForecastChart forecasts={mockDataConstants.mockProductionForecast} />
         </div>
 
         {/* Telemetry Feed */}
@@ -343,7 +356,7 @@ function PredictiveTab({ isLoaded, onMachineSelect, machines = [] }: TabProps) {
           />
         </div>
         <div className="h-[600px]">
-          <ProductionForecastChart forecasts={mockProductionForecast} />
+          <ProductionForecastChart forecasts={mockDataConstants.mockProductionForecast} />
         </div>
       </div>
     </motion.div>
@@ -363,7 +376,7 @@ function ToolsTab({ isLoaded }: { isLoaded: boolean }) {
         <p className="text-gray-400 mt-1">Monitor tool condition and schedule replacements</p>
       </div>
       <div className="h-[calc(100%-80px)]">
-        <ToolWearTracker tools={mockTools} />
+        <ToolWearTracker tools={mockDataConstants.mockTools} />
       </div>
     </motion.div>
   );
@@ -401,7 +414,7 @@ function MaintenanceTab({ isLoaded }: { isLoaded: boolean }) {
         <p className="text-gray-400 mt-1">Preventive and corrective maintenance calendar</p>
       </div>
       <div className="h-[calc(100%-80px)]">
-        <MaintenanceCalendar events={mockMaintenanceEvents} />
+        <MaintenanceCalendar events={mockDataConstants.mockMaintenanceEvents} />
       </div>
     </motion.div>
   );

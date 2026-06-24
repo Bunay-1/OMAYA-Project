@@ -402,7 +402,7 @@ The backend is built with Python 3.11, FastAPI 0.109.0, and Uvicorn 0.27.0. It f
 ```python
 app = FastAPI(
     title="OMAYA Fleet Monitoring API",
-    version="2.4.2",
+    version="3.1.0",
     description="Enterprise-grade IoT/IIoT Platform API"
 )
 ```
@@ -1027,5 +1027,5 @@ For additional help:
 
 ---
 
-**Version**: 2.4.2
-**Last Updated**: March 2025
+**Version**: 3.1.0
+**Last Updated**: June 2026

@@ -948,5 +948,5 @@ The Maintenance tab provides maintenance scheduling and tracking.
 
 ---
 
-**Version**: 2.4.2
-**Last Updated**: March 2025
+**Version**: 3.1.0
+**Last Updated**: June 2026

@@ -171,7 +171,7 @@ Host: localhost:8000
 ```json
 {
   "service": "OMAYA Fleet Monitoring API",
-  "version": "2.4.2",
+  "version": "3.1.0",
   "status": "operational"
 }
 ```
@@ -1091,5 +1091,5 @@ For additional help:
 
 ---
 
-**Version**: 2.4.2
-**Last Updated**: March 2025
+**Version**: 3.1.0
+**Last Updated**: June 2026
