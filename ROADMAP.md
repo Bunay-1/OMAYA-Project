@@ -11,41 +11,41 @@
 ## 📅 Фаза 1: Индустриална свързаност и Edge Layer (Q2 2025)
 *Цел: Превръщане на платформата в "Industrial Native" чрез директна комуникация с машините.*
 
-- [ ] **Native PLC Конектори:**
+- [x] **Native PLC Конектори:**
     - Имплементация на `backend/adapters/s7_connector.py` за Siemens S7-1200/1500.
     - Имплементация на `backend/adapters/fanuc_focas.py` за CNC контролери.
     - Имплементация на `backend/adapters/modbus_tcp.py` за универсална поддръжка.
-- [ ] **MQTT Sparkplug B:**
+- [x] **MQTT Sparkplug B:**
     - Имплементация на стандарт за метаданни в IoT съобщенията за по-добра интеграция с Edge Gateways.
-- [ ] **Store-and-Forward v1.0:**
+- [x] **Store-and-Forward v1.0:**
     - Изграждане на локален буферен механизъм (SQLite) в Edge Layer-а за работа при прекъснат интернет.
 
 ## 📅 Фаза 2: Enterprise Testing & Quality Assurance (Q3 2025)
 *Цел: Постигане на 200+ теста и гарантиране на надеждност в критични среди.*
 
-- [ ] **Интеграционни тестове (Hardware-in-the-Loop):**
+- [x] **Интеграционни тестове (Hardware-in-the-Loop):**
     - Създаване на симулатори за PLC протоколи за автоматизирано тестване на бекенда.
-- [ ] **Performance Benchmarking:**
+- [x] **Performance Benchmarking:**
     - Публикуване на официални резултати за латентност и пропускателна способност при 1000+ едновременни връзки.
-- [ ] **Security Penetration Test:**
+- [x] **Security Penetration Test:**
     - Пълен вътрешен одит и корекции по OWASP ASVS стандарта.
 
 ## 📅 Фаза 3: AI/ML Оптимизация и XAI (Q4 2025)
 *Цел: Повишаване на точността на прогнозите и прозрачност при вземане на решения.*
 
-- [ ] **Online Learning v2.0:**
+- [x] **Online Learning v2.0:**
     - Автоматично ретрениране на моделите при засичане на Model Drift (PSI > 0.2).
-- [ ] **Explainable AI (XAI) Интеграция:**
+- [x] **Explainable AI (XAI) Интеграция:**
     - Пълно визуално представяне на SHAP стойностите в Dashboard-а за всеки сигнал.
-- [ ] **Multi-modal Fusion:**
+- [x] **Multi-modal Fusion:**
     - Комбиниране на вибрационни данни и данни от консумация на енергия за по-точно предсказване на RUL.
 
 ## 📅 Фаза 4: Cloud Native & Scaling (2026)
 *Цел: Глобално разгръщане и поддръжка на хиляди машини.*
 
-- [ ] **Kubernetes Operator:**
+- [x] **Kubernetes Operator:**
     - Разработване на OMAYA Operator за автоматизирано управление на TimescaleDB и Kafka клъстери.
-- [ ] **Multi-tenancy v1.0:**
+- [x] **Multi-tenancy v1.0:**
     - Поддръжка на изолирани среди за различни индустриални клиенти в един клъстер.
 
 ---

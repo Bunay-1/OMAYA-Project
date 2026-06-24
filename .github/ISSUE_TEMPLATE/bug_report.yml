@@ -1,0 +1,30 @@
+name: Bug Report
+description: Докладване на бъг или проблем в платформата.
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Благодарим ви за докладването на проблема!
+  - type: textarea
+    id: description
+    attributes:
+      label: Описание на проблема
+      description: Кратко и ясно описание на бъга.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Стъпки за възпроизвеждане
+      description: Опишете стъпките, необходими за възпроизвеждане на проблема.
+  - type: textarea
+    id: expected
+    attributes:
+      label: Очаквано поведение
+      description: Какво очаквате да се случи?
+  - type: textarea
+    id: context
+    attributes:
+      label: Контекст и среда
+      description: Версия на браузъра, операционна система, версия на платформата и т.н.

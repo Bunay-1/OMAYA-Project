@@ -107,7 +107,7 @@ async def lifespan(app: FastAPI):
 app = FastAPI(
     title="OMAYA Fleet Monitoring API",
     description="Real-time monitoring and predictive analytics for OMAYA machines",
-    version="2.4.8",
+    version="3.0.1",
     lifespan=lifespan
 )
 
@@ -156,7 +156,7 @@ async def root():
     return {
         "service": "OMAYA Fleet Monitoring API",
         "status": "operational",
-        "version": "2.4.8",
+        "version": "3.0.1",
         "timestamp": datetime.now().isoformat()
     }
 

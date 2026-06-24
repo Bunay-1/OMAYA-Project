@@ -23,6 +23,7 @@ interface UseRealTimeDataOptions {
 
 export function useRealTimeData(options: UseRealTimeDataOptions = {}) {
   const { refreshInterval = 3000, enabled = true } = options;
+  const useMock = import.meta.env.VITE_USE_MOCK === 'true';
   
   const [data, setData] = useState<RealTimeDataState>(() => {
     const machines = generateMachines(120);
@@ -41,6 +42,12 @@ export function useRealTimeData(options: UseRealTimeDataOptions = {}) {
   const previousAlertsRef = useRef<string[]>([]);
 
   const refreshData = useCallback(() => {
+    if (!useMock) {
+      // In a real application, this would fetch from the FastAPI backend
+      // fetch('/api/machines').then(res => res.json()).then(data => ...)
+      console.log('Fetching real data from API...');
+    }
+
     setData(prev => {
       const machines = generateMachines(120);
       const newAlerts = generateAlerts(machines);
