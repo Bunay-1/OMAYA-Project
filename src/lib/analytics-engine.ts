@@ -1,5 +1,5 @@
 // Advanced Analytics Engine for OMAYA Fleet
-import type { Machine, Alert, KPI } from '@/types/omaya';
+import type { OmayaMachine, Alert, KPIData } from '@/types/omaya';
 
 export type AggregationType = 'sum' | 'avg' | 'min' | 'max' | 'count' | 'median' | 'stddev';
 export type TimeGranularity = '1h' | '6h' | '12h' | '24h' | '7d' | '30d';
@@ -47,7 +47,7 @@ export interface CorrelationAnalysis {
 
 export class AnalyticsEngine {
   // Calculate custom KPI
-  static calculateKPI(kpi: CustomKPI, data: Machine[]): number {
+  static calculateKPI(kpi: CustomKPI, data: OmayaMachine[]): number {
     let filtered = this.applyFilters(data, kpi.filters);
     
     const values = filtered.map(m => {
@@ -59,7 +59,7 @@ export class AnalyticsEngine {
   }
 
   // Apply filters to dataset
-  static applyFilters(data: Machine[], filters: KPIFilter[]): Machine[] {
+  static applyFilters(data: OmayaMachine[], filters: KPIFilter[]): OmayaMachine[] {
     return data.filter(item => {
       return filters.every(filter => {
         const value = this.extractValue(item, filter.field);
@@ -115,7 +115,7 @@ export class AnalyticsEngine {
   }
 
   // Correlation analysis between two variables
-  static correlate(data: Machine[], var1: string, var2: string): CorrelationAnalysis {
+  static correlate(data: OmayaMachine[], var1: string, var2: string): CorrelationAnalysis {
     const pairs = data.map(m => ({
       x: this.extractValue(m, var1),
       y: this.extractValue(m, var2)
@@ -214,7 +214,7 @@ export class AnalyticsEngine {
   }
 
   // Generate widget data
-  static generateWidgetData(widget: AnalyticsWidget, data: Machine[]): any {
+  static generateWidgetData(widget: AnalyticsWidget, data: OmayaMachine[]): any {
     const filtered = this.applyFilters(data, widget.filters);
 
     switch (widget.type) {
@@ -235,7 +235,7 @@ export class AnalyticsEngine {
     }
   }
 
-  private static generateTimeSeriesData(widget: AnalyticsWidget, data: Machine[]): any {
+  private static generateTimeSeriesData(widget: AnalyticsWidget, data: OmayaMachine[]): any {
     // Mock implementation - in real scenario, query time-series data
     return widget.metrics.map(metric => ({
       name: metric,
@@ -246,7 +246,7 @@ export class AnalyticsEngine {
     }));
   }
 
-  private static generatePieData(widget: AnalyticsWidget, data: Machine[]): any {
+  private static generatePieData(widget: AnalyticsWidget, data: OmayaMachine[]): any {
     const dimension = widget.dimensions[0];
     const grouped = new Map<string, number>();
 
@@ -258,7 +258,7 @@ export class AnalyticsEngine {
     return Array.from(grouped.entries()).map(([name, value]) => ({ name, value }));
   }
 
-  private static generateScatterData(widget: AnalyticsWidget, data: Machine[]): any {
+  private static generateScatterData(widget: AnalyticsWidget, data: OmayaMachine[]): any {
     return data.map(item => ({
       x: this.extractValue(item, widget.metrics[0]),
       y: this.extractValue(item, widget.metrics[1]),
@@ -266,7 +266,7 @@ export class AnalyticsEngine {
     }));
   }
 
-  private static generateHeatmapData(widget: AnalyticsWidget, data: Machine[]): any {
+  private static generateHeatmapData(widget: AnalyticsWidget, data: OmayaMachine[]): any {
     // Simplified heatmap
     return data.slice(0, 10).map(item => ({
       x: this.extractValue(item, widget.dimensions[0]),
@@ -274,7 +274,7 @@ export class AnalyticsEngine {
     }));
   }
 
-  private static generateGaugeData(widget: AnalyticsWidget, data: Machine[]): any {
+  private static generateGaugeData(widget: AnalyticsWidget, data: OmayaMachine[]): any {
     const values = data.map(m => this.extractValue(m, widget.metrics[0])).filter(v => v !== null);
     return this.aggregate(values, widget.aggregation);
   }

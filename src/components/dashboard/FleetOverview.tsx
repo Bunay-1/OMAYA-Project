@@ -1,12 +1,12 @@
 import { useState, useMemo, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Filter, Grid3X3, List, Maximize2, Search, RefreshCw, MapPin } from 'lucide-react';
-import type { OMAYAMachine, MachineStatus } from '@/types/omaya';
+import type { OmayaMachine, MachineStatus } from '@/types/omaya';
 import { cn } from '@/lib/utils';
 
 interface FleetOverviewProps {
-  machines: OMAYAMachine[];
-  onMachineSelect: (machine: OMAYAMachine) => void;
+  machines: OmayaMachine[];
+  onMachineSelect: (machine: OmayaMachine) => void;
   selectedMachineId?: string;
   updatedMachineIds?: Set<string>;
   isLive?: boolean;
@@ -213,7 +213,7 @@ export function FleetOverview({ machines, onMachineSelect, selectedMachineId, up
 }
 
 interface MachineCellProps {
-  machine: OMAYAMachine;
+  machine: OmayaMachine;
   isSelected: boolean;
   isUpdated?: boolean;
   onClick: () => void;

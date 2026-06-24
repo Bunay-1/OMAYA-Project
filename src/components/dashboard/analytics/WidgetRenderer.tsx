@@ -100,7 +100,6 @@ function BarChartWidget({ data }: { data: any }) {
           <Bar
             key={i}
             dataKey="y"
-            data={series.data}
             fill={COLORS[i % COLORS.length]}
             name={series.name}
             radius={[4, 4, 0, 0]}

@@ -18,7 +18,7 @@ spec:
       serviceAccountName: omaya-operator
       containers:
       - name: operator
-        image: omaya-operator:2.5.0
+        image: omaya-operator:3.1.0
         imagePullPolicy: IfNotPresent
         env:
         - name: KOPF_PEOPLE

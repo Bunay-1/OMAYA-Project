@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
-import type { OMAYAMachine, Alert, TelemetryEvent, KPIData } from '@/types/omaya';
+import type { OmayaMachine, Alert, TelemetryEvent, KPIData } from '@/types/omaya';
 
 // Lazy load mock data only in development/mock mode
 let mockDataModule: any = null;
@@ -11,7 +11,7 @@ const getMockData = async () => {
 };
 
 interface RealTimeDataState {
-  machines: OMAYAMachine[];
+  machines: OmayaMachine[];
   alerts: Alert[];
   kpis: KPIData;
   telemetryEvents: TelemetryEvent[];
@@ -38,8 +38,9 @@ export function useRealTimeData(options: UseRealTimeDataOptions = {}) {
       throughput: 0,
       mtbf: 0,
       mttr: 0,
-      energyConsumption: 0,
-      toolHealth: 0,
+      energyEfficiency: 0,
+      productionTarget: 0,
+      productionActual: 0,
     },
     telemetryEvents: [],
     lastUpdate: new Date(),
@@ -80,7 +81,7 @@ export function useRealTimeData(options: UseRealTimeDataOptions = {}) {
       // Track updated machines
       const updatedIds = machines
         .filter(() => Math.random() < 0.1)
-        .map((m: OMAYAMachine) => m.id);
+        .map((m: OmayaMachine) => m.id);
       setUpdatedMachineIds(new Set(updatedIds));
       setTimeout(() => setUpdatedMachineIds(new Set()), 1000);
 

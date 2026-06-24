@@ -17,9 +17,9 @@ logger = logging.getLogger(__name__)
 
 class DeploymentSpec(BaseModel):
     """Validation model for deployment spec."""
-    backendImage: Optional[str] = "omaya-backend:2.5.0"
+    backendImage: Optional[str] = "omaya-backend:3.1.0"
     backendReplicas: Optional[int] = 2
-    frontendImage: Optional[str] = "omaya-frontend:2.5.0"
+    frontendImage: Optional[str] = "omaya-frontend:3.1.0"
     frontendReplicas: Optional[int] = 1
     backendEnv: Optional[Dict[str, str]] = {}
     frontendEnv: Optional[Dict[str, str]] = {}
@@ -402,7 +402,7 @@ def handle_omaya_deployment_create(spec, name, namespace, logger, **kwargs):
     # Create backend deployment
     operator.create_deployment(
         name=f"{name}-backend",
-        image=spec.get('backendImage', 'omaya-backend:2.5.0'),
+        image=spec.get('backendImage', 'omaya-backend:3.1.0'),
         replicas=spec.get('backendReplicas', 2),
         env_vars=spec.get('backendEnv', {}),
         resources=spec.get('backendResources')
@@ -411,7 +411,7 @@ def handle_omaya_deployment_create(spec, name, namespace, logger, **kwargs):
     # Create frontend deployment
     operator.create_deployment(
         name=f"{name}-frontend",
-        image=spec.get('frontendImage', 'omaya-frontend:2.5.0'),
+        image=spec.get('frontendImage', 'omaya-frontend:3.1.0'),
         replicas=spec.get('frontendReplicas', 1),
         env_vars=spec.get('frontendEnv', {}),
         resources=spec.get('frontendResources')
@@ -593,9 +593,9 @@ def generate_example_cr():
             "namespace": "omaya"
         },
         "spec": {
-            "backendImage": "omaya-backend:2.5.0",
+            "backendImage": "omaya-backend:3.1.0",
             "backendReplicas": 3,
-            "frontendImage": "omaya-frontend:2.5.0",
+            "frontendImage": "omaya-frontend:3.1.0",
             "frontendReplicas": 2,
             "backendEnv": {
                 "REDIS_HOST": "redis",

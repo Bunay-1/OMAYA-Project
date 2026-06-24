@@ -4,9 +4,9 @@ metadata:
   name: omaya-production
   namespace: omaya
 spec:
-  backendImage: omaya-backend:2.5.0
+  backendImage: omaya-backend:3.1.0
   backendReplicas: 3
-  frontendImage: omaya-frontend:2.5.0
+  frontendImage: omaya-frontend:3.1.0
   frontendReplicas: 2
   backendEnv:
     REDIS_HOST: redis
