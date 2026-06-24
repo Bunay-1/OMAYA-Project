@@ -1,0 +1,16 @@
+name: Feature Request
+description: Предложение за нова функционалност.
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Описание на предложението
+      description: Каква функционалност искате да бъде добавена?
+    validations:
+      required: true
+  - type: textarea
+    id: reasoning
+    attributes:
+      label: Мотивация
+      description: Защо тази функционалност е необходима?

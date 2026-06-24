@@ -483,7 +483,7 @@ function SettingsTab() {
         <div className="space-y-2 text-sm">
           <div className="flex justify-between">
             <span className="text-gray-400">Platform Version</span>
-            <span className="text-white font-mono">v2.4.8</span>
+            <span className="text-white font-mono">v3.0.1</span>
           </div>
           <div className="flex justify-between">
             <span className="text-gray-400">Connected Machines</span>
