@@ -12,14 +12,14 @@ import {
   Brain,
   Calendar
 } from 'lucide-react';
-import type { OMAYAMachine, MachineStatus } from '@/types/omaya';
+import type { OmayaMachine, MachineStatus } from '@/types/omaya';
 import { cn } from '@/lib/utils';
 import { Progress } from '@/components/ui/progress';
 import { useState } from 'react';
 import ExplainableAI from '@/components/ExplainableAI';
 
 interface MachineDetailPanelProps {
-  machine: OMAYAMachine | null;
+  machine: OmayaMachine | null;
   onClose: () => void;
 }
 

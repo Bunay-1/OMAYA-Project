@@ -1,12 +1,12 @@
 import { motion } from 'framer-motion';
 import { Brain, Clock, AlertTriangle, TrendingUp, ChevronRight, Zap } from 'lucide-react';
-import type { OMAYAMachine } from '@/types/omaya';
+import type { OmayaMachine } from '@/types/omaya';
 import { cn } from '@/lib/utils';
 import { Progress } from '@/components/ui/progress';
 
 interface PredictiveMaintenancePanelProps {
-  machines: OMAYAMachine[];
-  onMachineSelect: (machine: OMAYAMachine) => void;
+  machines: OmayaMachine[];
+  onMachineSelect: (machine: OmayaMachine) => void;
 }
 
 export function PredictiveMaintenancePanel({ machines, onMachineSelect }: PredictiveMaintenancePanelProps) {
@@ -82,7 +82,7 @@ export function PredictiveMaintenancePanel({ machines, onMachineSelect }: Predic
 }
 
 interface PredictionCardProps {
-  machine: OMAYAMachine;
+  machine: OmayaMachine;
   onClick: () => void;
   delay: number;
 }

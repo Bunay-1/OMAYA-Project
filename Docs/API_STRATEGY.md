@@ -293,9 +293,9 @@ Add to GraphQL documentation:
 
 **Status**: Experimental
 **Deprecated**: 2024-09-19
-**Sunset**: 2025-03-19
+**Sunset**: 2026-06-24
 
-The GraphQL API is deprecated and will be removed on 2025-03-19.
+The GraphQL API is deprecated and will be removed on 2026-06-24.
 Please migrate to the REST API. See [Migration Guide](#migration-guide).
 ```
 
