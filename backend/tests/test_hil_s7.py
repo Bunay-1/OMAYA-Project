@@ -211,6 +211,6 @@ def test_hil_s7_data_integrity(s7_connector_with_sim):
         assert abs(read_back - float(i)) < 0.01
     
     # Restore original
-    s7_connector_with_sim.write_db_real(db_number=1, start=0, original_value)
+    s7_connector_with_sim.write_db_real(db_number=1, start=0, value=original_value)
     final_value = s7_connector_with_sim.read_db_real(db_number=1, start=0)
     assert abs(final_value - original_value) < 0.01

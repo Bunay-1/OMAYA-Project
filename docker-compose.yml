@@ -3,7 +3,7 @@ version: '3.8'
 services:
   # Frontend (React + Nginx)
   frontend:
-    image: omaya-frontend:3.0.1
+    image: omaya-frontend:3.1.0
     build:
       context: .
       dockerfile: Dockerfile
@@ -19,7 +19,7 @@ services:
 
   # FastAPI Backend
   api:
-    image: omaya-api:3.0.1
+    image: omaya-api:3.1.0
     build:
       context: ./backend
       dockerfile: Dockerfile
@@ -37,6 +37,9 @@ services:
       - TIMESCALE_DB=${TIMESCALE_DB:-omaya_monitoring}
       - ALLOWED_ORIGINS=${ALLOWED_ORIGINS:-http://localhost,http://localhost:5173}
       - ENABLE_METRICS=true
+      - ENV=development
+      - VAULT_ADDR=${VAULT_ADDR:-http://vault:8200}
+      - VAULT_TOKEN=${VAULT_TOKEN:-dev-token}
     depends_on:
       redis:
         condition: service_started
