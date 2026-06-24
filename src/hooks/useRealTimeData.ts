@@ -1,11 +1,14 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import type { OMAYAMachine, Alert, TelemetryEvent, KPIData } from '@/types/omaya';
-import {
-  generateMachines,
-  generateAlerts,
-  generateKPIs,
-  generateTelemetryEvents,
-} from '@/data/mockData';
+
+// Lazy load mock data only in development/mock mode
+let mockDataModule: any = null;
+const getMockData = async () => {
+  if (!mockDataModule) {
+    mockDataModule = await import('@/data/mockData');
+  }
+  return mockDataModule;
+};
 
 interface RealTimeDataState {
   machines: OMAYAMachine[];
@@ -25,67 +28,82 @@ export function useRealTimeData(options: UseRealTimeDataOptions = {}) {
   const { refreshInterval = 3000, enabled = true } = options;
   const useMock = import.meta.env.VITE_USE_MOCK === 'true';
   
-  const [data, setData] = useState<RealTimeDataState>(() => {
-    const machines = generateMachines(120);
-    return {
-      machines,
-      alerts: generateAlerts(machines),
-      kpis: generateKPIs(),
-      telemetryEvents: generateTelemetryEvents(machines),
-      lastUpdate: new Date(),
-      isLive: enabled,
-    };
+  const [data, setData] = useState<RealTimeDataState>({
+    machines: [],
+    alerts: [],
+    kpis: {
+      oee: 0,
+      uptime: 0,
+      defectRate: 0,
+      throughput: 0,
+      mtbf: 0,
+      mttr: 0,
+      energyConsumption: 0,
+      toolHealth: 0,
+    },
+    telemetryEvents: [],
+    lastUpdate: new Date(),
+    isLive: enabled,
   });
 
   const [newAlertIds, setNewAlertIds] = useState<Set<string>>(new Set());
   const [updatedMachineIds, setUpdatedMachineIds] = useState<Set<string>>(new Set());
   const previousAlertsRef = useRef<string[]>([]);
 
-  const refreshData = useCallback(() => {
+  const refreshData = useCallback(async () => {
     if (!useMock) {
       // In a real application, this would fetch from the FastAPI backend
-      // fetch('/api/machines').then(res => res.json()).then(data => ...)
       console.log('Fetching real data from API...');
+      return;
     }
 
+    const mock = await getMockData();
+    const machines = mock.generateMachines(120);
+    const newAlerts = mock.generateAlerts(machines);
+    const kpis = mock.generateKPIs();
+    const telemetryEvents = mock.generateTelemetryEvents(machines);
+
     setData(prev => {
-      const machines = generateMachines(120);
-      const newAlerts = generateAlerts(machines);
-      
       // Track new alerts
       const prevAlertIds = new Set(previousAlertsRef.current);
       const newIds = newAlerts
-        .filter(a => !prevAlertIds.has(a.id))
-        .map(a => a.id);
+        .filter((a: Alert) => !prevAlertIds.has(a.id))
+        .map((a: Alert) => a.id);
       
       if (newIds.length > 0) {
         setNewAlertIds(new Set(newIds));
         setTimeout(() => setNewAlertIds(new Set()), 3000);
       }
       
-      previousAlertsRef.current = newAlerts.map(a => a.id);
+      previousAlertsRef.current = newAlerts.map((a: Alert) => a.id);
 
-      // Track updated machines (random subset for visual effect)
+      // Track updated machines
       const updatedIds = machines
         .filter(() => Math.random() < 0.1)
-        .map(m => m.id);
+        .map((m: OMAYAMachine) => m.id);
       setUpdatedMachineIds(new Set(updatedIds));
       setTimeout(() => setUpdatedMachineIds(new Set()), 1000);
 
       return {
         machines,
         alerts: newAlerts,
-        kpis: generateKPIs(),
-        telemetryEvents: generateTelemetryEvents(machines),
+        kpis,
+        telemetryEvents,
         lastUpdate: new Date(),
         isLive: prev.isLive,
       };
     });
-  }, []);
+  }, [useMock]);
 
   const toggleLive = useCallback(() => {
     setData(prev => ({ ...prev, isLive: !prev.isLive }));
   }, []);
+
+  useEffect(() => {
+    if (useMock) {
+      refreshData();
+    }
+  }, [useMock, refreshData]);
 
   useEffect(() => {
     if (!enabled || !data.isLive) return;

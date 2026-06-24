@@ -445,7 +445,7 @@ helm install omaya ./backend/kubernetes/helm
 helm install omaya ./backend/kubernetes/helm -f ./backend/kubernetes/helm/values-prod.yaml
 
 # Install with custom values
-helm install omaya ./backend/kubernetes/helm --set image.tag=2.4.2 --set replicaCount=3
+helm install omaya ./backend/kubernetes/helm --set image.tag=3.1.0 --set replicaCount=3
 ```
 
 #### Production Values (values-prod.yaml)
@@ -461,7 +461,7 @@ global:
 frontend:
   image:
     repository: omaya-platform/frontend
-    tag: "2.4.2"
+    tag: "3.1.0"
     pullPolicy: Always
   
   replicaCount: 3
@@ -501,7 +501,7 @@ frontend:
 api:
   image:
     repository: omaya-platform/backend
-    tag: "2.4.2"
+    tag: "3.1.0"
     pullPolicy: Always
   
   replicaCount: 4
@@ -1239,5 +1239,5 @@ For additional help:
 
 ---
 
-**Version**: 2.4.2
-**Last Updated**: March 2025
+**Version**: 3.1.0
+**Last Updated**: June 2026
