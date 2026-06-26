@@ -7,7 +7,7 @@ import logging
 from datetime import datetime
 from pymodbus.client import ModbusTcpClient, ModbusSerialClient
 from pymodbus.exceptions import ModbusException
-from pymodbus.register_read_message import ReadHoldingRegistersResponse, ReadInputRegistersResponse
+from pymodbus.pdu.register_message import ReadHoldingRegistersResponse, ReadInputRegistersResponse
 
 logger = logging.getLogger(__name__)
 

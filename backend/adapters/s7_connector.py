@@ -193,6 +193,36 @@ class S7Connector:
             logger.error(f"Error reading Outputs: {e}")
             return None
     
+    def write_merkers(self, start: int, data: bytes) -> bool:
+        """Write Merkers (M) memory area."""
+        if not self.connected:
+            if not self.connect():
+                return False
+
+        try:
+            self.client.mb_write(start, data)
+            logger.debug(f"Wrote Merkers start={start} size={len(data)}")
+            return True
+        except Exception as e:
+            self.last_error = str(e)
+            logger.error(f"Error writing Merkers: {e}")
+            return False
+
+    def write_outputs(self, start: int, data: bytes) -> bool:
+        """Write Outputs (Q) area."""
+        if not self.connected:
+            if not self.connect():
+                return False
+
+        try:
+            self.client.ab_write(start, data)
+            logger.debug(f"Wrote Outputs start={start} size={len(data)}")
+            return True
+        except Exception as e:
+            self.last_error = str(e)
+            logger.error(f"Error writing Outputs: {e}")
+            return False
+
     def read_plc_info(self) -> Optional[Dict[str, Any]]:
         """Read PLC system information."""
         if not self.connected:

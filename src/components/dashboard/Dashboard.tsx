@@ -39,9 +39,17 @@ const loadMockConstants = async () => {
 
 export function Dashboard() {
   useEffect(() => {
-    if (import.meta.env.VITE_USE_MOCK === 'true') {
+    // Environment guard: Never use mock data in production
+    const isProd = import.meta.env.PROD;
+    const useMock = import.meta.env.VITE_USE_MOCK === 'true' && !isProd;
+
+    if (useMock) {
+      console.warn('⚠️ Using mock data in development mode');
       loadMockConstants().then(() => setIsLoaded(true));
     } else {
+      if (import.meta.env.VITE_USE_MOCK === 'true' && isProd) {
+        console.error('❌ CRITICAL: Mock data requested in production! Guard activated.');
+      }
       setIsLoaded(true);
     }
   }, []);
@@ -496,7 +504,7 @@ function SettingsTab() {
         <div className="space-y-2 text-sm">
           <div className="flex justify-between">
             <span className="text-gray-400">Platform Version</span>
-            <span className="text-white font-mono">v3.1.0</span>
+            <span className="text-white font-mono">v3.1.1</span>
           </div>
           <div className="flex justify-between">
             <span className="text-gray-400">Connected Machines</span>

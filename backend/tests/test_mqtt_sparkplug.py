@@ -139,7 +139,8 @@ def test_sequence_number_wrap(mqtt_adapter):
     mqtt_adapter.sequence_number = 255
     seq = mqtt_adapter._get_next_sequence_number()
     
-    assert seq == 0
+    assert seq == 255
+    assert mqtt_adapter.sequence_number == 0
 
 
 @patch('backend.mqtt_sparkplug.mqtt.Client')
