@@ -107,7 +107,7 @@ async def lifespan(app: FastAPI):
 app = FastAPI(
     title="OMAYA Fleet Monitoring API",
     description="Real-time monitoring and predictive analytics for OMAYA machines",
-    version="3.1.0",
+    version="3.1.1",
     lifespan=lifespan
 )
 
@@ -156,7 +156,7 @@ async def root():
     return {
         "service": "OMAYA Fleet Monitoring API",
         "status": "operational",
-        "version": "3.1.0",
+        "version": "3.1.1",
         "timestamp": datetime.now().isoformat()
     }
 
@@ -528,9 +528,21 @@ async def websocket_endpoint(websocket: WebSocket):
     await manager.connect(websocket)
     websocket_connections.set(len(manager.active_connections))
     
+    client_id = f"{websocket.client.host}:{websocket.client.port}"
+
     try:
         while True:
             data = await websocket.receive_text()
+
+            # Rate limiting check
+            if not manager.check_rate_limit(client_id):
+                logger.warning(f"WebSocket rate limit exceeded for {client_id}")
+                await websocket.send_json({
+                    "type": "error",
+                    "message": "Rate limit exceeded"
+                })
+                continue
+
             message = json.loads(data)
             
             # Handle different message types

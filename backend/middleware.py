@@ -9,6 +9,10 @@ class RequestLoggingMiddleware(BaseHTTPMiddleware):
     async def dispatch(self, request: Request, call_next):
         start_time = time.time()
 
+        # Multi-tenancy support
+        tenant_id = request.headers.get("X-Tenant-ID", "default-tenant")
+        request.state.tenant_id = tenant_id
+
         response = await call_next(request)
 
         process_time = time.time() - start_time
@@ -26,6 +30,7 @@ class RequestLoggingMiddleware(BaseHTTPMiddleware):
             logger.info(f"Request processed: {log_data}")
 
         response.headers["X-Process-Time"] = str(process_time)
+        response.headers["X-Tenant-ID"] = request.state.tenant_id
 
         # Security Headers
         response.headers["X-Content-Type-Options"] = "nosniff"

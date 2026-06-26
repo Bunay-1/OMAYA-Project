@@ -4,8 +4,8 @@
 
 <img src="https://defcoms.eu/images/DefComs-logo.svg" width="250" alt="DefComs Logo" />
 
-![Platform Status](https://img.shields.io/badge/Status-Production%20Ready%20(v3.1.0)-green?style=for-the-badge&logo=react)
-![Version](https://img.shields.io/badge/Version-3.1.0-blue?style=for-the-badge)
+![Platform Status](https://img.shields.io/badge/Status-Production%20Ready%20(v3.1.1)-green?style=for-the-badge&logo=react)
+![Version](https://img.shields.io/badge/Version-3.1.1-blue?style=for-the-badge)
 ![License](https://img.shields.io/badge/License-Enterprise-red?style=for-the-badge)
 
 **Enterprise-Ready IoT/IIoT Architecture for OMAYA Fleet Management with AI-Powered Predictive Maintenance**
@@ -18,6 +18,9 @@
 [![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker)](https://www.docker.com/)
 [![Kubernetes](https://img.shields.io/badge/Kubernetes-326CE5?style=flat-square&logo=kubernetes)](https://kubernetes.io/)
 [![Curl](https://img.shields.io/badge/Curl-073551?style=flat-square&logo=curl)](https://curl.se/)
+[![Kafka](https://img.shields.io/badge/Kafka-231F20?style=flat-square&logo=apachekafka)](https://kafka.apache.org/)
+[![Redis](https://img.shields.io/badge/Redis-DC382D?style=flat-square&logo=redis)](https://redis.io/)
+[![Rust](https://img.shields.io/badge/Rust-000000?style=flat-square&logo=rust)](https://www.rust-lang.org/)
 
 </div>
 
@@ -305,6 +308,7 @@ The OMAYA platform features a robust Edge Layer designed for seamless floor-to-c
 | **FastAPI** | 0.109.0 | Web Framework | ![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=flat-square&logo=fastapi) |
 | **Uvicorn** | 0.27.0 | ASGI Server | ![Uvicorn](https://img.shields.io/badge/Uvicorn-FF6B6B?style=flat-square) |
 | **Pydantic** | 2.5.3 | Data Validation | ![Pydantic](https://img.shields.io/badge/Pydantic-E92063?style=flat-square) |
+| **Kafka Schema Registry** | 7.5.0 | Schema Management | ![Confluent](https://img.shields.io/badge/Confluent-231F20?style=flat-square&logo=confluent) |
 | **WebSockets** | 12.0 | Real-time Communication | ![WebSockets](https://img.shields.io/badge/WebSockets-010101?style=flat-square) |
 | **Redis** | 5.0.1 | Caching | ![Redis](https://img.shields.io/badge/Redis-DC382D?style=flat-square&logo=redis) |
 | **Kafka** | 2.0.2 | Event Streaming | ![Kafka](https://img.shields.io/badge/Kafka-231F20?style=flat-square&logo=apachekafka) |
@@ -807,7 +811,7 @@ Host: localhost:8000
 ```json
 {
   "service": "OMAYA Fleet Monitoring API",
-  "version": "3.1.0",
+  "version": "3.1.1",
   "status": "operational"
 }
 ```
@@ -1777,7 +1781,7 @@ OMAYA © 2024 DefComs - All rights reserved.
 
 ---
 
-**Platform Version:** 3.1.0
-**Status:** 🟢 Production Ready (v3.1.0)
-**Last Updated:** June 2026
+**Platform Version:** 3.1.1
+**Status:** 🟢 Production Ready (v3.1.1)
+**Last Updated:** 25.06.2026
 **Maintained by:** DefComs

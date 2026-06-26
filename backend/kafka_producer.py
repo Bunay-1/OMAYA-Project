@@ -6,6 +6,7 @@ Publishes machine telemetry and alerts to Kafka topics
 from kafka import KafkaProducer
 from kafka.errors import KafkaError
 import json
+import httpx
 import logging
 from typing import Dict, Any, Optional
 from datetime import datetime
@@ -19,6 +20,7 @@ class MachineEventProducer:
     
     def __init__(self):
         bootstrap_servers = os.getenv("KAFKA_BOOTSTRAP_SERVERS", "localhost:9092")
+        self.schema_registry_url = os.getenv("SCHEMA_REGISTRY_URL", "http://schema-registry:8081")
         
         try:
             self.producer = KafkaProducer(
@@ -29,9 +31,43 @@ class MachineEventProducer:
                 linger_ms=10,  # Batch messages for 10ms
             )
             logger.info(f"✅ Kafka producer connected: {bootstrap_servers}")
+            self._register_schemas()
         except Exception as e:
             logger.warning(f"⚠️ Kafka not available: {e}")
             self.producer = None
+
+    def _register_schemas(self):
+        """Register JSON schemas with Schema Registry"""
+        schemas = {
+            "machine-telemetry-value": {
+                "schemaType": "JSON",
+                "schema": json.dumps({
+                    "type": "object",
+                    "properties": {
+                        "machine_id": {"type": "string"},
+                        "timestamp": {"type": "string"},
+                        "data": {"type": "object"},
+                        "event_type": {"type": "string"}
+                    },
+                    "required": ["machine_id", "timestamp", "data"]
+                })
+            }
+        }
+
+        for subject, schema_payload in schemas.items():
+            try:
+                logger.info(f"Registering schema for {subject} with {self.schema_registry_url}")
+                response = httpx.post(
+                    f"{self.schema_registry_url}/subjects/{subject}/versions",
+                    json=schema_payload,
+                    timeout=5.0
+                )
+                if response.status_code == 200:
+                    logger.info(f"✅ Schema registered for {subject}: ID {response.json().get('id')}")
+                else:
+                    logger.warning(f"⚠️ Schema Registry returned {response.status_code}: {response.text}")
+            except Exception as e:
+                logger.error(f"Failed to register schema for {subject}: {e}")
     
     def publish_telemetry(self, machine_id: str, telemetry: Dict[str, Any]) -> bool:
         """

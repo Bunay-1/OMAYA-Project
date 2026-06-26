@@ -7,7 +7,7 @@ def test_modbus_adapter():
     adapter = ModbusAdapter(host="localhost", port=502)
     assert adapter.host == "localhost"
     assert hasattr(adapter, 'connect')
-    assert hasattr(adapter, 'read_registers')
+    assert hasattr(adapter, 'read_holding_registers')
 
 def test_opc_ua_adapter():
     adapter = OPCUAAdapter(endpoint_url="opc.tcp://localhost:4840")

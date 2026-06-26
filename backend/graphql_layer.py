@@ -2,6 +2,7 @@
 GraphQL API Layer
 Flexible data queries with Strawberry GraphQL
 """
+import os
 import strawberry
 from strawberry.fastapi import GraphQLRouter
 from typing import List, Optional
@@ -336,4 +337,11 @@ schema = strawberry.Schema(
 )
 
 # Create GraphQL router
-graphql_router = GraphQLRouter(schema)
+# Disable introspection and tool in production
+IS_PROD = os.getenv("ENV") == "production"
+
+graphql_router = GraphQLRouter(
+    schema,
+    graphql_ide="graphiql" if not IS_PROD else None,
+    allow_queries_via_get=not IS_PROD
+)
