@@ -119,6 +119,8 @@ export function useRealTimeData(options: UseRealTimeDataOptions = {}) {
 
     const interval = setInterval(() => {
       setData(prev => {
+        if (!prev.machines || prev.machines.length === 0) return prev;
+
         const machine = prev.machines[Math.floor(Math.random() * prev.machines.length)];
         const messages = [
           'Spindle speed adjusted to optimal range',
