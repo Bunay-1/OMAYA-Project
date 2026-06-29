@@ -2,6 +2,8 @@
 
 <div align="center">
 
+![CI/CD Status](https://github.com/omaya-org/omaya/actions/workflows/ci.yml/badge.svg)
+
 <img src="https://defcoms.eu/images/DefComs-logo.svg" width="250" alt="DefComs Logo" />
 
 ![Platform Status](https://img.shields.io/badge/Status-Production%20Ready%20(v3.1.1)-green?style=for-the-badge&logo=react)
