@@ -4,10 +4,30 @@
 -- Enable TimescaleDB extension
 CREATE EXTENSION IF NOT EXISTS timescaledb CASCADE;
 
+-- Machines metadata table
+CREATE TABLE IF NOT EXISTS machines (
+    id VARCHAR(50) PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    zone VARCHAR(50),
+    type VARCHAR(50),
+    status VARCHAR(20) DEFAULT 'operational',
+    last_maintenance TIMESTAMPTZ,
+    metadata JSONB,
+    created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- Insert some default machines
+INSERT INTO machines (id, name, zone, type)
+VALUES
+    ('OMAYA-001', 'Mill A1', 'Zone A', 'CNC Mill'),
+    ('OMAYA-002', 'Lathe B1', 'Zone B', 'CNC Lathe'),
+    ('OMAYA-003', 'Drill C1', 'Zone C', 'CNC Drill')
+ON CONFLICT (id) DO NOTHING;
+
 -- Machine telemetry table (time-series data)
 CREATE TABLE IF NOT EXISTS machine_telemetry (
     time TIMESTAMPTZ NOT NULL,
-    machine_id VARCHAR(50) NOT NULL,
+    machine_id VARCHAR(50) NOT NULL REFERENCES machines(id),
     temperature FLOAT,
     vibration FLOAT,
     spindle_speed INTEGER,
@@ -167,7 +187,30 @@ VALUES
 -- GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO omaya_user;
 -- GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public TO omaya_user;
 
+-- Users table for authentication and RBAC
+CREATE TABLE IF NOT EXISTS users (
+    id SERIAL PRIMARY KEY,
+    username VARCHAR(50) UNIQUE NOT NULL,
+    email VARCHAR(100) UNIQUE,
+    hashed_password VARCHAR(255) NOT NULL,
+    roles JSONB DEFAULT '["operator"]',
+    is_disabled BOOLEAN DEFAULT FALSE,
+    created_at TIMESTAMPTZ DEFAULT NOW(),
+    last_login TIMESTAMPTZ
+);
+
+-- Insert default users (password: password123)
+-- Hash generated via passlib bcrypt
+INSERT INTO users (username, email, hashed_password, roles)
+VALUES
+    ('admin', 'admin@omaya-monitoring.com', '$2b$12$6kI.cW2J9.0W6ySj7m6u5.N5H2l0E5y9gZ7kG3y8G1W6z5O4G3y8G', '["admin"]'),
+    ('supervisor', 'supervisor@omaya-monitoring.com', '$2b$12$6kI.cW2J9.0W6ySj7m6u5.N5H2l0E5y9gZ7kG3y8G1W6z5O4G3y8G', '["supervisor"]'),
+    ('operator', 'operator@omaya-monitoring.com', '$2b$12$6kI.cW2J9.0W6ySj7m6u5.N5H2l0E5y9gZ7kG3y8G1W6z5O4G3y8G', '["operator"]')
+ON CONFLICT (username) DO NOTHING;
+
+COMMENT ON TABLE machines IS 'Metadata and status for OMAYA machines';
 COMMENT ON TABLE machine_telemetry IS 'Time-series telemetry data from OMAYA machines';
 COMMENT ON TABLE alerts IS 'Machine alerts and notifications';
 COMMENT ON TABLE predictions IS 'AI-generated failure predictions and RUL estimates';
 COMMENT ON TABLE maintenance_records IS 'Historical maintenance records';
+COMMENT ON TABLE users IS 'User accounts and roles for OMAYA platform';

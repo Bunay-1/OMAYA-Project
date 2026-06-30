@@ -67,6 +67,8 @@ class PredictionRequest(BaseModel):
     machineId: str
     features: dict
 
+from database import db
+
 # Global state
 manager = ConnectionManager()
 
@@ -109,7 +111,7 @@ async def lifespan(app: FastAPI):
 app = FastAPI(
     title="OMAYA Fleet Monitoring API",
     description="Real-time monitoring and predictive analytics for OMAYA machines",
-    version="3.1.4",
+    version="3.1.5",
     lifespan=lifespan
 )
 
@@ -158,7 +160,7 @@ async def root():
     return {
         "service": "OMAYA Fleet Monitoring API",
         "status": "operational",
-        "version": "3.1.4",
+        "version": "3.1.5",
         "timestamp": datetime.now().isoformat()
     }
 
@@ -227,7 +229,27 @@ async def self_test():
 @app.get("/api/machines")
 async def get_machines():
     """Get all machines status"""
-    machines = generate_mock_machines(120)
+    try:
+        query = "SELECT id, name, zone, status, last_maintenance FROM machines"
+        machines = db.execute_query(query)
+
+        # If no machines in DB, fallback to mock for now but log it
+        if not machines:
+            logger.warning("No machines found in database, using mock data")
+            machines = generate_mock_machines(120)
+        else:
+            # Enrich with some dynamic mock data for demo if needed,
+            # but usually we want real telemetry from DB or cache
+            for m in machines:
+                m["temperature"] = round(random.uniform(45, 80), 1)
+                m["vibration"] = round(random.uniform(0.5, 3.0), 2)
+                m["spindleSpeed"] = random.randint(8000, 12000)
+                m["toolWear"] = random.randint(0, 100)
+                m["uptime"] = round(random.uniform(85, 99), 1)
+
+    except Exception as e:
+        logger.error(f"Error fetching machines: {e}")
+        machines = generate_mock_machines(120)
     
     # Update Prometheus metrics
     machines_total.set(len(machines))
@@ -244,12 +266,41 @@ async def get_machines():
 @app.get("/api/machines/{machine_id}")
 async def get_machine(machine_id: str):
     """Get specific machine details"""
-    machine = generate_mock_machine(machine_id)
-    return machine
+    try:
+        query = "SELECT id, name, zone, status, last_maintenance FROM machines WHERE id = %s"
+        machine = db.execute_one(query, (machine_id,))
+        if machine:
+            machine["temperature"] = round(random.uniform(45, 80), 1)
+            machine["vibration"] = round(random.uniform(0.5, 3.0), 2)
+            machine["spindleSpeed"] = random.randint(8000, 12000)
+            machine["toolWear"] = random.randint(0, 100)
+            machine["uptime"] = round(random.uniform(85, 99), 1)
+            return machine
+    except Exception as e:
+        logger.error(f"Error fetching machine {machine_id}: {e}")
+
+    return generate_mock_machine(machine_id)
 
 @app.post("/api/machines/{machine_id}/status")
 async def update_machine_status(machine_id: str, status: MachineStatus):
     """Update machine status"""
+    # Store in database (Time-series)
+    try:
+        query = """
+            INSERT INTO machine_telemetry
+            (time, machine_id, temperature, vibration, spindle_speed, tool_wear, status)
+            VALUES (NOW(), %s, %s, %s, %s, %s, %s)
+        """
+        db.execute_query(query, (
+            machine_id, status.temperature, status.vibration,
+            status.spindleSpeed, status.toolWear, status.status
+        ))
+
+        # Update machine current status
+        db.execute_query("UPDATE machines SET status = %s WHERE id = %s", (status.status, machine_id))
+    except Exception as e:
+        logger.error(f"Error saving telemetry to DB: {e}")
+
     # Broadcast to all connected clients
     await manager.broadcast({
         "type": "machine_update",
@@ -383,7 +434,8 @@ async def predict_failure(request: PredictionRequest):
     prediction_requests_total.labels(model_type="lstm_failure").inc()
     
     # Use LSTM predictor
-    prediction = lstm_predictor.predict_failure(request.features)
+    from ai_models import get_lstm_prediction
+    prediction = get_lstm_prediction(request.features)
     prediction["machineId"] = request.machineId
     
     # Update Prometheus gauge
@@ -434,7 +486,8 @@ async def predict_rul(request: PredictionRequest):
     prediction_requests_total.labels(model_type="rul_survival").inc()
     
     # Use RUL predictor
-    prediction = rul_predictor.predict_rul(request.features)
+    from ai_models import get_rul_prediction
+    prediction = get_rul_prediction(request.features)
     prediction["machineId"] = request.machineId
     
     # Update Prometheus gauge
