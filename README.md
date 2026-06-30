@@ -6,8 +6,8 @@
 
 <img src="https://defcoms.eu/images/DefComs-logo.svg" width="250" alt="DefComs Logo" />
 
-![Platform Status](https://img.shields.io/badge/Status-Production%20Ready%20(v3.1.4)-green?style=for-the-badge&logo=react)
-![Version](https://img.shields.io/badge/Version-3.1.4-blue?style=for-the-badge)
+![Platform Status](https://img.shields.io/badge/Status-Production%20Ready%20(v3.1.5)-green?style=for-the-badge&logo=react)
+![Version](https://img.shields.io/badge/Version-3.1.5-blue?style=for-the-badge)
 ![License](https://img.shields.io/badge/License-Enterprise-red?style=for-the-badge)
 
 **Корпоративна IoT/IIoT архитектура за OMAYA Fleet Management с AI-базирана превантивна поддръжка**
@@ -58,8 +58,8 @@
 - **Мониторинг на флота в реално време** - Наблюдение на 120+ машини в множество производствени зони (Siemens, Fanuc, Heidenhain).
 - **Индустриална свързаност** - Интегрирани MQTT, OPC-UA и Modbus TCP/RTU за събиране на данни от PLC.
 - **AI-базирана превантивна поддръжка** - TensorFlow LSTM модели предсказват повреди преди те да се случат.
-- **RAG Knowledge Base** - Интелигентно извличане на документи и обучение на системата чрез семантично търсене (v3.1.4).
-- **Визуална инспекция (YOLO)** - Качествен контрол и детекция на дефекти в реално време (v3.1.4).
+- **RAG Knowledge Base** - Интелигентно извличане на документи и обучение на системата чрез семантично търсене (v3.1.5).
+- **Визуална инспекция (YOLO)** - Качествен контрол и детекция на дефекти в реално време (v3.1.5).
 - **Стрийминг на телеметрия** - Автоматично опресняване през WebSockets с ниска латентност.
 - **Разширени анализи** - SHAP/LIME обяснимост, детекция на дрифт на моделите, онлайн обучение.
 - **Корпоративна интеграция** - Глобален deployment, одитни записи, data lake, управление на тайни.
@@ -68,11 +68,11 @@
 ### Статус на платформата
 
 ```
-🚀 Версия: v3.1.4 - Production Ready
-🟢 Ядрени системи: Оперативни
-🔒 Сигурност: Подсилена архитектура
+🚀 Версия: v3.1.5 - Production Ready
+🟢 Ядрени системи: Оперативни (Real-time Database + Auth)
+🔒 Сигурност: Подсилена архитектура (RBAC + DB Auth)
 📊 Мониторинг: Активен в реално време
-🤖 AI модели: Внедрени (Failure Prediction, RUL, YOLO, RAG)
+🤖 AI модели: Внедрени (Real TensorFlow/SKLearn Models)
 ```
 
 ---
@@ -234,12 +234,12 @@ docker-compose up -d
 
 ## 🤖 AI/ML възможности
 
-### RAG Knowledge Base (v3.1.4)
+### RAG Knowledge Base (v3.1.5)
 Интелигентна база знания за семантично търсене в техническа документация.
 - **Поддържани формати:** PDF, DOCX, ODT, PPTX, XLSX, JSON, XML, CSV, TXT, MD.
 - **Технологии:** LangChain, FAISS, HuggingFace (all-MiniLM-L6-v2).
 
-### Visual Inspection YOLO (v3.1.4)
+### Visual Inspection YOLO (v3.1.5)
 Детекция на дефекти в реално време чрез YOLO за качествен контрол на производствената линия.
 
 ---
@@ -255,14 +255,14 @@ Host: localhost:8000
 ```json
 {
   "service": "OMAYA Fleet Monitoring API",
-  "version": "3.1.4",
+  "version": "3.1.5",
   "status": "operational"
 }
 ```
 
 ---
 
-## 🎯 Статистика на платформата (v3.1.4)
+## 🎯 Статистика на платформата (v3.1.5)
 
 | Метрика | Брой/Стойност |
 |---------|---------------|
@@ -296,5 +296,5 @@ RAG & YOLO:             ██████████████████�
 - **Email:** support@defcoms.eu
 
 ---
-**Версия:** 3.1.4 | **Статус:** 🟢 Production Ready | **Последна актуализация:** 25.06.2026
+**Версия:** 3.1.5 | **Статус:** 🟢 Production Ready | **Последна актуализация:** 25.06.2026
 **Поддържа се от:** DefComs

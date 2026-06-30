@@ -39,34 +39,8 @@ class User(BaseModel):
 class UserInDB(User):
     hashed_password: str
 
-# Mock user database (replace with real DB in production)
-# Note: In a real app, these hashes would be generated during user creation.
-# The hash below corresponds to 'password123'
-DEFAULT_HASH = pwd_context.hash("password123")
-
-fake_users_db = {
-    "admin": {
-        "username": "admin",
-        "email": "admin@omaya-monitoring.com",
-        "hashed_password": DEFAULT_HASH,
-        "roles": ["admin"],
-        "disabled": False,
-    },
-    "supervisor": {
-        "username": "supervisor",
-        "email": "supervisor@omaya-monitoring.com",
-        "hashed_password": DEFAULT_HASH,
-        "roles": ["supervisor"],
-        "disabled": False,
-    },
-    "operator": {
-        "username": "operator",
-        "email": "operator@omaya-monitoring.com",
-        "hashed_password": DEFAULT_HASH,
-        "roles": ["operator"],
-        "disabled": False,
-    }
-}
+from database import db
+import json
 
 class AuthManager:
     """Manage JWT tokens and user authentication"""
@@ -84,16 +58,30 @@ class AuthManager:
     @staticmethod
     def authenticate_user(username: str, password: str) -> Optional[UserInDB]:
         """Authenticate user with username and password"""
-        if username not in fake_users_db:
+        try:
+            query = "SELECT username, email, hashed_password, roles, is_disabled as disabled FROM users WHERE username = %s"
+            user_data = db.execute_one(query, (username,))
+
+            if not user_data:
+                return None
+
+            # roles is JSONB in DB, which comes as a list or dict in Python
+            # UserInDB expects roles to be a list of strings
+            user = UserInDB(**user_data)
+
+            if not AuthManager.verify_password(password, user.hashed_password):
+                return None
+
+            if user.disabled:
+                return None
+
+            # Update last login
+            db.execute_query("UPDATE users SET last_login = NOW() WHERE username = %s", (username,))
+
+            return user
+        except Exception as e:
+            logger.error(f"Authentication error: {e}")
             return None
-        
-        user_dict = fake_users_db[username]
-        user = UserInDB(**user_dict)
-        
-        if not AuthManager.verify_password(password, user.hashed_password):
-            return None
-        
-        return user
     
     @staticmethod
     def create_access_token(data: dict, expires_delta: Optional[timedelta] = None) -> Token:
@@ -135,9 +123,15 @@ class AuthManager:
     @staticmethod
     def get_user_roles(username: str) -> List[str]:
         """Get user roles"""
-        if username in fake_users_db:
-            return fake_users_db[username].get("roles", [])
-        return []
+        try:
+            query = "SELECT roles FROM users WHERE username = %s"
+            result = db.execute_one(query, (username,))
+            if result and result.get('roles'):
+                return result['roles']
+            return []
+        except Exception as e:
+            logger.error(f"Error getting roles: {e}")
+            return []
     
     @staticmethod
     def has_permission(user_roles: List[str], required_role: str) -> bool:

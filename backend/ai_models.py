@@ -272,31 +272,24 @@ class AnomalyDetector:
                 stats["std"] = np.sqrt((stats["std"] ** 2 * (stats["count"] - 1) + delta ** 2) / stats["count"])
 
 
-# Try to import real ML models, fallback to mock
-try:
-    from ml_models import lstm_model as real_lstm, rul_model as real_rul
-    USE_REAL_MODELS = True
-except ImportError:
-    USE_REAL_MODELS = False
+from ml_models.lstm_model import lstm_model as real_lstm
+from ml_models.rul_model import rul_model as real_rul
+
+# Use real models by default
+USE_REAL_MODELS = True
 
 # Singleton instances
-lstm_predictor = LSTMPredictor()
-rul_predictor = RULPredictor()
+lstm_predictor = real_lstm
+rul_predictor = real_rul
 anomaly_detector = AnomalyDetector()
 
 # Wrapper to use real models if available
 def get_lstm_prediction(features):
-    """Get LSTM prediction using real model if available"""
-    if USE_REAL_MODELS:
-        # Convert single data point to sequence
-        sequence = [features] * 24  # Repeat current state as sequence
-        return real_lstm.predict(sequence)
-    else:
-        return lstm_predictor.predict_failure(features)
+    """Get LSTM prediction using real model"""
+    # Convert single data point to sequence
+    sequence = [features] * 24  # Repeat current state as sequence
+    return lstm_predictor.predict(sequence)
 
 def get_rul_prediction(features, confidence=0.95):
-    """Get RUL prediction using real model if available"""
-    if USE_REAL_MODELS:
-        return real_rul.predict(features, confidence)
-    else:
-        return rul_predictor.predict_rul(features, confidence)
+    """Get RUL prediction using real model"""
+    return rul_predictor.predict(features, confidence)
