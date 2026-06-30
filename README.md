@@ -2,12 +2,12 @@
 
 <div align="center">
 
-![CI/CD Status](https://github.com/omaya-org/omaya/actions/workflows/ci.yml/badge.svg)
+[![CI/CD Status](https://github.com/Bunay-1/OMAYA-Project/actions/workflows/ci.yml/badge.svg)](https://github.com/Bunay-1/OMAYA-Project/actions)
 
 <img src="https://defcoms.eu/images/DefComs-logo.svg" width="250" alt="DefComs Logo" />
 
-![Platform Status](https://img.shields.io/badge/Status-Production%20Ready%20(v3.1.1)-green?style=for-the-badge&logo=react)
-![Version](https://img.shields.io/badge/Version-3.1.1-blue?style=for-the-badge)
+![Platform Status](https://img.shields.io/badge/Status-Production%20Ready%20(v3.1.2)-green?style=for-the-badge&logo=react)
+![Version](https://img.shields.io/badge/Version-3.1.2-blue?style=for-the-badge)
 ![License](https://img.shields.io/badge/License-Enterprise-red?style=for-the-badge)
 
 **Enterprise-Ready IoT/IIoT Architecture for OMAYA Fleet Management with AI-Powered Predictive Maintenance**
@@ -88,7 +88,7 @@ The **OMAYA Fleet Monitoring Platform** is a comprehensive enterprise-grade solu
 | **Alert Management** | Multi-severity alerts (info, warning, error, critical) with escalation workflows | ✅ Complete |
 | **Tool Wear Tracking** | Real-time monitoring of tool condition with predictive replacement scheduling | ✅ Complete |
 | **Maintenance Calendar** | Schedule and track preventive, corrective, and predictive maintenance | ✅ Complete |
-| **Production Forecasting** | AI-driven production predictions with confidence intervals | ✅ Complete |
+| **Production Forecasting** | AI-driven production predictions with confidence intervals | 🏗️ In Progress |
 
 ### 🤖 AI & Machine Learning
 
@@ -99,7 +99,7 @@ The **OMAYA Fleet Monitoring Platform** is a comprehensive enterprise-grade solu
 | **Online Learning** | Adaptive anomaly detection with continuous model improvement | ✅ Complete |
 | **Model Drift Detection** | PSI-based monitoring with automatic retraining triggers | ✅ Complete |
 | **AI Explainability** | SHAP & LIME analysis for model interpretability | ✅ Complete |
-| **Training Pipeline** | Automated model training with version control | ✅ Complete |
+| **Training Pipeline** | Automated model training with version control | 🏗️ In Progress |
 | **Edge Computing** | ONNX model conversion for edge deployment | ✅ Complete |
 
 ### ⚙️ Backend Infrastructure
@@ -118,12 +118,12 @@ The **OMAYA Fleet Monitoring Platform** is a comprehensive enterprise-grade solu
 
 | Feature | Description | Status |
 |---------|-------------|--------|
-| **Multi-Region Deployment** | 4 global regions with automatic failover and load balancing | ✅ Complete |
+| **Multi-Region Deployment** | 4 global regions with automatic failover and load balancing | 🏗️ In Progress |
 | **Audit Trail** | Compliance logging with SHA-256 integrity verification | ✅ Complete |
 | **Data Lake** | MinIO S3-compatible storage for long-term archival | ✅ Complete |
 | **Secrets Management** | Vault/K8s Secrets/AWS integration for secure credential storage | ✅ Complete |
 | **TLS Encryption** | TLS 1.3 for all internal and external communications | ✅ Complete |
-| **Service Mesh** | Istio/Linkerd configuration for microservice communication | ✅ Complete |
+| **Service Mesh** | Istio/Linkerd configuration for microservice communication | 🏗️ In Progress |
 | **PLC Integration** | Native support for Siemens S7, Fanuc FOCAS, and Modbus-enabled PLCs | ✅ Complete |
 | **Industrial Protocols** | Full MQTT, OPC-UA, and Modbus TCP/RTU protocol stack | ✅ Complete |
 | **Health Check Utility** | Curl-based automated health diagnostics | ✅ Complete |
@@ -379,8 +379,8 @@ The OMAYA platform features a robust Edge Layer designed for seamless floor-to-c
 #### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/Def-Coms/OMAYA-industrial.git
-cd OMAYA-industrial
+git clone https://github.com/Bunay-1/OMAYA-Project.git
+cd OMAYA-Project
 ```
 
 #### 2. Start All Services
@@ -813,7 +813,7 @@ Host: localhost:8000
 ```json
 {
   "service": "OMAYA Fleet Monitoring API",
-  "version": "3.1.1",
+  "version": "3.1.2",
   "status": "operational"
 }
 ```
@@ -1716,22 +1716,22 @@ curl http://localhost:8000/metrics
 | **Concurrent Connections** | 1000+ |
 | **Prediction Latency** | < 100ms |
 
-### Platform Maturity (v3.1.0)
+### Platform Maturity (v3.1.2)
 
 ```
-Core Features:          ████████████████████ 100% (Production Ready)
-Backend Services:       ████████████████████ 100% (Production Grade)
-AI/ML Models:          ████████████████████ 100% (Optimized)
-Enterprise Features:   ████████████████████ 100% (Global Scale)
-Security:              ████████████████████ 100% (Hardened)
-Testing:               ████████████████████ 100% (Enterprise Coverage)
+Core Features:          ██████████████████░░ 90% (Refining)
+Backend Services:       ████████████████████ 100% (Core Operational)
+AI/ML Models:          ████████████████░░░░ 80% (Refining accuracy)
+Enterprise Features:   ██████████████░░░░░░ 70% (Scaling)
+Security:              ██████████████████░░ 90% (Hardening)
+Testing:               ██████████████░░░░░░ 70% (Targeting 200+ tests)
 Documentation:         ████████████████████ 100% (Synchronized)
 UI Integration:        ████████████████████ 100% (Responsive)
 Monitoring:            ████████████████████ 100% (Full Observability)
-Deployment:            ████████████████████ 100% (Multi-region Active)
+Deployment:            ████████████████░░░░ 80% (Multi-region Setup)
 ```
 
-**Release Status: Production v3.1.0** 🚀
+**Release Status: Production v3.1.2** 🚀
 
 ---
 
@@ -1783,7 +1783,7 @@ OMAYA © 2024 DefComs - All rights reserved.
 
 ---
 
-**Platform Version:** 3.1.1
-**Status:** 🟢 Production Ready (v3.1.1)
+**Platform Version:** 3.1.2
+**Status:** 🟢 Production Ready (v3.1.2)
 **Last Updated:** 25.06.2026
 **Maintained by:** DefComs
