@@ -12,6 +12,7 @@ import { GraphQLExplorer } from './GraphQLExplorer';
 import { AdvancedAnalyticsDashboard } from './AdvancedAnalyticsDashboard';
 import { MaintenanceCalendar } from './MaintenanceCalendar';
 import { ProductionForecastChart } from './ProductionForecastChart';
+import { VisualInspection } from './VisualInspection';
 import { AuditTrailPanel } from './AuditTrailPanel';
 import { MultiRegionDashboard } from './MultiRegionDashboard';
 import { AIExplainabilityPanel } from './AIExplainabilityPanel';
@@ -132,6 +133,10 @@ export function Dashboard() {
               onMachineSelect={handleMachineSelect}
               machines={machines}
             />
+          )}
+
+          {activeTab === 'visual-inspection' && (
+            <VisualInspectionTab isLoaded={isLoaded} />
           )}
           
           {activeTab === 'tools' && (
@@ -289,6 +294,19 @@ function OverviewTab({
           />
         </div>
       </div>
+    </motion.div>
+  );
+}
+
+function VisualInspectionTab({ isLoaded }: { isLoaded: boolean }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: isLoaded ? 1 : 0 }}
+      transition={{ duration: 0.5 }}
+      className="h-full"
+    >
+      <VisualInspection />
     </motion.div>
   );
 }
@@ -504,7 +522,7 @@ function SettingsTab() {
         <div className="space-y-2 text-sm">
           <div className="flex justify-between">
             <span className="text-gray-400">Platform Version</span>
-            <span className="text-white font-mono">v3.1.2</span>
+            <span className="text-white font-mono">v3.1.3</span>
           </div>
           <div className="flex justify-between">
             <span className="text-gray-400">Connected Machines</span>
