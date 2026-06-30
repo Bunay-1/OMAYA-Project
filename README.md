@@ -6,8 +6,8 @@
 
 <img src="https://defcoms.eu/images/DefComs-logo.svg" width="250" alt="DefComs Logo" />
 
-![Platform Status](https://img.shields.io/badge/Status-Production%20Ready%20(v3.1.3)-green?style=for-the-badge&logo=react)
-![Version](https://img.shields.io/badge/Version-3.1.3-blue?style=for-the-badge)
+![Platform Status](https://img.shields.io/badge/Status-Production%20Ready%20(v3.1.4)-green?style=for-the-badge&logo=react)
+![Version](https://img.shields.io/badge/Version-3.1.4-blue?style=for-the-badge)
 ![License](https://img.shields.io/badge/License-Enterprise-red?style=for-the-badge)
 
 **Enterprise-Ready IoT/IIoT Architecture for OMAYA Fleet Management with AI-Powered Predictive Maintenance**
@@ -59,6 +59,7 @@ The **OMAYA Fleet Monitoring Platform** is a comprehensive enterprise-grade solu
 - **Real-time Fleet Monitoring** - Monitor 120+ machines across multiple production zones (Siemens, Fanuc, Heidenhain)
 - **Industrial Connectivity** - Integrated MQTT, OPC-UA, and Modbus TCP/RTU for PLC data ingestion
 - **AI-Powered Predictive Maintenance** - TensorFlow LSTM models predict failures before they occur
+- **RAG Knowledge Base** - Intelligent document retrieval and system training (v3.1.4)
 - **Visual Inspection (YOLO)** - Real-time quality control and defect detection
 - **Live Telemetry Streaming** - 3-second auto-refresh with WebSocket real-time updates
 - **Advanced Analytics** - SHAP/LIME explainability, model drift detection, online learning
@@ -814,7 +815,7 @@ Host: localhost:8000
 ```json
 {
   "service": "OMAYA Fleet Monitoring API",
-  "version": "3.1.3",
+  "version": "3.1.4",
   "status": "operational"
 }
 ```
@@ -1784,7 +1785,7 @@ OMAYA © 2024 DefComs - All rights reserved.
 
 ---
 
-**Platform Version:** 3.1.3
-**Status:** 🟢 Production Ready (v3.1.3)
+**Platform Version:** 3.1.4
+**Status:** 🟢 Production Ready (v3.1.4)
 **Last Updated:** 25.06.2026
 **Maintained by:** DefComs

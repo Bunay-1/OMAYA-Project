@@ -16,7 +16,8 @@ import {
   Shield,
   Globe,
   Lightbulb,
-  TrendingUp
+  TrendingUp,
+  BookOpen
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -36,6 +37,7 @@ const navItems = [
   { id: 'maintenance', label: 'Maintenance', icon: Calendar },
   { id: 'analytics', label: 'Advanced Analytics', icon: TrendingUp },
   { id: 'explainability', label: 'AI Explainability', icon: Lightbulb },
+  { id: 'rag', label: 'RAG Knowledge', icon: BookOpen },
   { id: 'graphql', label: 'GraphQL Explorer', icon: Database },
   { id: 'audit', label: 'Audit Trail', icon: Shield },
   { id: 'multi-region', label: 'Multi-Region', icon: Globe },
