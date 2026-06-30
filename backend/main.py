@@ -162,7 +162,8 @@ async def root():
         "timestamp": datetime.now().isoformat()
     }
 
-@app.get("/health")
+@app.get("/health", deprecated=True)
+@app.get("/api/v1/health")
 async def health_check():
     return {
         "status": "healthy",
