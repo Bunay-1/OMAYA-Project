@@ -3,7 +3,7 @@ version: '3.8'
 services:
   # Frontend (React + Nginx)
   frontend:
-    image: omaya-frontend:3.1.1
+    image: omaya-frontend:3.1.2
     build:
       context: .
       dockerfile: Dockerfile
@@ -35,7 +35,7 @@ services:
 
   # FastAPI Backend
   api:
-    image: omaya-api:3.1.1
+    image: omaya-api:3.1.2
     build:
       context: ./backend
       dockerfile: Dockerfile
@@ -133,9 +133,9 @@ services:
     ports:
       - "5432:5432"
     environment:
-      - POSTGRES_USER=${TIMESCALE_USER:-omaya_user}
-      - POSTGRES_PASSWORD=${TIMESCALE_PASSWORD:-omaya_password}
-      - POSTGRES_DB=${TIMESCALE_DB:-omaya_monitoring}
+      - POSTGRES_USER=${TIMESCALE_USER}
+      - POSTGRES_PASSWORD=${TIMESCALE_PASSWORD}
+      - POSTGRES_DB=${TIMESCALE_DB}
     volumes:
       - timescale-data:/var/lib/postgresql/data
       - ./backend/docker/init-db.sql:/docker-entrypoint-initdb.d/init.sql
@@ -238,8 +238,8 @@ services:
       - "9000:9000"
       - "9001:9001"
     environment:
-      - MINIO_ROOT_USER=${MINIO_ROOT_USER:-minioadmin}
-      - MINIO_ROOT_PASSWORD=${MINIO_ROOT_PASSWORD:-minioadmin}
+      - MINIO_ROOT_USER=${MINIO_ROOT_USER}
+      - MINIO_ROOT_PASSWORD=${MINIO_ROOT_PASSWORD}
     volumes:
       - minio-data:/data
     command: server /data --console-address ":9001"
