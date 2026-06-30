@@ -6,6 +6,8 @@ import PyPDF2
 from docx import Document
 from pptx import Presentation
 import openpyxl
+from odf import text, teletype
+from odf.opendocument import load
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain_community.vectorstores import FAISS
@@ -85,6 +87,10 @@ class RAGManager:
             elif ext in [".txt", ".md"]:
                 with open(file_path, "r", encoding="utf-8") as f:
                     text = f.read()
+            elif ext == ".odt":
+                odt_doc = load(file_path)
+                all_paras = odt_doc.getElementsByType(text.P)
+                text = "\n".join([teletype.extractText(p) for p in all_paras])
             else:
                 logger.warning(f"Unsupported file format: {ext}")
                 return []
@@ -145,7 +151,7 @@ class RAGManager:
         return {
             "indexed_files": num_files,
             "total_chunks": num_chunks,
-            "supported_formats": ["pdf", "doc", "docx", "pptx", "xlsx", "csv", "json", "xml", "txt", "md"]
+            "supported_formats": ["pdf", "doc", "docx", "pptx", "xlsx", "csv", "json", "xml", "txt", "md", "odt"]
         }
 
 rag_manager = RAGManager()

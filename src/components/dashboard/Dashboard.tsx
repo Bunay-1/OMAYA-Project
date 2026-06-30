@@ -13,6 +13,7 @@ import { AdvancedAnalyticsDashboard } from './AdvancedAnalyticsDashboard';
 import { MaintenanceCalendar } from './MaintenanceCalendar';
 import { ProductionForecastChart } from './ProductionForecastChart';
 import { VisualInspection } from './VisualInspection';
+import RAGDashboard from './RAGDashboard';
 import { AuditTrailPanel } from './AuditTrailPanel';
 import { MultiRegionDashboard } from './MultiRegionDashboard';
 import { AIExplainabilityPanel } from './AIExplainabilityPanel';
@@ -161,6 +162,10 @@ export function Dashboard() {
               selectedMachine={selectedMachine}
             />
           )}
+
+          {activeTab === 'rag' && (
+            <RAGTab isLoaded={isLoaded} />
+          )}
           
           {activeTab === 'graphql' && (
             <GraphQLTab isLoaded={isLoaded} />
@@ -294,6 +299,19 @@ function OverviewTab({
           />
         </div>
       </div>
+    </motion.div>
+  );
+}
+
+function RAGTab({ isLoaded }: { isLoaded: boolean }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: isLoaded ? 1 : 0 }}
+      transition={{ duration: 0.5 }}
+      className="h-full"
+    >
+      <RAGDashboard />
     </motion.div>
   );
 }
@@ -522,7 +540,7 @@ function SettingsTab() {
         <div className="space-y-2 text-sm">
           <div className="flex justify-between">
             <span className="text-gray-400">Platform Version</span>
-            <span className="text-white font-mono">v3.1.3</span>
+            <span className="text-white font-mono">v3.1.4</span>
           </div>
           <div className="flex justify-between">
             <span className="text-gray-400">Connected Machines</span>

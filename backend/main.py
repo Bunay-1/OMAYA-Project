@@ -45,6 +45,7 @@ from audit_trails import audit_trail, log_data_access, log_alert_action, AuditEv
 from drift_detection import drift_detector
 from online_learning import online_detector
 from visual_inspection import yolo_inspector
+from RAG.rag_logic import rag_manager
 
 # Pydantic models
 class MachineStatus(BaseModel):
@@ -108,7 +109,7 @@ async def lifespan(app: FastAPI):
 app = FastAPI(
     title="OMAYA Fleet Monitoring API",
     description="Real-time monitoring and predictive analytics for OMAYA machines",
-    version="3.1.3",
+    version="3.1.4",
     lifespan=lifespan
 )
 
@@ -157,7 +158,7 @@ async def root():
     return {
         "service": "OMAYA Fleet Monitoring API",
         "status": "operational",
-        "version": "3.1.3",
+        "version": "3.1.4",
         "timestamp": datetime.now().isoformat()
     }
 
@@ -729,6 +730,46 @@ async def get_service_mesh_config():
     """Get service mesh configuration"""
     from service_mesh import service_mesh
     return service_mesh.generate_all_configs()
+
+# RAG (Retrieval-Augmented Generation) Endpoints
+
+class QuestionRequest(BaseModel):
+    question: str
+    k: Optional[int] = 4
+
+@app.post("/api/rag/query")
+async def query_rag(request: QuestionRequest):
+    """Query the RAG system for information from indexed documents"""
+    results = rag_manager.query(request.question, k=request.k)
+
+    # Audit log
+    audit_trail.log_event(
+        event_type=AuditEventType.PROCESS_CHANGE, # Using existing type for now
+        user_id="system",
+        details={
+            "action": "rag_query",
+            "question": request.question,
+            "results_count": len(results)
+        }
+    )
+
+    return {"results": results}
+
+@app.post("/api/rag/reindex")
+async def reindex_rag():
+    """Trigger re-indexing of documents in the RAG directory"""
+    new_files, new_chunks = rag_manager.index_files()
+    return {
+        "status": "success",
+        "new_files": new_files,
+        "new_chunks": new_chunks,
+        "total_stats": rag_manager.get_stats()
+    }
+
+@app.get("/api/rag/stats")
+async def get_rag_stats():
+    """Get RAG system statistics"""
+    return rag_manager.get_stats()
 
 # Mount GraphQL endpoint
 app.include_router(graphql_router, prefix="/graphql", tags=["GraphQL"])
