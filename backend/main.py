@@ -44,6 +44,7 @@ from data_lake import data_lake
 from audit_trails import audit_trail, log_data_access, log_alert_action, AuditEventType
 from drift_detection import drift_detector
 from online_learning import online_detector
+from visual_inspection import yolo_inspector
 
 # Pydantic models
 class MachineStatus(BaseModel):
@@ -107,7 +108,7 @@ async def lifespan(app: FastAPI):
 app = FastAPI(
     title="OMAYA Fleet Monitoring API",
     description="Real-time monitoring and predictive analytics for OMAYA machines",
-    version="3.1.2",
+    version="3.1.3",
     lifespan=lifespan
 )
 
@@ -156,7 +157,7 @@ async def root():
     return {
         "service": "OMAYA Fleet Monitoring API",
         "status": "operational",
-        "version": "3.1.2",
+        "version": "3.1.3",
         "timestamp": datetime.now().isoformat()
     }
 
@@ -688,6 +689,40 @@ async def get_secrets_status():
     """Get secrets manager status"""
     from secrets_manager import secrets_manager
     return secrets_manager.get_status()
+
+# Visual Inspection (YOLO) Endpoints
+
+@app.post("/api/inspect/image")
+async def inspect_part(machine_id: str = "OMAYA-QC-01", part_id: Optional[str] = None):
+    """
+    Perform visual inspection on a part
+    In production, this would accept a file/stream
+    """
+    metadata = {
+        "machine_id": machine_id,
+        "part_id": part_id or f"PART-{random.randint(1000, 9999)}"
+    }
+
+    # Mocking image data input
+    result = yolo_inspector.inspect_image(None, metadata)
+
+    # Audit log
+    audit_trail.log_event(
+        event_type=AuditEventType.PROCESS_CHANGE,
+        user_id="system",
+        details={
+            "action": "visual_inspection",
+            "part_id": result["part_id"],
+            "status": result["status"]
+        }
+    )
+
+    return result
+
+@app.get("/api/inspect/stats")
+async def get_inspection_stats():
+    """Get visual inspection statistics"""
+    return yolo_inspector.get_stats()
 
 @app.get("/api/service-mesh/config")
 async def get_service_mesh_config():
