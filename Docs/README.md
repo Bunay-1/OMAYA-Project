@@ -125,8 +125,8 @@ The OMAYA Platform is an enterprise-grade IoT/IIoT solution for real-time monito
 
 ```bash
 # Clone the repository
-git clone https://github.com/Def-Coms/OMAYA-industrial.git
-cd OMAYA-industrial
+git clone https://github.com/Bunay-1/OMAYA-Project.git
+cd OMAYA-Project
 
 # Start core services
 docker-compose -f docker-compose.dev.yml up -d
@@ -145,8 +145,8 @@ docker-compose up -d
 
 # Access monitoring services
 # Prometheus: http://localhost:9090
-# Grafana: http://localhost:3001 (admin/admin)
-# MinIO Console: http://localhost:9001 (minioadmin/minioadmin)
+# Grafana: http://localhost:3001 (credentials set in your `.env`)
+# MinIO Console: http://localhost:9001 (credentials set in your `.env`)
 # Vault: http://localhost:8200
 ```
 
@@ -352,7 +352,7 @@ For common issues and solutions, see [Troubleshooting Guide](./guides/TROUBLESHO
 
 For additional support:
 - Documentation: [https://docs.omaya-platform.com](https://docs.omaya-platform.com)
-- Issues: [https://github.com/Def-Coms/OMAYA-industrial/issues](https://github.com/Def-Coms/OMAYA-industrial/issues)
+- Issues: [https://github.com/Bunay-1/OMAYA-Project/issues](https://github.com/Bunay-1/OMAYA-Project/issues)
 - Email: support@omaya-platform.com
 
 ---

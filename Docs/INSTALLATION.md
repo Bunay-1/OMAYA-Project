@@ -102,8 +102,8 @@ This is the simplest and recommended method for most users.
 
 ```bash
 # Clone repository
-git clone https://github.com/Def-Coms/OMAYA-industrial.git
-cd OMAYA-industrial
+git clone https://github.com/Bunay-1/OMAYA-Project.git
+cd OMAYA-Project
 
 # Start core services
 docker-compose -f docker-compose.dev.yml up -d
@@ -154,7 +154,7 @@ uvicorn main:app --host 0.0.0.0 --port 8000
 
 ```bash
 # Navigate to root directory
-cd OMAYA-industrial
+cd OMAYA-Project
 
 # Install dependencies
 npm install
@@ -174,8 +174,8 @@ npm run dev
 ### Step 1: Clone Repository
 
 ```bash
-git clone https://github.com/Def-Coms/OMAYA-industrial.git
-cd OMAYA-industrial
+git clone https://github.com/Bunay-1/OMAYA-Project.git
+cd OMAYA-Project
 ```
 
 ### Step 2: Configure Environment
@@ -457,7 +457,7 @@ sudo rm -rf /var/lib/postgresql
 sudo rm -rf /var/lib/redis
 
 # Remove application files
-rm -rf /path/to/OMAYA-industrial
+rm -rf /path/to/OMAYA-Project
 ```
 
 ---
@@ -487,7 +487,7 @@ sudo usermod -aG docker $USER
 newgrp docker
 
 # Fix file permissions
-sudo chown -R $USER:$USER /path/to/OMAYA-industrial
+sudo chown -R $USER:$USER /path/to/OMAYA-Project
 ```
 
 ### Memory Issues
@@ -522,7 +522,7 @@ docker-compose up -d
 
 For additional help:
 - Documentation: [https://docs.omaya-platform.com](https://docs.omaya-platform.com)
-- Issues: [https://github.com/Def-Coms/OMAYA-industrial/issues](https://github.com/Def-Coms/OMAYA-industrial/issues)
+- Issues: [https://github.com/Bunay-1/OMAYA-Project/issues](https://github.com/Bunay-1/OMAYA-Project/issues)
 - Email: support@omaya-platform.com
 
 ---

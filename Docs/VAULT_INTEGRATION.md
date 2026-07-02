@@ -694,7 +694,7 @@ if __name__ == '__main__':
 
 For additional help:
 - Documentation: [https://docs.omaya-platform.com](https://docs.omaya-platform.com)
-- Issues: [https://github.com/Def-Coms/OMAYA-industrial/issues](https://github.com/Def-Coms/OMAYA-industrial/issues)
+- Issues: [https://github.com/Bunay-1/OMAYA-Project/issues](https://github.com/Bunay-1/OMAYA-Project/issues)
 - Email: security@omaya-platform.com
 
 ---
