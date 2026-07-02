@@ -6,6 +6,16 @@ on:
   pull_request:
     branches: [ main ]
 
+# Minimize default token permissions and cancel concurrent runs for same ref
+permissions:
+  contents: read
+  packages: read
+  pull-requests: write
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   backend-tests:
     runs-on: ubuntu-latest

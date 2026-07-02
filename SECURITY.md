@@ -45,5 +45,14 @@
 
 - Вижте [Docs/DISASTER_RECOVERY.md](./Docs/DISASTER_RECOVERY.md) за RTO/RPO цели, backup стратегия и recovery план за TimescaleDB, Kafka, Redis и MinIO.
 
+## CI / Workflow сигурност
+
+- Ограничете правата на `GITHUB_TOKEN` чрез `permissions` в GitHub Actions workflows (например `contents: read`, `packages: read`).
+- Не разкриватe тайни на PR-и от fork-ове; използвайте условни проверки преди стъпки, които изискват тайни или write-достъп.
+- Използвайте `concurrency` за предотвратяване на паралелни, конфликтни build-ове при една и съща клон/реф.
+- Сканирайте container images и зависимости в CI (Trivy / Snyk) преди публикуване.
+
+Пример: в `.github/workflows/ci.yml` е добавен `permissions` блок и `concurrency` за минимизиране на риска.
+
 ---
 *Последна актуализация: Юни 2026*
