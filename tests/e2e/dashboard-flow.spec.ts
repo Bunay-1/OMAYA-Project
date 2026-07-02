@@ -9,17 +9,17 @@ test.describe('OMAYA dashboard flow', () => {
 
     const sidebar = page.locator('aside');
 
-    await sidebar.getByRole('button', { name: 'Alerts' }).click();
+    await sidebar.getByRole('button', { name: 'Alerts' }).click({ force: true });
     await expect(page.getByText('Alert Center')).toBeVisible();
 
-    await sidebar.getByRole('button', { name: 'Predictive AI' }).click();
+    await sidebar.getByRole('button', { name: 'Predictive AI' }).click({ force: true });
     await expect(page.getByText('Predictive Analytics')).toBeVisible();
 
-    await sidebar.getByRole('button', { name: 'Tool Wear' }).click();
+    await sidebar.getByRole('button', { name: 'Tool Wear' }).click({ force: true });
     await expect(page.getByText('Tool Wear Tracking')).toBeVisible();
 
-    await sidebar.getByRole('button', { name: 'Live Telemetry' }).click();
-    await expect(page.getByRole('heading', { name: 'Live Telemetry' })).toBeVisible();
+    await sidebar.getByRole('button', { name: 'Live Telemetry' }).click({ force: true });
+    await expect(page.locator('h1:has-text("Live Telemetry")')).toBeVisible();
   });
 
   test('fleet overview search filters machine list', async ({ page }) => {

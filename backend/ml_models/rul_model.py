@@ -152,6 +152,10 @@ class RULPredictor:
         except Exception as e:
             logger.error(f"RUL prediction error: {e}")
             return self._mock_prediction(data, confidence_level)
+
+    def predict_rul(self, data: Dict[str, float], confidence_level: float = 0.95) -> Dict:
+        """Backward-compatible alias for RUL prediction."""
+        return self.predict(data, confidence_level)
     
     def _mock_prediction(self, data: Dict[str, float], confidence_level: float) -> Dict:
         """Fallback mock prediction"""

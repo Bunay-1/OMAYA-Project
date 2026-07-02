@@ -455,7 +455,7 @@ async def predict_failure(request: PredictionRequest):
     
     # Generate explanation
     explanation = explainable_ai.explain_prediction_shap(
-        lstm_predictor.model,
+        lstm_predictor,
         request.features
     )
     prediction["explanation"] = explanation
@@ -497,7 +497,7 @@ async def predict_rul(request: PredictionRequest):
     
     # Generate explanation
     explanation = explainable_ai.explain_prediction_lime(
-        rul_predictor.model,
+        rul_predictor,
         request.features
     )
     prediction["explanation"] = explanation

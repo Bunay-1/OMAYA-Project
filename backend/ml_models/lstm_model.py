@@ -154,6 +154,10 @@ class LSTMFailurePredictor:
         except Exception as e:
             logger.error(f"LSTM prediction error: {e}")
             return self._mock_prediction(sequence_data[-1] if sequence_data else {})
+
+    def predict_failure(self, sequence_data: List[Dict[str, float]]) -> Dict:
+        """Backward-compatible alias for failure prediction."""
+        return self.predict(sequence_data)
     
     def _analyze_factors(self, latest_data: Dict[str, float]) -> List[Dict]:
         """Analyze which factors contribute most to failure risk"""
