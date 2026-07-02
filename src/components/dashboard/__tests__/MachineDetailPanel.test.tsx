@@ -80,6 +80,6 @@ describe('MachineDetailPanel Component', () => {
   it('renders telemetry values', () => {
     render(<MachineDetailPanel machine={mockMachine as any} onClose={() => {}} />);
     expect(screen.getByText(/62.5/)).toBeDefined();
-    expect(screen.getByText(/1.2/)).toBeDefined();
+    expect(screen.getAllByText(/1.2/).length).toBeGreaterThan(0);
   });
 });

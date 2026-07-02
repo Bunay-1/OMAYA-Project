@@ -34,8 +34,8 @@ vi.mock('lucide-react', () => {
     Gauge: Icon,
     RefreshCw: Icon,
     Menu: Icon,
-    X: Icon,
-  };
+    X: Icon,    Camera: Icon,
+    BookOpen: Icon,  };
 });
 
 describe('Sidebar Component', () => {

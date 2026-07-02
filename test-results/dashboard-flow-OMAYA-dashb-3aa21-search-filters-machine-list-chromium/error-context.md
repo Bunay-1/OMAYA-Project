@@ -1,0 +1,3116 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: dashboard-flow.spec.ts >> OMAYA dashboard flow >> fleet overview search filters machine list
+- Location: tests\e2e\dashboard-flow.spec.ts:23:3
+
+# Error details
+
+```
+Error: expect(locator).toBeVisible() failed
+
+Locator: getByText('Fleet Overview')
+Expected: visible
+Error: strict mode violation: getByText('Fleet Overview') resolved to 2 elements:
+    1) <span class="text-sm font-medium truncate">Fleet Overview</span> aka getByRole('button', { name: 'Fleet Overview' })
+    2) <h2 class="text-xl font-display font-bold text-white">Fleet Overview</h2> aka getByRole('heading', { name: 'Fleet Overview' })
+
+Call log:
+  - Expect "toBeVisible" with timeout 5000ms
+  - waiting for getByText('Fleet Overview')
+
+```
+
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - complementary [ref=e4]:
+    - generic [ref=e6]:
+      - img [ref=e8]
+      - generic [ref=e11]:
+        - heading "OMAYA" [level=1] [ref=e12]
+        - paragraph [ref=e13]: COMMAND CENTER
+    - generic [ref=e15]:
+      - img [ref=e16]
+      - textbox "Search machines..." [ref=e19]
+    - navigation [ref=e20]:
+      - button "Fleet Overview" [ref=e21] [cursor=pointer]:
+        - img [ref=e22]
+        - generic [ref=e27]: Fleet Overview
+      - button "Machines" [ref=e29] [cursor=pointer]:
+        - img [ref=e30]
+        - generic [ref=e33]: Machines
+      - button "Live Telemetry" [ref=e34] [cursor=pointer]:
+        - img [ref=e35]
+        - generic [ref=e37]: Live Telemetry
+      - button "Predictive AI" [ref=e38] [cursor=pointer]:
+        - img [ref=e39]
+        - generic [ref=e41]: Predictive AI
+      - button "Visual Inspection" [ref=e42] [cursor=pointer]:
+        - img [ref=e43]
+        - generic [ref=e46]: Visual Inspection
+      - button "Tool Wear" [ref=e47] [cursor=pointer]:
+        - img [ref=e48]
+        - generic [ref=e50]: Tool Wear
+      - button "Alerts" [ref=e51] [cursor=pointer]:
+        - img [ref=e52]
+        - generic [ref=e54]: Alerts
+      - button "Maintenance" [ref=e55] [cursor=pointer]:
+        - img [ref=e56]
+        - generic [ref=e58]: Maintenance
+      - button "Advanced Analytics" [ref=e59] [cursor=pointer]:
+        - img [ref=e60]
+        - generic [ref=e63]: Advanced Analytics
+      - button "AI Explainability" [ref=e64] [cursor=pointer]:
+        - img [ref=e65]
+        - generic [ref=e67]: AI Explainability
+      - button "RAG Knowledge" [ref=e68] [cursor=pointer]:
+        - img [ref=e69]
+        - generic [ref=e72]: RAG Knowledge
+      - button "GraphQL Explorer" [ref=e73] [cursor=pointer]:
+        - img [ref=e74]
+        - generic [ref=e78]: GraphQL Explorer
+      - button "Audit Trail" [ref=e79] [cursor=pointer]:
+        - img [ref=e80]
+        - generic [ref=e82]: Audit Trail
+      - button "Multi-Region" [ref=e83] [cursor=pointer]:
+        - img [ref=e84]
+        - generic [ref=e87]: Multi-Region
+      - button "Settings" [ref=e88] [cursor=pointer]:
+        - img [ref=e89]
+        - generic [ref=e92]: Settings
+    - generic [ref=e93]:
+      - generic [ref=e96]: System Online
+      - paragraph [ref=e97]: "Last sync: 2s ago"
+    - button [ref=e98] [cursor=pointer]:
+      - img [ref=e99]
+  - main [ref=e101]:
+    - generic [ref=e103]:
+      - generic [ref=e105]:
+        - generic [ref=e106]:
+          - heading "OMAYA Platform" [level=1] [ref=e107]
+          - paragraph [ref=e108]: Real-time monitoring of 120 machines across 6 zones
+        - generic [ref=e111]: Live Updates
+      - generic [ref=e112]:
+        - generic [ref=e113]:
+          - img [ref=e116]
+          - paragraph [ref=e119]: Overall Equipment Effectiveness
+          - generic [ref=e120]:
+            - generic [ref=e121]: "84.9"
+            - generic [ref=e122]: "%"
+          - generic [ref=e123]:
+            - img [ref=e124]
+            - generic [ref=e127]: +2.3%
+            - generic [ref=e128]: vs last week
+        - generic [ref=e130]:
+          - img [ref=e133]
+          - paragraph [ref=e135]: Fleet Uptime
+          - generic [ref=e136]:
+            - generic [ref=e137]: "92.2"
+            - generic [ref=e138]: "%"
+          - generic [ref=e139]:
+            - img [ref=e140]
+            - generic [ref=e143]: +1.5%
+            - generic [ref=e144]: vs last week
+        - generic [ref=e146]:
+          - img [ref=e149]
+          - paragraph [ref=e153]: Production Output
+          - generic [ref=e154]:
+            - generic [ref=e155]: "1001"
+            - generic [ref=e156]: units
+          - generic [ref=e157]:
+            - img [ref=e158]
+            - generic [ref=e161]: 97.1% of target
+            - generic [ref=e162]: vs last week
+        - generic [ref=e164]:
+          - img [ref=e167]
+          - paragraph [ref=e169]: Defect Rate
+          - generic [ref=e170]:
+            - generic [ref=e171]: "2.94"
+            - generic [ref=e172]: "%"
+          - generic [ref=e173]:
+            - img [ref=e174]
+            - generic [ref=e177]: +0.5%
+            - generic [ref=e178]: vs last week
+      - generic [ref=e180]:
+        - generic [ref=e181]:
+          - generic [ref=e182]:
+            - img [ref=e183]
+            - generic [ref=e186]: MTBF
+          - paragraph [ref=e187]: 195hrs
+        - generic [ref=e188]:
+          - generic [ref=e189]:
+            - img [ref=e190]
+            - generic [ref=e193]: MTTR
+          - paragraph [ref=e194]: 3.4hrs
+        - generic [ref=e195]:
+          - generic [ref=e196]:
+            - img [ref=e197]
+            - generic [ref=e199]: Energy Eff.
+          - paragraph [ref=e200]: 83.5%
+        - generic [ref=e201]:
+          - generic [ref=e202]:
+            - img [ref=e203]
+            - generic [ref=e207]: Throughput
+          - paragraph [ref=e208]: 985/hr
+      - generic [ref=e209]:
+        - generic [ref=e211]:
+          - generic [ref=e212]:
+            - generic [ref=e213]:
+              - img [ref=e215]
+              - generic [ref=e219]:
+                - heading "Fleet Overview" [level=2] [ref=e220]
+                - paragraph [ref=e221]: 120 machines monitored
+            - generic [ref=e222]:
+              - button "Live" [ref=e223] [cursor=pointer]: Live
+              - button [ref=e225] [cursor=pointer]:
+                - img [ref=e226]
+              - button [ref=e228] [cursor=pointer]:
+                - img [ref=e229]
+          - generic [ref=e230]:
+            - img [ref=e231]
+            - textbox "Search machines by ID or name..." [ref=e234]
+          - generic [ref=e235]:
+            - button "Operational 85" [ref=e236] [cursor=pointer]:
+              - generic [ref=e238]: Operational
+              - generic [ref=e239]: "85"
+            - button "Warning 18" [ref=e240] [cursor=pointer]:
+              - generic [ref=e242]: Warning
+              - generic [ref=e243]: "18"
+            - button "Critical 7" [ref=e244] [cursor=pointer]:
+              - generic [ref=e246]: Critical
+              - generic [ref=e247]: "7"
+            - button "Offline 2" [ref=e248] [cursor=pointer]:
+              - generic [ref=e250]: Offline
+              - generic [ref=e251]: "2"
+            - button "Maintenance 8" [ref=e252] [cursor=pointer]:
+              - generic [ref=e254]: Maintenance
+              - generic [ref=e255]: "8"
+          - generic [ref=e256]:
+            - img [ref=e257]
+            - combobox [ref=e259]:
+              - option "All Zones" [selected]
+              - option "Zone A"
+              - option "Zone B"
+              - option "Zone C"
+              - option "Zone D"
+              - option "Zone E"
+              - option "Zone F"
+          - generic [ref=e261]:
+            - 'button "001 OMAYA-001 Zone A Critical Temp: 72°C Vibration: 6.8 mm/s" [ref=e262] [cursor=pointer]':
+              - generic [ref=e264]: "001"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-001
+                  - paragraph: Zone A
+                  - paragraph: Critical
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 72°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 6.8 mm/s
+            - 'button "002 OMAYA-002 Zone B Operational Temp: 53°C Vibration: 1.2 mm/s" [ref=e265] [cursor=pointer]':
+              - generic [ref=e267]: "002"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-002
+                  - paragraph: Zone B
+                  - paragraph: Operational
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 53°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 1.2 mm/s
+            - 'button "003 OMAYA-003 Zone C Operational Temp: 53°C Vibration: 1.1 mm/s" [ref=e268] [cursor=pointer]':
+              - generic [ref=e270]: "003"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-003
+                  - paragraph: Zone C
+                  - paragraph: Operational
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 53°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 1.1 mm/s
+            - 'button "004 OMAYA-004 Zone D Maintenance Temp: 61°C Vibration: 3.3 mm/s" [ref=e271] [cursor=pointer]':
+              - generic [ref=e273]: "004"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-004
+                  - paragraph: Zone D
+                  - paragraph: Maintenance
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 61°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 3.3 mm/s
+            - 'button "005 OMAYA-005 Zone E Warning Temp: 57°C Vibration: 4.3 mm/s" [ref=e274] [cursor=pointer]':
+              - generic [ref=e276]: "005"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-005
+                  - paragraph: Zone E
+                  - paragraph: Warning
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 57°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 4.3 mm/s
+            - 'button "006 OMAYA-006 Zone F Warning Temp: 66°C Vibration: 7.3 mm/s" [ref=e277] [cursor=pointer]':
+              - generic [ref=e279]: "006"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-006
+                  - paragraph: Zone F
+                  - paragraph: Warning
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 66°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 7.3 mm/s
+            - 'button "007 OMAYA-007 Zone A Critical Temp: 58°C Vibration: 5.2 mm/s" [ref=e280] [cursor=pointer]':
+              - generic [ref=e282]: "007"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-007
+                  - paragraph: Zone A
+                  - paragraph: Critical
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 58°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 5.2 mm/s
+            - 'button "008 OMAYA-008 Zone B Operational Temp: 44°C Vibration: 0.3 mm/s" [ref=e283] [cursor=pointer]':
+              - generic [ref=e285]: "008"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-008
+                  - paragraph: Zone B
+                  - paragraph: Operational
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 44°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 0.3 mm/s
+            - 'button "009 OMAYA-009 Zone C Operational Temp: 55°C Vibration: 2.4 mm/s" [ref=e286] [cursor=pointer]':
+              - generic [ref=e288]: "009"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-009
+                  - paragraph: Zone C
+                  - paragraph: Operational
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 55°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 2.4 mm/s
+            - 'button "010 OMAYA-010 Zone D Operational Temp: 47°C Vibration: 2.3 mm/s" [ref=e289] [cursor=pointer]':
+              - generic [ref=e291]: "010"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-010
+                  - paragraph: Zone D
+                  - paragraph: Operational
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 47°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 2.3 mm/s
+            - 'button "011 OMAYA-011 Zone E Warning Temp: 82°C Vibration: 2.8 mm/s" [ref=e292] [cursor=pointer]':
+              - generic [ref=e294]: "011"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-011
+                  - paragraph: Zone E
+                  - paragraph: Warning
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 82°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 2.8 mm/s
+            - 'button "012 OMAYA-012 Zone F Warning Temp: 68°C Vibration: 7.1 mm/s" [ref=e295] [cursor=pointer]':
+              - generic [ref=e297]: "012"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-012
+                  - paragraph: Zone F
+                  - paragraph: Warning
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 68°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 7.1 mm/s
+            - 'button "013 OMAYA-013 Zone A Operational Temp: 44°C Vibration: 0.3 mm/s" [ref=e298] [cursor=pointer]':
+              - generic [ref=e300]: "013"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-013
+                  - paragraph: Zone A
+                  - paragraph: Operational
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 44°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 0.3 mm/s
+            - 'button "014 OMAYA-014 Zone B Operational Temp: 48°C Vibration: 1.9 mm/s" [ref=e301] [cursor=pointer]':
+              - generic [ref=e303]: "014"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-014
+                  - paragraph: Zone B
+                  - paragraph: Operational
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 48°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 1.9 mm/s
+            - 'button "015 OMAYA-015 Zone C Operational Temp: 37°C Vibration: 2.0 mm/s" [ref=e304] [cursor=pointer]':
+              - generic [ref=e306]: "015"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-015
+                  - paragraph: Zone C
+                  - paragraph: Operational
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 37°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 2.0 mm/s
+            - 'button "016 OMAYA-016 Zone D Operational Temp: 52°C Vibration: 1.8 mm/s" [ref=e307] [cursor=pointer]':
+              - generic [ref=e309]: "016"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-016
+                  - paragraph: Zone D
+                  - paragraph: Operational
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 52°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 1.8 mm/s
+            - 'button "017 OMAYA-017 Zone E Operational Temp: 39°C Vibration: 0.3 mm/s" [ref=e310] [cursor=pointer]':
+              - generic [ref=e312]: "017"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-017
+                  - paragraph: Zone E
+                  - paragraph: Operational
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 39°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 0.3 mm/s
+            - 'button "018 OMAYA-018 Zone F Operational Temp: 43°C Vibration: 2.5 mm/s" [ref=e313] [cursor=pointer]':
+              - generic [ref=e315]: "018"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-018
+                  - paragraph: Zone F
+                  - paragraph: Operational
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 43°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 2.5 mm/s
+            - 'button "019 OMAYA-019 Zone A Operational Temp: 55°C Vibration: 0.9 mm/s" [ref=e316] [cursor=pointer]':
+              - generic [ref=e318]: "019"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-019
+                  - paragraph: Zone A
+                  - paragraph: Operational
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 55°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 0.9 mm/s
+            - 'button "020 OMAYA-020 Zone B Operational Temp: 49°C Vibration: 1.4 mm/s" [ref=e319] [cursor=pointer]':
+              - generic [ref=e321]: "020"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-020
+                  - paragraph: Zone B
+                  - paragraph: Operational
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 49°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 1.4 mm/s
+            - 'button "021 OMAYA-021 Zone C Operational Temp: 36°C Vibration: 2.2 mm/s" [ref=e322] [cursor=pointer]':
+              - generic [ref=e324]: "021"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-021
+                  - paragraph: Zone C
+                  - paragraph: Operational
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 36°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 2.2 mm/s
+            - 'button "022 OMAYA-022 Zone D Operational Temp: 36°C Vibration: 0.1 mm/s" [ref=e325] [cursor=pointer]':
+              - generic [ref=e327]: "022"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-022
+                  - paragraph: Zone D
+                  - paragraph: Operational
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 36°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 0.1 mm/s
+            - 'button "023 OMAYA-023 Zone E Warning Temp: 56°C Vibration: 7.1 mm/s" [ref=e328] [cursor=pointer]':
+              - generic [ref=e330]: "023"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-023
+                  - paragraph: Zone E
+                  - paragraph: Warning
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 56°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 7.1 mm/s
+            - 'button "024 OMAYA-024 Zone F Operational Temp: 37°C Vibration: 2.2 mm/s" [ref=e331] [cursor=pointer]':
+              - generic [ref=e333]: "024"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-024
+                  - paragraph: Zone F
+                  - paragraph: Operational
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 37°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 2.2 mm/s
+            - 'button "025 OMAYA-025 Zone A Warning Temp: 78°C Vibration: 2.6 mm/s" [ref=e334] [cursor=pointer]':
+              - generic [ref=e336]: "025"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-025
+                  - paragraph: Zone A
+                  - paragraph: Warning
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 78°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 2.6 mm/s
+            - 'button "026 OMAYA-026 Zone B Operational Temp: 43°C Vibration: 2.3 mm/s" [ref=e337] [cursor=pointer]':
+              - generic [ref=e339]: "026"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-026
+                  - paragraph: Zone B
+                  - paragraph: Operational
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 43°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 2.3 mm/s
+            - 'button "027 OMAYA-027 Zone C Operational Temp: 49°C Vibration: 1.9 mm/s" [ref=e340] [cursor=pointer]':
+              - generic [ref=e342]: "027"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-027
+                  - paragraph: Zone C
+                  - paragraph: Operational
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 49°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 1.9 mm/s
+            - 'button "028 OMAYA-028 Zone D Operational Temp: 36°C Vibration: 1.0 mm/s" [ref=e343] [cursor=pointer]':
+              - generic [ref=e345]: "028"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-028
+                  - paragraph: Zone D
+                  - paragraph: Operational
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 36°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 1.0 mm/s
+            - 'button "029 OMAYA-029 Zone E Maintenance Temp: 70°C Vibration: 7.4 mm/s" [ref=e346] [cursor=pointer]':
+              - generic [ref=e348]: "029"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-029
+                  - paragraph: Zone E
+                  - paragraph: Maintenance
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 70°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 7.4 mm/s
+            - 'button "030 OMAYA-030 Zone F Operational Temp: 36°C Vibration: 1.9 mm/s" [ref=e349] [cursor=pointer]':
+              - generic [ref=e351]: "030"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-030
+                  - paragraph: Zone F
+                  - paragraph: Operational
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 36°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 1.9 mm/s
+            - 'button "031 OMAYA-031 Zone A Operational Temp: 55°C Vibration: 1.8 mm/s" [ref=e352] [cursor=pointer]':
+              - generic [ref=e354]: "031"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-031
+                  - paragraph: Zone A
+                  - paragraph: Operational
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 55°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 1.8 mm/s
+            - 'button "032 OMAYA-032 Zone B Operational Temp: 54°C Vibration: 1.2 mm/s" [ref=e355] [cursor=pointer]':
+              - generic [ref=e357]: "032"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-032
+                  - paragraph: Zone B
+                  - paragraph: Operational
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 54°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 1.2 mm/s
+            - 'button "033 OMAYA-033 Zone C Critical Temp: 62°C Vibration: 4.3 mm/s" [ref=e358] [cursor=pointer]':
+              - generic [ref=e360]: "033"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-033
+                  - paragraph: Zone C
+                  - paragraph: Critical
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 62°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 4.3 mm/s
+            - 'button "034 OMAYA-034 Zone D Operational Temp: 42°C Vibration: 1.1 mm/s" [ref=e361] [cursor=pointer]':
+              - generic [ref=e363]: "034"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-034
+                  - paragraph: Zone D
+                  - paragraph: Operational
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 42°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 1.1 mm/s
+            - 'button "035 OMAYA-035 Zone E Critical Temp: 74°C Vibration: 3.6 mm/s" [ref=e364] [cursor=pointer]':
+              - generic [ref=e366]: "035"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-035
+                  - paragraph: Zone E
+                  - paragraph: Critical
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 74°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 3.6 mm/s
+            - 'button "036 OMAYA-036 Zone F Warning Temp: 62°C Vibration: 7.5 mm/s" [ref=e367] [cursor=pointer]':
+              - generic [ref=e369]: "036"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-036
+                  - paragraph: Zone F
+                  - paragraph: Warning
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 62°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 7.5 mm/s
+            - 'button "037 OMAYA-037 Zone A Operational Temp: 45°C Vibration: 2.0 mm/s" [ref=e370] [cursor=pointer]':
+              - generic [ref=e372]: "037"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-037
+                  - paragraph: Zone A
+                  - paragraph: Operational
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 45°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 2.0 mm/s
+            - 'button "038 OMAYA-038 Zone B Operational Temp: 53°C Vibration: 0.4 mm/s" [ref=e373] [cursor=pointer]':
+              - generic [ref=e375]: "038"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-038
+                  - paragraph: Zone B
+                  - paragraph: Operational
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 53°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 0.4 mm/s
+            - 'button "039 OMAYA-039 Zone C Operational Temp: 42°C Vibration: 1.1 mm/s" [ref=e376] [cursor=pointer]':
+              - generic [ref=e378]: "039"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-039
+                  - paragraph: Zone C
+                  - paragraph: Operational
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 42°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 1.1 mm/s
+            - 'button "040 OMAYA-040 Zone D Operational Temp: 54°C Vibration: 1.1 mm/s" [ref=e379] [cursor=pointer]':
+              - generic [ref=e381]: "040"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-040
+                  - paragraph: Zone D
+                  - paragraph: Operational
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 54°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 1.1 mm/s
+            - 'button "041 OMAYA-041 Zone E Operational Temp: 54°C Vibration: 0.2 mm/s" [ref=e382] [cursor=pointer]':
+              - generic [ref=e384]: "041"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-041
+                  - paragraph: Zone E
+                  - paragraph: Operational
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 54°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 0.2 mm/s
+            - 'button "042 OMAYA-042 Zone F Warning Temp: 73°C Vibration: 4.9 mm/s" [ref=e385] [cursor=pointer]':
+              - generic [ref=e387]: "042"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-042
+                  - paragraph: Zone F
+                  - paragraph: Warning
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 73°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 4.9 mm/s
+            - 'button "043 OMAYA-043 Zone A Operational Temp: 51°C Vibration: 1.4 mm/s" [ref=e388] [cursor=pointer]':
+              - generic [ref=e390]: "043"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-043
+                  - paragraph: Zone A
+                  - paragraph: Operational
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 51°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 1.4 mm/s
+            - 'button "044 OMAYA-044 Zone B Warning Temp: 74°C Vibration: 5.3 mm/s" [ref=e391] [cursor=pointer]':
+              - generic [ref=e393]: "044"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-044
+                  - paragraph: Zone B
+                  - paragraph: Warning
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 74°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 5.3 mm/s
+            - 'button "045 OMAYA-045 Zone C Operational Temp: 36°C Vibration: 2.3 mm/s" [ref=e394] [cursor=pointer]':
+              - generic [ref=e396]: "045"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-045
+                  - paragraph: Zone C
+                  - paragraph: Operational
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 36°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 2.3 mm/s
+            - 'button "046 OMAYA-046 Zone D Operational Temp: 45°C Vibration: 0.2 mm/s" [ref=e397] [cursor=pointer]':
+              - generic [ref=e399]: "046"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-046
+                  - paragraph: Zone D
+                  - paragraph: Operational
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 45°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 0.2 mm/s
+            - 'button "047 OMAYA-047 Zone E Critical Temp: 75°C Vibration: 3.7 mm/s" [ref=e400] [cursor=pointer]':
+              - generic [ref=e402]: "047"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-047
+                  - paragraph: Zone E
+                  - paragraph: Critical
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 75°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 3.7 mm/s
+            - 'button "048 OMAYA-048 Zone F Operational Temp: 47°C Vibration: 1.7 mm/s" [ref=e403] [cursor=pointer]':
+              - generic [ref=e405]: "048"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-048
+                  - paragraph: Zone F
+                  - paragraph: Operational
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 47°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 1.7 mm/s
+            - 'button "049 OMAYA-049 Zone A Maintenance Temp: 65°C Vibration: 2.6 mm/s" [ref=e406] [cursor=pointer]':
+              - generic [ref=e408]: "049"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-049
+                  - paragraph: Zone A
+                  - paragraph: Maintenance
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 65°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 2.6 mm/s
+            - 'button "050 OMAYA-050 Zone B Operational Temp: 37°C Vibration: 1.9 mm/s" [ref=e409] [cursor=pointer]':
+              - generic [ref=e411]: "050"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-050
+                  - paragraph: Zone B
+                  - paragraph: Operational
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 37°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 1.9 mm/s
+            - 'button "051 OMAYA-051 Zone C Offline Temp: 55°C Vibration: 3.1 mm/s" [ref=e412] [cursor=pointer]':
+              - generic [ref=e414]: "051"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-051
+                  - paragraph: Zone C
+                  - paragraph: Offline
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 55°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 3.1 mm/s
+            - 'button "052 OMAYA-052 Zone D Operational Temp: 36°C Vibration: 0.5 mm/s" [ref=e415] [cursor=pointer]':
+              - generic [ref=e417]: "052"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-052
+                  - paragraph: Zone D
+                  - paragraph: Operational
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 36°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 0.5 mm/s
+            - 'button "053 OMAYA-053 Zone E Operational Temp: 41°C Vibration: 0.7 mm/s" [ref=e418] [cursor=pointer]':
+              - generic [ref=e420]: "053"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-053
+                  - paragraph: Zone E
+                  - paragraph: Operational
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 41°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 0.7 mm/s
+            - 'button "054 OMAYA-054 Zone F Operational Temp: 51°C Vibration: 2.2 mm/s" [ref=e421] [cursor=pointer]':
+              - generic [ref=e423]: "054"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-054
+                  - paragraph: Zone F
+                  - paragraph: Operational
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 51°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 2.2 mm/s
+            - 'button "055 OMAYA-055 Zone A Operational Temp: 48°C Vibration: 0.8 mm/s" [ref=e424] [cursor=pointer]':
+              - generic [ref=e426]: "055"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-055
+                  - paragraph: Zone A
+                  - paragraph: Operational
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 48°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 0.8 mm/s
+            - 'button "056 OMAYA-056 Zone B Operational Temp: 54°C Vibration: 0.1 mm/s" [ref=e427] [cursor=pointer]':
+              - generic [ref=e429]: "056"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-056
+                  - paragraph: Zone B
+                  - paragraph: Operational
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 54°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 0.1 mm/s
+            - 'button "057 OMAYA-057 Zone C Operational Temp: 44°C Vibration: 0.3 mm/s" [ref=e430] [cursor=pointer]':
+              - generic [ref=e432]: "057"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-057
+                  - paragraph: Zone C
+                  - paragraph: Operational
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 44°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 0.3 mm/s
+            - 'button "058 OMAYA-058 Zone D Operational Temp: 37°C Vibration: 1.8 mm/s" [ref=e433] [cursor=pointer]':
+              - generic [ref=e435]: "058"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-058
+                  - paragraph: Zone D
+                  - paragraph: Operational
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 37°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 1.8 mm/s
+            - 'button "059 OMAYA-059 Zone E Operational Temp: 55°C Vibration: 0.1 mm/s" [ref=e436] [cursor=pointer]':
+              - generic [ref=e438]: "059"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-059
+                  - paragraph: Zone E
+                  - paragraph: Operational
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 55°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 0.1 mm/s
+            - 'button "060 OMAYA-060 Zone F Operational Temp: 40°C Vibration: 1.9 mm/s" [ref=e439] [cursor=pointer]':
+              - generic [ref=e441]: "060"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-060
+                  - paragraph: Zone F
+                  - paragraph: Operational
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 40°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 1.9 mm/s
+            - 'button "061 OMAYA-061 Zone A Operational Temp: 37°C Vibration: 2.3 mm/s" [ref=e442] [cursor=pointer]':
+              - generic [ref=e444]: "061"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-061
+                  - paragraph: Zone A
+                  - paragraph: Operational
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 37°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 2.3 mm/s
+            - 'button "062 OMAYA-062 Zone B Operational Temp: 37°C Vibration: 1.9 mm/s" [ref=e445] [cursor=pointer]':
+              - generic [ref=e447]: "062"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-062
+                  - paragraph: Zone B
+                  - paragraph: Operational
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 37°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 1.9 mm/s
+            - 'button "063 OMAYA-063 Zone C Operational Temp: 38°C Vibration: 0.7 mm/s" [ref=e448] [cursor=pointer]':
+              - generic [ref=e450]: "063"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-063
+                  - paragraph: Zone C
+                  - paragraph: Operational
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 38°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 0.7 mm/s
+            - 'button "064 OMAYA-064 Zone D Operational Temp: 42°C Vibration: 2.3 mm/s" [ref=e451] [cursor=pointer]':
+              - generic [ref=e453]: "064"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-064
+                  - paragraph: Zone D
+                  - paragraph: Operational
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 42°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 2.3 mm/s
+            - 'button "065 OMAYA-065 Zone E Operational Temp: 43°C Vibration: 1.0 mm/s" [ref=e454] [cursor=pointer]':
+              - generic [ref=e456]: "065"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-065
+                  - paragraph: Zone E
+                  - paragraph: Operational
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 43°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 1.0 mm/s
+            - 'button "066 OMAYA-066 Zone F Maintenance Temp: 84°C Vibration: 6.0 mm/s" [ref=e457] [cursor=pointer]':
+              - generic [ref=e459]: "066"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-066
+                  - paragraph: Zone F
+                  - paragraph: Maintenance
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 84°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 6.0 mm/s
+            - 'button "067 OMAYA-067 Zone A Operational Temp: 44°C Vibration: 0.3 mm/s" [ref=e460] [cursor=pointer]':
+              - generic [ref=e462]: "067"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-067
+                  - paragraph: Zone A
+                  - paragraph: Operational
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 44°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 0.3 mm/s
+            - 'button "068 OMAYA-068 Zone B Operational Temp: 37°C Vibration: 1.3 mm/s" [ref=e463] [cursor=pointer]':
+              - generic [ref=e465]: "068"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-068
+                  - paragraph: Zone B
+                  - paragraph: Operational
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 37°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 1.3 mm/s
+            - 'button "069 OMAYA-069 Zone C Operational Temp: 52°C Vibration: 0.4 mm/s" [ref=e466] [cursor=pointer]':
+              - generic [ref=e468]: "069"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-069
+                  - paragraph: Zone C
+                  - paragraph: Operational
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 52°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 0.4 mm/s
+            - 'button "070 OMAYA-070 Zone D Operational Temp: 46°C Vibration: 0.9 mm/s" [ref=e469] [cursor=pointer]':
+              - generic [ref=e471]: "070"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-070
+                  - paragraph: Zone D
+                  - paragraph: Operational
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 46°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 0.9 mm/s
+            - 'button "071 OMAYA-071 Zone E Operational Temp: 54°C Vibration: 0.8 mm/s" [ref=e472] [cursor=pointer]':
+              - generic [ref=e474]: "071"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-071
+                  - paragraph: Zone E
+                  - paragraph: Operational
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 54°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 0.8 mm/s
+            - 'button "072 OMAYA-072 Zone F Operational Temp: 36°C Vibration: 1.9 mm/s" [ref=e475] [cursor=pointer]':
+              - generic [ref=e477]: "072"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-072
+                  - paragraph: Zone F
+                  - paragraph: Operational
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 36°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 1.9 mm/s
+            - 'button "073 OMAYA-073 Zone A Operational Temp: 55°C Vibration: 1.4 mm/s" [ref=e478] [cursor=pointer]':
+              - generic [ref=e480]: "073"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-073
+                  - paragraph: Zone A
+                  - paragraph: Operational
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 55°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 1.4 mm/s
+            - 'button "074 OMAYA-074 Zone B Operational Temp: 43°C Vibration: 0.3 mm/s" [ref=e481] [cursor=pointer]':
+              - generic [ref=e483]: "074"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-074
+                  - paragraph: Zone B
+                  - paragraph: Operational
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 43°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 0.3 mm/s
+            - 'button "075 OMAYA-075 Zone C Operational Temp: 45°C Vibration: 2.1 mm/s" [ref=e484] [cursor=pointer]':
+              - generic [ref=e486]: "075"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-075
+                  - paragraph: Zone C
+                  - paragraph: Operational
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 45°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 2.1 mm/s
+            - 'button "076 OMAYA-076 Zone D Operational Temp: 48°C Vibration: 2.4 mm/s" [ref=e487] [cursor=pointer]':
+              - generic [ref=e489]: "076"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-076
+                  - paragraph: Zone D
+                  - paragraph: Operational
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 48°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 2.4 mm/s
+            - 'button "077 OMAYA-077 Zone E Operational Temp: 50°C Vibration: 1.9 mm/s" [ref=e490] [cursor=pointer]':
+              - generic [ref=e492]: "077"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-077
+                  - paragraph: Zone E
+                  - paragraph: Operational
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 50°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 1.9 mm/s
+            - 'button "078 OMAYA-078 Zone F Warning Temp: 63°C Vibration: 3.8 mm/s" [ref=e493] [cursor=pointer]':
+              - generic [ref=e495]: "078"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-078
+                  - paragraph: Zone F
+                  - paragraph: Warning
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 63°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 3.8 mm/s
+            - 'button "079 OMAYA-079 Zone A Operational Temp: 50°C Vibration: 2.0 mm/s" [ref=e496] [cursor=pointer]':
+              - generic [ref=e498]: "079"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-079
+                  - paragraph: Zone A
+                  - paragraph: Operational
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 50°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 2.0 mm/s
+            - 'button "080 OMAYA-080 Zone B Operational Temp: 54°C Vibration: 2.5 mm/s" [ref=e499] [cursor=pointer]':
+              - generic [ref=e501]: "080"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-080
+                  - paragraph: Zone B
+                  - paragraph: Operational
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 54°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 2.5 mm/s
+            - 'button "081 OMAYA-081 Zone C Operational Temp: 51°C Vibration: 0.4 mm/s" [ref=e502] [cursor=pointer]':
+              - generic [ref=e504]: "081"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-081
+                  - paragraph: Zone C
+                  - paragraph: Operational
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 51°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 0.4 mm/s
+            - 'button "082 OMAYA-082 Zone D Operational Temp: 49°C Vibration: 2.2 mm/s" [ref=e505] [cursor=pointer]':
+              - generic [ref=e507]: "082"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-082
+                  - paragraph: Zone D
+                  - paragraph: Operational
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 49°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 2.2 mm/s
+            - 'button "083 OMAYA-083 Zone E Operational Temp: 46°C Vibration: 0.3 mm/s" [ref=e508] [cursor=pointer]':
+              - generic [ref=e510]: "083"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-083
+                  - paragraph: Zone E
+                  - paragraph: Operational
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 46°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 0.3 mm/s
+            - 'button "084 OMAYA-084 Zone F Warning Temp: 75°C Vibration: 3.0 mm/s" [ref=e511] [cursor=pointer]':
+              - generic [ref=e513]: "084"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-084
+                  - paragraph: Zone F
+                  - paragraph: Warning
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 75°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 3.0 mm/s
+            - 'button "085 OMAYA-085 Zone A Operational Temp: 51°C Vibration: 1.5 mm/s" [ref=e514] [cursor=pointer]':
+              - generic [ref=e516]: "085"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-085
+                  - paragraph: Zone A
+                  - paragraph: Operational
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 51°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 1.5 mm/s
+            - 'button "086 OMAYA-086 Zone B Operational Temp: 54°C Vibration: 1.9 mm/s" [ref=e517] [cursor=pointer]':
+              - generic [ref=e519]: "086"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-086
+                  - paragraph: Zone B
+                  - paragraph: Operational
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 54°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 1.9 mm/s
+            - 'button "087 OMAYA-087 Zone C Operational Temp: 36°C Vibration: 0.1 mm/s" [ref=e520] [cursor=pointer]':
+              - generic [ref=e522]: "087"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-087
+                  - paragraph: Zone C
+                  - paragraph: Operational
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 36°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 0.1 mm/s
+            - 'button "088 OMAYA-088 Zone D Operational Temp: 54°C Vibration: 2.1 mm/s" [ref=e523] [cursor=pointer]':
+              - generic [ref=e525]: "088"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-088
+                  - paragraph: Zone D
+                  - paragraph: Operational
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 54°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 2.1 mm/s
+            - 'button "089 OMAYA-089 Zone E Operational Temp: 51°C Vibration: 0.9 mm/s" [ref=e526] [cursor=pointer]':
+              - generic [ref=e528]: "089"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-089
+                  - paragraph: Zone E
+                  - paragraph: Operational
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 51°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 0.9 mm/s
+            - 'button "090 OMAYA-090 Zone F Warning Temp: 74°C Vibration: 5.2 mm/s" [ref=e529] [cursor=pointer]':
+              - generic [ref=e531]: "090"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-090
+                  - paragraph: Zone F
+                  - paragraph: Warning
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 74°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 5.2 mm/s
+            - 'button "091 OMAYA-091 Zone A Offline Temp: 85°C Vibration: 7.3 mm/s" [ref=e532] [cursor=pointer]':
+              - generic [ref=e534]: "091"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-091
+                  - paragraph: Zone A
+                  - paragraph: Offline
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 85°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 7.3 mm/s
+            - 'button "092 OMAYA-092 Zone B Critical Temp: 65°C Vibration: 3.8 mm/s" [ref=e535] [cursor=pointer]':
+              - generic [ref=e537]: "092"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-092
+                  - paragraph: Zone B
+                  - paragraph: Critical
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 65°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 3.8 mm/s
+            - 'button "093 OMAYA-093 Zone C Operational Temp: 50°C Vibration: 2.5 mm/s" [ref=e538] [cursor=pointer]':
+              - generic [ref=e540]: "093"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-093
+                  - paragraph: Zone C
+                  - paragraph: Operational
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 50°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 2.5 mm/s
+            - 'button "094 OMAYA-094 Zone D Operational Temp: 54°C Vibration: 1.9 mm/s" [ref=e541] [cursor=pointer]':
+              - generic [ref=e543]: "094"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-094
+                  - paragraph: Zone D
+                  - paragraph: Operational
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 54°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 1.9 mm/s
+            - 'button "095 OMAYA-095 Zone E Operational Temp: 51°C Vibration: 2.5 mm/s" [ref=e544] [cursor=pointer]':
+              - generic [ref=e546]: "095"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-095
+                  - paragraph: Zone E
+                  - paragraph: Operational
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 51°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 2.5 mm/s
+            - 'button "096 OMAYA-096 Zone F Operational Temp: 45°C Vibration: 0.2 mm/s" [ref=e547] [cursor=pointer]':
+              - generic [ref=e549]: "096"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-096
+                  - paragraph: Zone F
+                  - paragraph: Operational
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 45°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 0.2 mm/s
+            - 'button "097 OMAYA-097 Zone A Critical Temp: 64°C Vibration: 7.8 mm/s" [ref=e550] [cursor=pointer]':
+              - generic [ref=e552]: "097"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-097
+                  - paragraph: Zone A
+                  - paragraph: Critical
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 64°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 7.8 mm/s
+            - 'button "098 OMAYA-098 Zone B Operational Temp: 46°C Vibration: 0.8 mm/s" [ref=e553] [cursor=pointer]':
+              - generic [ref=e555]: "098"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-098
+                  - paragraph: Zone B
+                  - paragraph: Operational
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 46°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 0.8 mm/s
+            - 'button "099 OMAYA-099 Zone C Operational Temp: 39°C Vibration: 0.5 mm/s" [ref=e556] [cursor=pointer]':
+              - generic [ref=e558]: "099"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-099
+                  - paragraph: Zone C
+                  - paragraph: Operational
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 39°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 0.5 mm/s
+            - 'button "100 OMAYA-100 Zone D Warning Temp: 83°C Vibration: 4.2 mm/s" [ref=e559] [cursor=pointer]':
+              - generic [ref=e561]: "100"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-100
+                  - paragraph: Zone D
+                  - paragraph: Warning
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 83°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 4.2 mm/s
+            - 'button "101 OMAYA-101 Zone E Maintenance Temp: 64°C Vibration: 3.3 mm/s" [ref=e562] [cursor=pointer]':
+              - generic [ref=e564]: "101"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-101
+                  - paragraph: Zone E
+                  - paragraph: Maintenance
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 64°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 3.3 mm/s
+            - 'button "102 OMAYA-102 Zone F Warning Temp: 66°C Vibration: 2.8 mm/s" [ref=e565] [cursor=pointer]':
+              - generic [ref=e567]: "102"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-102
+                  - paragraph: Zone F
+                  - paragraph: Warning
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 66°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 2.8 mm/s
+            - 'button "103 OMAYA-103 Zone A Maintenance Temp: 76°C Vibration: 3.3 mm/s" [ref=e568] [cursor=pointer]':
+              - generic [ref=e570]: "103"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-103
+                  - paragraph: Zone A
+                  - paragraph: Maintenance
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 76°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 3.3 mm/s
+            - 'button "104 OMAYA-104 Zone B Operational Temp: 40°C Vibration: 1.9 mm/s" [ref=e571] [cursor=pointer]':
+              - generic [ref=e573]: "104"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-104
+                  - paragraph: Zone B
+                  - paragraph: Operational
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 40°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 1.9 mm/s
+            - 'button "105 OMAYA-105 Zone C Warning Temp: 82°C Vibration: 3.3 mm/s" [ref=e574] [cursor=pointer]':
+              - generic [ref=e576]: "105"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-105
+                  - paragraph: Zone C
+                  - paragraph: Warning
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 82°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 3.3 mm/s
+            - 'button "106 OMAYA-106 Zone D Warning Temp: 75°C Vibration: 7.6 mm/s" [ref=e577] [cursor=pointer]':
+              - generic [ref=e579]: "106"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-106
+                  - paragraph: Zone D
+                  - paragraph: Warning
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 75°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 7.6 mm/s
+            - 'button "107 OMAYA-107 Zone E Operational Temp: 54°C Vibration: 1.9 mm/s" [ref=e580] [cursor=pointer]':
+              - generic [ref=e582]: "107"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-107
+                  - paragraph: Zone E
+                  - paragraph: Operational
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 54°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 1.9 mm/s
+            - 'button "108 OMAYA-108 Zone F Operational Temp: 44°C Vibration: 0.8 mm/s" [ref=e583] [cursor=pointer]':
+              - generic [ref=e585]: "108"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-108
+                  - paragraph: Zone F
+                  - paragraph: Operational
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 44°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 0.8 mm/s
+            - 'button "109 OMAYA-109 Zone A Operational Temp: 37°C Vibration: 1.6 mm/s" [ref=e586] [cursor=pointer]':
+              - generic [ref=e588]: "109"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-109
+                  - paragraph: Zone A
+                  - paragraph: Operational
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 37°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 1.6 mm/s
+            - 'button "110 OMAYA-110 Zone B Operational Temp: 38°C Vibration: 1.8 mm/s" [ref=e589] [cursor=pointer]':
+              - generic [ref=e591]: "110"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-110
+                  - paragraph: Zone B
+                  - paragraph: Operational
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 38°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 1.8 mm/s
+            - 'button "111 OMAYA-111 Zone C Operational Temp: 39°C Vibration: 2.0 mm/s" [ref=e592] [cursor=pointer]':
+              - generic [ref=e594]: "111"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-111
+                  - paragraph: Zone C
+                  - paragraph: Operational
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 39°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 2.0 mm/s
+            - 'button "112 OMAYA-112 Zone D Maintenance Temp: 77°C Vibration: 4.9 mm/s" [ref=e595] [cursor=pointer]':
+              - generic [ref=e597]: "112"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-112
+                  - paragraph: Zone D
+                  - paragraph: Maintenance
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 77°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 4.9 mm/s
+            - 'button "113 OMAYA-113 Zone E Operational Temp: 40°C Vibration: 0.5 mm/s" [ref=e598] [cursor=pointer]':
+              - generic [ref=e600]: "113"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-113
+                  - paragraph: Zone E
+                  - paragraph: Operational
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 40°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 0.5 mm/s
+            - 'button "114 OMAYA-114 Zone F Operational Temp: 49°C Vibration: 2.1 mm/s" [ref=e601] [cursor=pointer]':
+              - generic [ref=e603]: "114"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-114
+                  - paragraph: Zone F
+                  - paragraph: Operational
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 49°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 2.1 mm/s
+            - 'button "115 OMAYA-115 Zone A Operational Temp: 44°C Vibration: 1.1 mm/s" [ref=e604] [cursor=pointer]':
+              - generic [ref=e606]: "115"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-115
+                  - paragraph: Zone A
+                  - paragraph: Operational
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 44°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 1.1 mm/s
+            - 'button "116 OMAYA-116 Zone B Maintenance Temp: 71°C Vibration: 4.1 mm/s" [ref=e607] [cursor=pointer]':
+              - generic [ref=e609]: "116"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-116
+                  - paragraph: Zone B
+                  - paragraph: Maintenance
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 71°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 4.1 mm/s
+            - 'button "117 OMAYA-117 Zone C Operational Temp: 53°C Vibration: 2.3 mm/s" [ref=e610] [cursor=pointer]':
+              - generic [ref=e612]: "117"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-117
+                  - paragraph: Zone C
+                  - paragraph: Operational
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 53°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 2.3 mm/s
+            - 'button "118 OMAYA-118 Zone D Warning Temp: 60°C Vibration: 4.9 mm/s" [ref=e613] [cursor=pointer]':
+              - generic [ref=e615]: "118"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-118
+                  - paragraph: Zone D
+                  - paragraph: Warning
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 60°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 4.9 mm/s
+            - 'button "119 OMAYA-119 Zone E Operational Temp: 36°C Vibration: 1.8 mm/s" [ref=e616] [cursor=pointer]':
+              - generic [ref=e618]: "119"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-119
+                  - paragraph: Zone E
+                  - paragraph: Operational
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 36°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 1.8 mm/s
+            - 'button "120 OMAYA-120 Zone F Warning Temp: 80°C Vibration: 4.5 mm/s" [ref=e619] [cursor=pointer]':
+              - generic [ref=e621]: "120"
+              - generic:
+                - generic:
+                  - paragraph: OMAYA-120
+                  - paragraph: Zone F
+                  - paragraph: Warning
+                  - generic:
+                    - paragraph:
+                      - text: "Temp:"
+                      - generic: 80°C
+                    - paragraph:
+                      - text: "Vibration:"
+                      - generic: 4.5 mm/s
+        - generic [ref=e623]:
+          - generic [ref=e625]:
+            - generic [ref=e626]:
+              - img [ref=e627]
+              - generic [ref=e630]: "7"
+            - heading "Alerts" [level=3] [ref=e632]
+          - generic [ref=e633]:
+            - 'button "Critical: OMAYA-5X #1 requires immediate attention Just now • OMAYA-5X #1" [ref=e635] [cursor=pointer]':
+              - img [ref=e637]
+              - generic [ref=e641]:
+                - generic [ref=e643]: "Critical: OMAYA-5X #1 requires immediate attention"
+                - generic [ref=e644]:
+                  - img [ref=e645]
+                  - generic [ref=e648]: Just now
+                  - generic [ref=e649]: •
+                  - generic [ref=e650]: "OMAYA-5X #1"
+            - 'button "Critical: OMAYA-3X #7 requires immediate attention NEW Just now • OMAYA-3X #7" [ref=e652] [cursor=pointer]':
+              - img [ref=e654]
+              - generic [ref=e658]:
+                - generic [ref=e659]:
+                  - generic [ref=e660]: "Critical: OMAYA-3X #7 requires immediate attention"
+                  - generic [ref=e661]: NEW
+                - generic [ref=e662]:
+                  - img [ref=e663]
+                  - generic [ref=e666]: Just now
+                  - generic [ref=e667]: •
+                  - generic [ref=e668]: "OMAYA-3X #7"
+            - 'button "Critical: OMAYA-3X #72 requires immediate attention Just now • OMAYA-3X #72" [ref=e670] [cursor=pointer]':
+              - img [ref=e672]
+              - generic [ref=e676]:
+                - generic [ref=e677]:
+                  - generic [ref=e678]: "Critical: OMAYA-3X #72 requires immediate attention"
+                  - img [ref=e679]
+                - generic [ref=e682]:
+                  - img [ref=e683]
+                  - generic [ref=e686]: Just now
+                  - generic [ref=e687]: •
+                  - generic [ref=e688]: "OMAYA-3X #72"
+            - 'button "Critical: OMAYA-Lathe #108 requires immediate attention Just now • OMAYA-Lathe #108" [ref=e690] [cursor=pointer]':
+              - img [ref=e692]
+              - generic [ref=e696]:
+                - generic [ref=e698]: "Critical: OMAYA-Lathe #108 requires immediate attention"
+                - generic [ref=e699]:
+                  - img [ref=e700]
+                  - generic [ref=e703]: Just now
+                  - generic [ref=e704]: •
+                  - generic [ref=e705]: "OMAYA-Lathe #108"
+            - 'button "Warning: OMAYA-3X #2 showing anomalies Just now • OMAYA-3X #2" [ref=e707] [cursor=pointer]':
+              - img [ref=e709]
+              - generic [ref=e711]:
+                - generic [ref=e712]:
+                  - generic [ref=e713]: "Warning: OMAYA-3X #2 showing anomalies"
+                  - img [ref=e714]
+                - generic [ref=e717]:
+                  - img [ref=e718]
+                  - generic [ref=e721]: Just now
+                  - generic [ref=e722]: •
+                  - generic [ref=e723]: "OMAYA-3X #2"
+            - 'button "Critical: OMAYA-Lathe #33 requires immediate attention NEW Just now • OMAYA-Lathe #33" [ref=e725] [cursor=pointer]':
+              - img [ref=e727]
+              - generic [ref=e731]:
+                - generic [ref=e732]:
+                  - generic [ref=e733]: "Critical: OMAYA-Lathe #33 requires immediate attention"
+                  - generic [ref=e734]: NEW
+                  - img [ref=e735]
+                - generic [ref=e738]:
+                  - img [ref=e739]
+                  - generic [ref=e742]: Just now
+                  - generic [ref=e743]: •
+                  - generic [ref=e744]: "OMAYA-Lathe #33"
+            - 'button "Warning: OMAYA-Mill #24 showing anomalies Just now • OMAYA-Mill #24" [ref=e746] [cursor=pointer]':
+              - img [ref=e748]
+              - generic [ref=e750]:
+                - generic [ref=e751]:
+                  - generic [ref=e752]: "Warning: OMAYA-Mill #24 showing anomalies"
+                  - img [ref=e753]
+                - generic [ref=e756]:
+                  - img [ref=e757]
+                  - generic [ref=e760]: Just now
+                  - generic [ref=e761]: •
+                  - generic [ref=e762]: "OMAYA-Mill #24"
+            - 'button "Warning: OMAYA-5X #46 showing anomalies Just now • OMAYA-5X #46" [ref=e764] [cursor=pointer]':
+              - img [ref=e766]
+              - generic [ref=e768]:
+                - generic [ref=e770]: "Warning: OMAYA-5X #46 showing anomalies"
+                - generic [ref=e771]:
+                  - img [ref=e772]
+                  - generic [ref=e775]: Just now
+                  - generic [ref=e776]: •
+                  - generic [ref=e777]: "OMAYA-5X #46"
+            - 'button "Warning: OMAYA-Router #50 showing anomalies Just now • OMAYA-Router #50" [ref=e779] [cursor=pointer]':
+              - img [ref=e781]
+              - generic [ref=e783]:
+                - generic [ref=e784]:
+                  - generic [ref=e785]: "Warning: OMAYA-Router #50 showing anomalies"
+                  - img [ref=e786]
+                - generic [ref=e789]:
+                  - img [ref=e790]
+                  - generic [ref=e793]: Just now
+                  - generic [ref=e794]: •
+                  - generic [ref=e795]: "OMAYA-Router #50"
+            - 'button "Warning: OMAYA-Mill #54 showing anomalies Just now • OMAYA-Mill #54" [ref=e797] [cursor=pointer]':
+              - img [ref=e799]
+              - generic [ref=e801]:
+                - generic [ref=e803]: "Warning: OMAYA-Mill #54 showing anomalies"
+                - generic [ref=e804]:
+                  - img [ref=e805]
+                  - generic [ref=e808]: Just now
+                  - generic [ref=e809]: •
+                  - generic [ref=e810]: "OMAYA-Mill #54"
+            - 'button "Warning: OMAYA-3X #57 showing anomalies Just now • OMAYA-3X #57" [ref=e812] [cursor=pointer]':
+              - img [ref=e814]
+              - generic [ref=e816]:
+                - generic [ref=e818]: "Warning: OMAYA-3X #57 showing anomalies"
+                - generic [ref=e819]:
+                  - img [ref=e820]
+                  - generic [ref=e823]: Just now
+                  - generic [ref=e824]: •
+                  - generic [ref=e825]: "OMAYA-3X #57"
+            - 'button "Warning: OMAYA-5X #71 showing anomalies Just now • OMAYA-5X #71" [ref=e827] [cursor=pointer]':
+              - img [ref=e829]
+              - generic [ref=e831]:
+                - generic [ref=e833]: "Warning: OMAYA-5X #71 showing anomalies"
+                - generic [ref=e834]:
+                  - img [ref=e835]
+                  - generic [ref=e838]: Just now
+                  - generic [ref=e839]: •
+                  - generic [ref=e840]: "OMAYA-5X #71"
+            - 'button "Warning: OMAYA-Lathe #73 showing anomalies Just now • OMAYA-Lathe #73" [ref=e842] [cursor=pointer]':
+              - img [ref=e844]
+              - generic [ref=e846]:
+                - generic [ref=e847]:
+                  - generic [ref=e848]: "Warning: OMAYA-Lathe #73 showing anomalies"
+                  - img [ref=e849]
+                - generic [ref=e852]:
+                  - img [ref=e853]
+                  - generic [ref=e856]: Just now
+                  - generic [ref=e857]: •
+                  - generic [ref=e858]: "OMAYA-Lathe #73"
+            - 'button "Warning: OMAYA-Router #75 showing anomalies Just now • OMAYA-Router #75" [ref=e860] [cursor=pointer]':
+              - img [ref=e862]
+              - generic [ref=e864]:
+                - generic [ref=e865]:
+                  - generic [ref=e866]: "Warning: OMAYA-Router #75 showing anomalies"
+                  - img [ref=e867]
+                - generic [ref=e870]:
+                  - img [ref=e871]
+                  - generic [ref=e874]: Just now
+                  - generic [ref=e875]: •
+                  - generic [ref=e876]: "OMAYA-Router #75"
+            - 'button "Warning: OMAYA-5X #76 showing anomalies Just now • OMAYA-5X #76" [ref=e878] [cursor=pointer]':
+              - img [ref=e880]
+              - generic [ref=e882]:
+                - generic [ref=e884]: "Warning: OMAYA-5X #76 showing anomalies"
+                - generic [ref=e885]:
+                  - img [ref=e886]
+                  - generic [ref=e889]: Just now
+                  - generic [ref=e890]: •
+                  - generic [ref=e891]: "OMAYA-5X #76"
+            - 'button "Warning: OMAYA-3X #77 showing anomalies Just now • OMAYA-3X #77" [ref=e893] [cursor=pointer]':
+              - img [ref=e895]
+              - generic [ref=e897]:
+                - generic [ref=e898]:
+                  - generic [ref=e899]: "Warning: OMAYA-3X #77 showing anomalies"
+                  - img [ref=e900]
+                - generic [ref=e903]:
+                  - img [ref=e904]
+                  - generic [ref=e907]: Just now
+                  - generic [ref=e908]: •
+                  - generic [ref=e909]: "OMAYA-3X #77"
+            - 'button "Warning: OMAYA-Router #110 showing anomalies Just now • OMAYA-Router #110" [ref=e911] [cursor=pointer]':
+              - img [ref=e913]
+              - generic [ref=e915]:
+                - generic [ref=e917]: "Warning: OMAYA-Router #110 showing anomalies"
+                - generic [ref=e918]:
+                  - img [ref=e919]
+                  - generic [ref=e922]: Just now
+                  - generic [ref=e923]: •
+                  - generic [ref=e924]: "OMAYA-Router #110"
+            - 'button "Warning: OMAYA-Router #115 showing anomalies Just now • OMAYA-Router #115" [ref=e926] [cursor=pointer]':
+              - img [ref=e928]
+              - generic [ref=e930]:
+                - generic [ref=e932]: "Warning: OMAYA-Router #115 showing anomalies"
+                - generic [ref=e933]:
+                  - img [ref=e934]
+                  - generic [ref=e937]: Just now
+                  - generic [ref=e938]: •
+                  - generic [ref=e939]: "OMAYA-Router #115"
+            - 'button "Critical: OMAYA-Router #35 requires immediate attention NEW Just now • OMAYA-Router #35" [ref=e941] [cursor=pointer]':
+              - img [ref=e943]
+              - generic [ref=e947]:
+                - generic [ref=e948]:
+                  - generic [ref=e949]: "Critical: OMAYA-Router #35 requires immediate attention"
+                  - generic [ref=e950]: NEW
+                  - img [ref=e951]
+                - generic [ref=e954]:
+                  - img [ref=e955]
+                  - generic [ref=e958]: Just now
+                  - generic [ref=e959]: •
+                  - generic [ref=e960]: "OMAYA-Router #35"
+            - 'button "Warning: OMAYA-5X #26 showing anomalies Just now • OMAYA-5X #26" [ref=e962] [cursor=pointer]':
+              - img [ref=e964]
+              - generic [ref=e966]:
+                - generic [ref=e967]:
+                  - generic [ref=e968]: "Warning: OMAYA-5X #26 showing anomalies"
+                  - img [ref=e969]
+                - generic [ref=e972]:
+                  - img [ref=e973]
+                  - generic [ref=e976]: Just now
+                  - generic [ref=e977]: •
+                  - generic [ref=e978]: "OMAYA-5X #26"
+            - 'button "Critical: OMAYA-3X #47 requires immediate attention Just now • OMAYA-3X #47" [ref=e980] [cursor=pointer]':
+              - img [ref=e982]
+              - generic [ref=e986]:
+                - generic [ref=e987]:
+                  - generic [ref=e988]: "Critical: OMAYA-3X #47 requires immediate attention"
+                  - img [ref=e989]
+                - generic [ref=e992]:
+                  - img [ref=e993]
+                  - generic [ref=e996]: Just now
+                  - generic [ref=e997]: •
+                  - generic [ref=e998]: "OMAYA-3X #47"
+            - 'button "Warning: OMAYA-3X #32 showing anomalies Just now • OMAYA-3X #32" [ref=e1000] [cursor=pointer]':
+              - img [ref=e1002]
+              - generic [ref=e1004]:
+                - generic [ref=e1006]: "Warning: OMAYA-3X #32 showing anomalies"
+                - generic [ref=e1007]:
+                  - img [ref=e1008]
+                  - generic [ref=e1011]: Just now
+                  - generic [ref=e1012]: •
+                  - generic [ref=e1013]: "OMAYA-3X #32"
+            - 'button "Critical: OMAYA-3X #92 requires immediate attention NEW Just now • OMAYA-3X #92" [ref=e1015] [cursor=pointer]':
+              - img [ref=e1017]
+              - generic [ref=e1021]:
+                - generic [ref=e1022]:
+                  - generic [ref=e1023]: "Critical: OMAYA-3X #92 requires immediate attention"
+                  - generic [ref=e1024]: NEW
+                - generic [ref=e1025]:
+                  - img [ref=e1026]
+                  - generic [ref=e1029]: Just now
+                  - generic [ref=e1030]: •
+                  - generic [ref=e1031]: "OMAYA-3X #92"
+            - 'button "Warning: OMAYA-Lathe #38 showing anomalies Just now • OMAYA-Lathe #38" [ref=e1033] [cursor=pointer]':
+              - img [ref=e1035]
+              - generic [ref=e1037]:
+                - generic [ref=e1039]: "Warning: OMAYA-Lathe #38 showing anomalies"
+                - generic [ref=e1040]:
+                  - img [ref=e1041]
+                  - generic [ref=e1044]: Just now
+                  - generic [ref=e1045]: •
+                  - generic [ref=e1046]: "OMAYA-Lathe #38"
+            - 'button "Warning: OMAYA-Router #40 showing anomalies Just now • OMAYA-Router #40" [ref=e1048] [cursor=pointer]':
+              - img [ref=e1050]
+              - generic [ref=e1052]:
+                - generic [ref=e1053]:
+                  - generic [ref=e1054]: "Warning: OMAYA-Router #40 showing anomalies"
+                  - img [ref=e1055]
+                - generic [ref=e1058]:
+                  - img [ref=e1059]
+                  - generic [ref=e1062]: Just now
+                  - generic [ref=e1063]: •
+                  - generic [ref=e1064]: "OMAYA-Router #40"
+            - 'button "Critical: OMAYA-3X #97 requires immediate attention NEW Just now • OMAYA-3X #97" [ref=e1066] [cursor=pointer]':
+              - img [ref=e1068]
+              - generic [ref=e1072]:
+                - generic [ref=e1073]:
+                  - generic [ref=e1074]: "Critical: OMAYA-3X #97 requires immediate attention"
+                  - generic [ref=e1075]: NEW
+                  - img [ref=e1076]
+                - generic [ref=e1079]:
+                  - img [ref=e1080]
+                  - generic [ref=e1083]: Just now
+                  - generic [ref=e1084]: •
+                  - generic [ref=e1085]: "OMAYA-3X #97"
+            - 'button "Warning: OMAYA-Router #5 showing anomalies NEW Just now • OMAYA-Router #5" [ref=e1087] [cursor=pointer]':
+              - img [ref=e1089]
+              - generic [ref=e1091]:
+                - generic [ref=e1092]:
+                  - generic [ref=e1093]: "Warning: OMAYA-Router #5 showing anomalies"
+                  - generic [ref=e1094]: NEW
+                - generic [ref=e1095]:
+                  - img [ref=e1096]
+                  - generic [ref=e1099]: Just now
+                  - generic [ref=e1100]: •
+                  - generic [ref=e1101]: "OMAYA-Router #5"
+            - 'button "Warning: OMAYA-Router #60 showing anomalies Just now • OMAYA-Router #60" [ref=e1103] [cursor=pointer]':
+              - img [ref=e1105]
+              - generic [ref=e1107]:
+                - generic [ref=e1109]: "Warning: OMAYA-Router #60 showing anomalies"
+                - generic [ref=e1110]:
+                  - img [ref=e1111]
+                  - generic [ref=e1114]: Just now
+                  - generic [ref=e1115]: •
+                  - generic [ref=e1116]: "OMAYA-Router #60"
+            - 'button "Warning: OMAYA-Router #70 showing anomalies Just now • OMAYA-Router #70" [ref=e1118] [cursor=pointer]':
+              - img [ref=e1120]
+              - generic [ref=e1122]:
+                - generic [ref=e1123]:
+                  - generic [ref=e1124]: "Warning: OMAYA-Router #70 showing anomalies"
+                  - img [ref=e1125]
+                - generic [ref=e1128]:
+                  - img [ref=e1129]
+                  - generic [ref=e1132]: Just now
+                  - generic [ref=e1133]: •
+                  - generic [ref=e1134]: "OMAYA-Router #70"
+            - 'button "Warning: OMAYA-Router #80 showing anomalies Just now • OMAYA-Router #80" [ref=e1136] [cursor=pointer]':
+              - img [ref=e1138]
+              - generic [ref=e1140]:
+                - generic [ref=e1142]: "Warning: OMAYA-Router #80 showing anomalies"
+                - generic [ref=e1143]:
+                  - img [ref=e1144]
+                  - generic [ref=e1147]: Just now
+                  - generic [ref=e1148]: •
+                  - generic [ref=e1149]: "OMAYA-Router #80"
+            - 'button "Warning: OMAYA-5X #81 showing anomalies Just now • OMAYA-5X #81" [ref=e1151] [cursor=pointer]':
+              - img [ref=e1153]
+              - generic [ref=e1155]:
+                - generic [ref=e1157]: "Warning: OMAYA-5X #81 showing anomalies"
+                - generic [ref=e1158]:
+                  - img [ref=e1159]
+                  - generic [ref=e1162]: Just now
+                  - generic [ref=e1163]: •
+                  - generic [ref=e1164]: "OMAYA-5X #81"
+            - 'button "Warning: OMAYA-Mill #89 showing anomalies Just now • OMAYA-Mill #89" [ref=e1166] [cursor=pointer]':
+              - img [ref=e1168]
+              - generic [ref=e1170]:
+                - generic [ref=e1172]: "Warning: OMAYA-Mill #89 showing anomalies"
+                - generic [ref=e1173]:
+                  - img [ref=e1174]
+                  - generic [ref=e1177]: Just now
+                  - generic [ref=e1178]: •
+                  - generic [ref=e1179]: "OMAYA-Mill #89"
+            - 'button "Warning: OMAYA-Mill #114 showing anomalies Just now • OMAYA-Mill #114" [ref=e1181] [cursor=pointer]':
+              - img [ref=e1183]
+              - generic [ref=e1185]:
+                - generic [ref=e1186]:
+                  - generic [ref=e1187]: "Warning: OMAYA-Mill #114 showing anomalies"
+                  - img [ref=e1188]
+                - generic [ref=e1191]:
+                  - img [ref=e1192]
+                  - generic [ref=e1195]: Just now
+                  - generic [ref=e1196]: •
+                  - generic [ref=e1197]: "OMAYA-Mill #114"
+            - 'button "Warning: OMAYA-5X #6 showing anomalies Just now • OMAYA-5X #6" [ref=e1199] [cursor=pointer]':
+              - img [ref=e1201]
+              - generic [ref=e1203]:
+                - generic [ref=e1205]: "Warning: OMAYA-5X #6 showing anomalies"
+                - generic [ref=e1206]:
+                  - img [ref=e1207]
+                  - generic [ref=e1210]: Just now
+                  - generic [ref=e1211]: •
+                  - generic [ref=e1212]: "OMAYA-5X #6"
+            - 'button "Warning: OMAYA-5X #11 showing anomalies NEW Just now • OMAYA-5X #11" [ref=e1214] [cursor=pointer]':
+              - img [ref=e1216]
+              - generic [ref=e1218]:
+                - generic [ref=e1219]:
+                  - generic [ref=e1220]: "Warning: OMAYA-5X #11 showing anomalies"
+                  - generic [ref=e1221]: NEW
+                - generic [ref=e1222]:
+                  - img [ref=e1223]
+                  - generic [ref=e1226]: Just now
+                  - generic [ref=e1227]: •
+                  - generic [ref=e1228]: "OMAYA-5X #11"
+            - 'button "Warning: OMAYA-3X #12 showing anomalies NEW Just now • OMAYA-3X #12" [ref=e1230] [cursor=pointer]':
+              - img [ref=e1232]
+              - generic [ref=e1234]:
+                - generic [ref=e1235]:
+                  - generic [ref=e1236]: "Warning: OMAYA-3X #12 showing anomalies"
+                  - generic [ref=e1237]: NEW
+                - generic [ref=e1238]:
+                  - img [ref=e1239]
+                  - generic [ref=e1242]: Just now
+                  - generic [ref=e1243]: •
+                  - generic [ref=e1244]: "OMAYA-3X #12"
+            - 'button "Warning: OMAYA-Lathe #23 showing anomalies Just now • OMAYA-Lathe #23" [ref=e1246] [cursor=pointer]':
+              - img [ref=e1248]
+              - generic [ref=e1250]:
+                - generic [ref=e1252]: "Warning: OMAYA-Lathe #23 showing anomalies"
+                - generic [ref=e1253]:
+                  - img [ref=e1254]
+                  - generic [ref=e1257]: Just now
+                  - generic [ref=e1258]: •
+                  - generic [ref=e1259]: "OMAYA-Lathe #23"
+            - 'button "Warning: OMAYA-Router #25 showing anomalies NEW Just now • OMAYA-Router #25" [ref=e1261] [cursor=pointer]':
+              - img [ref=e1263]
+              - generic [ref=e1265]:
+                - generic [ref=e1266]:
+                  - generic [ref=e1267]: "Warning: OMAYA-Router #25 showing anomalies"
+                  - generic [ref=e1268]: NEW
+                - generic [ref=e1269]:
+                  - img [ref=e1270]
+                  - generic [ref=e1273]: Just now
+                  - generic [ref=e1274]: •
+                  - generic [ref=e1275]: "OMAYA-Router #25"
+            - 'button "Warning: OMAYA-5X #36 showing anomalies Just now • OMAYA-5X #36" [ref=e1277] [cursor=pointer]':
+              - img [ref=e1279]
+              - generic [ref=e1281]:
+                - generic [ref=e1283]: "Warning: OMAYA-5X #36 showing anomalies"
+                - generic [ref=e1284]:
+                  - img [ref=e1285]
+                  - generic [ref=e1288]: Just now
+                  - generic [ref=e1289]: •
+                  - generic [ref=e1290]: "OMAYA-5X #36"
+            - 'button "Warning: OMAYA-3X #42 showing anomalies Just now • OMAYA-3X #42" [ref=e1292] [cursor=pointer]':
+              - img [ref=e1294]
+              - generic [ref=e1296]:
+                - generic [ref=e1298]: "Warning: OMAYA-3X #42 showing anomalies"
+                - generic [ref=e1299]:
+                  - img [ref=e1300]
+                  - generic [ref=e1303]: Just now
+                  - generic [ref=e1304]: •
+                  - generic [ref=e1305]: "OMAYA-3X #42"
+            - 'button "Warning: OMAYA-Mill #44 showing anomalies NEW Just now • OMAYA-Mill #44" [ref=e1307] [cursor=pointer]':
+              - img [ref=e1309]
+              - generic [ref=e1311]:
+                - generic [ref=e1312]:
+                  - generic [ref=e1313]: "Warning: OMAYA-Mill #44 showing anomalies"
+                  - generic [ref=e1314]: NEW
+                  - img [ref=e1315]
+                - generic [ref=e1318]:
+                  - img [ref=e1319]
+                  - generic [ref=e1322]: Just now
+                  - generic [ref=e1323]: •
+                  - generic [ref=e1324]: "OMAYA-Mill #44"
+            - 'button "Warning: OMAYA-Lathe #78 showing anomalies NEW Just now • OMAYA-Lathe #78" [ref=e1326] [cursor=pointer]':
+              - img [ref=e1328]
+              - generic [ref=e1330]:
+                - generic [ref=e1331]:
+                  - generic [ref=e1332]: "Warning: OMAYA-Lathe #78 showing anomalies"
+                  - generic [ref=e1333]: NEW
+                  - img [ref=e1334]
+                - generic [ref=e1337]:
+                  - img [ref=e1338]
+                  - generic [ref=e1341]: Just now
+                  - generic [ref=e1342]: •
+                  - generic [ref=e1343]: "OMAYA-Lathe #78"
+            - 'button "Warning: OMAYA-Mill #84 showing anomalies NEW Just now • OMAYA-Mill #84" [ref=e1345] [cursor=pointer]':
+              - img [ref=e1347]
+              - generic [ref=e1349]:
+                - generic [ref=e1350]:
+                  - generic [ref=e1351]: "Warning: OMAYA-Mill #84 showing anomalies"
+                  - generic [ref=e1352]: NEW
+                - generic [ref=e1353]:
+                  - img [ref=e1354]
+                  - generic [ref=e1357]: Just now
+                  - generic [ref=e1358]: •
+                  - generic [ref=e1359]: "OMAYA-Mill #84"
+            - 'button "Warning: OMAYA-Router #90 showing anomalies NEW Just now • OMAYA-Router #90" [ref=e1361] [cursor=pointer]':
+              - img [ref=e1363]
+              - generic [ref=e1365]:
+                - generic [ref=e1366]:
+                  - generic [ref=e1367]: "Warning: OMAYA-Router #90 showing anomalies"
+                  - generic [ref=e1368]: NEW
+                  - img [ref=e1369]
+                - generic [ref=e1372]:
+                  - img [ref=e1373]
+                  - generic [ref=e1376]: Just now
+                  - generic [ref=e1377]: •
+                  - generic [ref=e1378]: "OMAYA-Router #90"
+            - 'button "Warning: OMAYA-Router #100 showing anomalies NEW Just now • OMAYA-Router #100" [ref=e1380] [cursor=pointer]':
+              - img [ref=e1382]
+              - generic [ref=e1384]:
+                - generic [ref=e1385]:
+                  - generic [ref=e1386]: "Warning: OMAYA-Router #100 showing anomalies"
+                  - generic [ref=e1387]: NEW
+                - generic [ref=e1388]:
+                  - img [ref=e1389]
+                  - generic [ref=e1392]: Just now
+                  - generic [ref=e1393]: •
+                  - generic [ref=e1394]: "OMAYA-Router #100"
+            - 'button "Warning: OMAYA-3X #102 showing anomalies NEW Just now • OMAYA-3X #102" [ref=e1396] [cursor=pointer]':
+              - img [ref=e1398]
+              - generic [ref=e1400]:
+                - generic [ref=e1401]:
+                  - generic [ref=e1402]: "Warning: OMAYA-3X #102 showing anomalies"
+                  - generic [ref=e1403]: NEW
+                  - img [ref=e1404]
+                - generic [ref=e1407]:
+                  - img [ref=e1408]
+                  - generic [ref=e1411]: Just now
+                  - generic [ref=e1412]: •
+                  - generic [ref=e1413]: "OMAYA-3X #102"
+            - 'button "Warning: OMAYA-Router #105 showing anomalies NEW Just now • OMAYA-Router #105" [ref=e1415] [cursor=pointer]':
+              - img [ref=e1417]
+              - generic [ref=e1419]:
+                - generic [ref=e1420]:
+                  - generic [ref=e1421]: "Warning: OMAYA-Router #105 showing anomalies"
+                  - generic [ref=e1422]: NEW
+                  - img [ref=e1423]
+                - generic [ref=e1426]:
+                  - img [ref=e1427]
+                  - generic [ref=e1430]: Just now
+                  - generic [ref=e1431]: •
+                  - generic [ref=e1432]: "OMAYA-Router #105"
+            - 'button "Warning: OMAYA-5X #106 showing anomalies NEW Just now • OMAYA-5X #106" [ref=e1434] [cursor=pointer]':
+              - img [ref=e1436]
+              - generic [ref=e1438]:
+                - generic [ref=e1439]:
+                  - generic [ref=e1440]: "Warning: OMAYA-5X #106 showing anomalies"
+                  - generic [ref=e1441]: NEW
+                  - img [ref=e1442]
+                - generic [ref=e1445]:
+                  - img [ref=e1446]
+                  - generic [ref=e1449]: Just now
+                  - generic [ref=e1450]: •
+                  - generic [ref=e1451]: "OMAYA-5X #106"
+            - 'button "Warning: OMAYA-Lathe #118 showing anomalies Just now • OMAYA-Lathe #118" [ref=e1453] [cursor=pointer]':
+              - img [ref=e1455]
+              - generic [ref=e1457]:
+                - generic [ref=e1459]: "Warning: OMAYA-Lathe #118 showing anomalies"
+                - generic [ref=e1460]:
+                  - img [ref=e1461]
+                  - generic [ref=e1464]: Just now
+                  - generic [ref=e1465]: •
+                  - generic [ref=e1466]: "OMAYA-Lathe #118"
+            - 'button "Warning: OMAYA-Router #120 showing anomalies NEW Just now • OMAYA-Router #120" [ref=e1468] [cursor=pointer]':
+              - img [ref=e1470]
+              - generic [ref=e1472]:
+                - generic [ref=e1473]:
+                  - generic [ref=e1474]: "Warning: OMAYA-Router #120 showing anomalies"
+                  - generic [ref=e1475]: NEW
+                  - img [ref=e1476]
+                - generic [ref=e1479]:
+                  - img [ref=e1480]
+                  - generic [ref=e1483]: Just now
+                  - generic [ref=e1484]: •
+                  - generic [ref=e1485]: "OMAYA-Router #120"
+            - 'button "Warning: OMAYA-Mill #4 showing anomalies NEW Just now • OMAYA-Mill #4" [ref=e1487] [cursor=pointer]':
+              - img [ref=e1489]
+              - generic [ref=e1491]:
+                - generic [ref=e1492]:
+                  - generic [ref=e1493]: "Warning: OMAYA-Mill #4 showing anomalies"
+                  - generic [ref=e1494]: NEW
+                - generic [ref=e1495]:
+                  - img [ref=e1496]
+                  - generic [ref=e1499]: Just now
+                  - generic [ref=e1500]: •
+                  - generic [ref=e1501]: "OMAYA-Mill #4"
+            - 'button "Warning: OMAYA-Mill #29 showing anomalies Just now • OMAYA-Mill #29" [ref=e1503] [cursor=pointer]':
+              - img [ref=e1505]
+              - generic [ref=e1507]:
+                - generic [ref=e1509]: "Warning: OMAYA-Mill #29 showing anomalies"
+                - generic [ref=e1510]:
+                  - img [ref=e1511]
+                  - generic [ref=e1514]: Just now
+                  - generic [ref=e1515]: •
+                  - generic [ref=e1516]: "OMAYA-Mill #29"
+            - 'button "Warning: OMAYA-Mill #49 showing anomalies NEW Just now • OMAYA-Mill #49" [ref=e1518] [cursor=pointer]':
+              - img [ref=e1520]
+              - generic [ref=e1522]:
+                - generic [ref=e1523]:
+                  - generic [ref=e1524]: "Warning: OMAYA-Mill #49 showing anomalies"
+                  - generic [ref=e1525]: NEW
+                - generic [ref=e1526]:
+                  - img [ref=e1527]
+                  - generic [ref=e1530]: Just now
+                  - generic [ref=e1531]: •
+                  - generic [ref=e1532]: "OMAYA-Mill #49"
+            - 'button "Warning: OMAYA-5X #51 showing anomalies Just now • OMAYA-5X #51" [ref=e1534] [cursor=pointer]':
+              - img [ref=e1536]
+              - generic [ref=e1538]:
+                - generic [ref=e1540]: "Warning: OMAYA-5X #51 showing anomalies"
+                - generic [ref=e1541]:
+                  - img [ref=e1542]
+                  - generic [ref=e1545]: Just now
+                  - generic [ref=e1546]: •
+                  - generic [ref=e1547]: "OMAYA-5X #51"
+            - 'button "Warning: OMAYA-5X #66 showing anomalies NEW Just now • OMAYA-5X #66" [ref=e1549] [cursor=pointer]':
+              - img [ref=e1551]
+              - generic [ref=e1553]:
+                - generic [ref=e1554]:
+                  - generic [ref=e1555]: "Warning: OMAYA-5X #66 showing anomalies"
+                  - generic [ref=e1556]: NEW
+                  - img [ref=e1557]
+                - generic [ref=e1560]:
+                  - img [ref=e1561]
+                  - generic [ref=e1564]: Just now
+                  - generic [ref=e1565]: •
+                  - generic [ref=e1566]: "OMAYA-5X #66"
+            - 'button "Warning: OMAYA-5X #91 showing anomalies NEW Just now • OMAYA-5X #91" [ref=e1568] [cursor=pointer]':
+              - img [ref=e1570]
+              - generic [ref=e1572]:
+                - generic [ref=e1573]:
+                  - generic [ref=e1574]: "Warning: OMAYA-5X #91 showing anomalies"
+                  - generic [ref=e1575]: NEW
+                - generic [ref=e1576]:
+                  - img [ref=e1577]
+                  - generic [ref=e1580]: Just now
+                  - generic [ref=e1581]: •
+                  - generic [ref=e1582]: "OMAYA-5X #91"
+            - 'button "Warning: OMAYA-5X #101 showing anomalies NEW Just now • OMAYA-5X #101" [ref=e1584] [cursor=pointer]':
+              - img [ref=e1586]
+              - generic [ref=e1588]:
+                - generic [ref=e1589]:
+                  - generic [ref=e1590]: "Warning: OMAYA-5X #101 showing anomalies"
+                  - generic [ref=e1591]: NEW
+                - generic [ref=e1592]:
+                  - img [ref=e1593]
+                  - generic [ref=e1596]: Just now
+                  - generic [ref=e1597]: •
+                  - generic [ref=e1598]: "OMAYA-5X #101"
+            - 'button "Warning: OMAYA-Lathe #103 showing anomalies NEW Just now • OMAYA-Lathe #103" [ref=e1600] [cursor=pointer]':
+              - img [ref=e1602]
+              - generic [ref=e1604]:
+                - generic [ref=e1605]:
+                  - generic [ref=e1606]: "Warning: OMAYA-Lathe #103 showing anomalies"
+                  - generic [ref=e1607]: NEW
+                - generic [ref=e1608]:
+                  - img [ref=e1609]
+                  - generic [ref=e1612]: Just now
+                  - generic [ref=e1613]: •
+                  - generic [ref=e1614]: "OMAYA-Lathe #103"
+            - 'button "Warning: OMAYA-3X #112 showing anomalies NEW Just now • OMAYA-3X #112" [ref=e1616] [cursor=pointer]':
+              - img [ref=e1618]
+              - generic [ref=e1620]:
+                - generic [ref=e1621]:
+                  - generic [ref=e1622]: "Warning: OMAYA-3X #112 showing anomalies"
+                  - generic [ref=e1623]: NEW
+                - generic [ref=e1624]:
+                  - img [ref=e1625]
+                  - generic [ref=e1628]: Just now
+                  - generic [ref=e1629]: •
+                  - generic [ref=e1630]: "OMAYA-3X #112"
+            - 'button "Warning: OMAYA-5X #116 showing anomalies NEW Just now • OMAYA-5X #116" [ref=e1632] [cursor=pointer]':
+              - img [ref=e1634]
+              - generic [ref=e1636]:
+                - generic [ref=e1637]:
+                  - generic [ref=e1638]: "Warning: OMAYA-5X #116 showing anomalies"
+                  - generic [ref=e1639]: NEW
+                  - img [ref=e1640]
+                - generic [ref=e1643]:
+                  - img [ref=e1644]
+                  - generic [ref=e1647]: Just now
+                  - generic [ref=e1648]: •
+                  - generic [ref=e1649]: "OMAYA-5X #116"
+        - generic [ref=e1651]:
+          - generic [ref=e1652]:
+            - generic [ref=e1653]:
+              - img [ref=e1655]
+              - generic [ref=e1658]:
+                - heading "Production Forecast" [level=3] [ref=e1659]
+                - paragraph [ref=e1660]: 14-day AI prediction
+            - generic [ref=e1661]: "-3.4% vs target"
+          - generic [ref=e1662]:
+            - generic [ref=e1663]:
+              - generic [ref=e1664]:
+                - img [ref=e1665]
+                - generic [ref=e1669]: Planned
+              - paragraph [ref=e1670]: 14,000
+            - generic [ref=e1671]:
+              - generic [ref=e1672]:
+                - img [ref=e1673]
+                - generic [ref=e1676]: Predicted
+              - paragraph [ref=e1677]: 13,523
+            - generic [ref=e1678]:
+              - generic [ref=e1679]:
+                - img [ref=e1680]
+                - generic [ref=e1683]: Downtime
+              - paragraph [ref=e1684]: 749m
+            - generic [ref=e1685]:
+              - generic [ref=e1686]:
+                - img [ref=e1687]
+                - generic [ref=e1689]: Confidence
+              - paragraph [ref=e1690]: 85%
+          - generic [ref=e1691]:
+            - generic [ref=e1692]:
+              - generic [ref=e1695]: Planned
+              - generic [ref=e1698]: Predicted
+            - generic [ref=e1699]:
+              - generic [ref=e1700]:
+                - generic [ref=e1704]:
+                  - paragraph [ref=e1705]: Thu
+                  - paragraph [ref=e1706]: "2"
+                - generic:
+                  - generic:
+                    - paragraph: 7/2/2026
+                    - generic:
+                      - paragraph: "Planned: 1000"
+                      - paragraph: "Predicted: 924"
+                      - paragraph:
+                        - text: "Downtime:"
+                        - generic: 0m
+                      - paragraph:
+                        - text: "Confidence:"
+                        - generic: 85%
+              - generic [ref=e1707]:
+                - generic [ref=e1711]:
+                  - paragraph [ref=e1712]: Fri
+                  - paragraph [ref=e1713]: "3"
+                - generic:
+                  - generic:
+                    - paragraph: 7/3/2026
+                    - generic:
+                      - paragraph: "Planned: 1000"
+                      - paragraph: "Predicted: 1004"
+                      - paragraph:
+                        - text: "Downtime:"
+                        - generic: 53m
+                      - paragraph:
+                        - text: "Confidence:"
+                        - generic: 83%
+              - generic [ref=e1714]:
+                - generic [ref=e1718]:
+                  - paragraph [ref=e1719]: Sat
+                  - paragraph [ref=e1720]: "4"
+                - generic:
+                  - generic:
+                    - paragraph: 7/4/2026
+                    - generic:
+                      - paragraph: "Planned: 1000"
+                      - paragraph: "Predicted: 982"
+                      - paragraph:
+                        - text: "Downtime:"
+                        - generic: 70m
+                      - paragraph:
+                        - text: "Confidence:"
+                        - generic: 81%
+              - generic [ref=e1721]:
+                - generic [ref=e1725]:
+                  - paragraph [ref=e1726]: Sun
+                  - paragraph [ref=e1727]: "5"
+                - generic:
+                  - generic:
+                    - paragraph: 7/5/2026
+                    - generic:
+                      - paragraph: "Planned: 1000"
+                      - paragraph: "Predicted: 926"
+                      - paragraph:
+                        - text: "Downtime:"
+                        - generic: 46m
+                      - paragraph:
+                        - text: "Confidence:"
+                        - generic: 93%
+              - generic [ref=e1728]:
+                - generic [ref=e1732]:
+                  - paragraph [ref=e1733]: Mon
+                  - paragraph [ref=e1734]: "6"
+                - generic:
+                  - generic:
+                    - paragraph: 7/6/2026
+                    - generic:
+                      - paragraph: "Planned: 1000"
+                      - paragraph: "Predicted: 873"
+                      - paragraph:
+                        - text: "Downtime:"
+                        - generic: 34m
+                      - paragraph:
+                        - text: "Confidence:"
+                        - generic: 81%
+              - generic [ref=e1735]:
+                - generic [ref=e1739]:
+                  - paragraph [ref=e1740]: Tue
+                  - paragraph [ref=e1741]: "7"
+                - generic:
+                  - generic:
+                    - paragraph: 7/7/2026
+                    - generic:
+                      - paragraph: "Planned: 1000"
+                      - paragraph: "Predicted: 912"
+                      - paragraph:
+                        - text: "Downtime:"
+                        - generic: 87m
+                      - paragraph:
+                        - text: "Confidence:"
+                        - generic: 86%
+              - generic [ref=e1742]:
+                - generic [ref=e1746]:
+                  - paragraph [ref=e1747]: Wed
+                  - paragraph [ref=e1748]: "8"
+                - generic:
+                  - generic:
+                    - paragraph: 7/8/2026
+                    - generic:
+                      - paragraph: "Planned: 1000"
+                      - paragraph: "Predicted: 895"
+                      - paragraph:
+                        - text: "Downtime:"
+                        - generic: 49m
+                      - paragraph:
+                        - text: "Confidence:"
+                        - generic: 81%
+              - generic [ref=e1749]:
+                - generic [ref=e1753]:
+                  - paragraph [ref=e1754]: Thu
+                  - paragraph [ref=e1755]: "9"
+                - generic:
+                  - generic:
+                    - paragraph: 7/9/2026
+                    - generic:
+                      - paragraph: "Planned: 1000"
+                      - paragraph: "Predicted: 1035"
+                      - paragraph:
+                        - text: "Downtime:"
+                        - generic: 73m
+                      - paragraph:
+                        - text: "Confidence:"
+                        - generic: 94%
+              - generic [ref=e1756]:
+                - generic [ref=e1760]:
+                  - paragraph [ref=e1761]: Fri
+                  - paragraph [ref=e1762]: "10"
+                - generic:
+                  - generic:
+                    - paragraph: 7/10/2026
+                    - generic:
+                      - paragraph: "Planned: 1000"
+                      - paragraph: "Predicted: 975"
+                      - paragraph:
+                        - text: "Downtime:"
+                        - generic: 88m
+                      - paragraph:
+                        - text: "Confidence:"
+                        - generic: 78%
+              - generic [ref=e1763]:
+                - generic [ref=e1767]:
+                  - paragraph [ref=e1768]: Sat
+                  - paragraph [ref=e1769]: "11"
+                - generic:
+                  - generic:
+                    - paragraph: 7/11/2026
+                    - generic:
+                      - paragraph: "Planned: 1000"
+                      - paragraph: "Predicted: 1019"
+                      - paragraph:
+                        - text: "Downtime:"
+                        - generic: 64m
+                      - paragraph:
+                        - text: "Confidence:"
+                        - generic: 94%
+              - generic [ref=e1770]:
+                - generic [ref=e1774]:
+                  - paragraph [ref=e1775]: Sun
+                  - paragraph [ref=e1776]: "12"
+                - generic:
+                  - generic:
+                    - paragraph: 7/12/2026
+                    - generic:
+                      - paragraph: "Planned: 1000"
+                      - paragraph: "Predicted: 920"
+                      - paragraph:
+                        - text: "Downtime:"
+                        - generic: 106m
+                      - paragraph:
+                        - text: "Confidence:"
+                        - generic: 78%
+              - generic [ref=e1777]:
+                - generic [ref=e1781]:
+                  - paragraph [ref=e1782]: Mon
+                  - paragraph [ref=e1783]: "13"
+                - generic:
+                  - generic:
+                    - paragraph: 7/13/2026
+                    - generic:
+                      - paragraph: "Planned: 1000"
+                      - paragraph: "Predicted: 973"
+                      - paragraph:
+                        - text: "Downtime:"
+                        - generic: 35m
+                      - paragraph:
+                        - text: "Confidence:"
+                        - generic: 83%
+              - generic [ref=e1784]:
+                - generic [ref=e1788]:
+                  - paragraph [ref=e1789]: Tue
+                  - paragraph [ref=e1790]: "14"
+                - generic:
+                  - generic:
+                    - paragraph: 7/14/2026
+                    - generic:
+                      - paragraph: "Planned: 1000"
+                      - paragraph: "Predicted: 1048"
+                      - paragraph:
+                        - text: "Downtime:"
+                        - generic: 2m
+                      - paragraph:
+                        - text: "Confidence:"
+                        - generic: 77%
+              - generic [ref=e1791]:
+                - generic [ref=e1795]:
+                  - paragraph [ref=e1796]: Wed
+                  - paragraph [ref=e1797]: "15"
+                - generic:
+                  - generic:
+                    - paragraph: 7/15/2026
+                    - generic:
+                      - paragraph: "Planned: 1000"
+                      - paragraph: "Predicted: 1037"
+                      - paragraph:
+                        - text: "Downtime:"
+                        - generic: 42m
+                      - paragraph:
+                        - text: "Confidence:"
+                        - generic: 93%
+        - generic [ref=e1799]:
+          - generic [ref=e1800]:
+            - generic [ref=e1801]:
+              - img [ref=e1803]
+              - generic [ref=e1806]:
+                - heading "Live Telemetry" [level=3] [ref=e1807]
+                - paragraph [ref=e1808]: Real-time event stream
+            - generic [ref=e1809]:
+              - combobox [ref=e1810]:
+                - option "All Events" [selected]
+                - option "Status"
+                - option "Alerts"
+                - option "Metrics"
+                - option "Maintenance"
+              - button "Live" [ref=e1811] [cursor=pointer]: Live
+          - generic [ref=e1813]:
+            - generic [ref=e1814]: Showing 15 events
+            - generic [ref=e1815]: 3:42:54 PM
+          - generic [ref=e1816]:
+            - generic [ref=e1818] [cursor=pointer]:
+              - img [ref=e1820]
+              - generic [ref=e1822]:
+                - generic [ref=e1823]:
+                  - generic [ref=e1824]: OMAYA-092
+                  - generic [ref=e1825]: •
+                  - generic [ref=e1826]: "OMAYA-3X #92"
+                  - generic [ref=e1827]: NEW
+                - paragraph [ref=e1828]: Sensor data synchronized
+              - generic [ref=e1829]: 03:42:49 PM
+            - generic [ref=e1831] [cursor=pointer]:
+              - img [ref=e1833]
+              - generic [ref=e1836]:
+                - generic [ref=e1837]:
+                  - generic [ref=e1838]: OMAYA-087
+                  - generic [ref=e1839]: •
+                  - generic [ref=e1840]: "OMAYA-3X #87"
+                - paragraph [ref=e1841]: Lubrication cycle initiated
+              - generic [ref=e1842]: 03:41:47 PM
+            - generic [ref=e1844] [cursor=pointer]:
+              - img [ref=e1846]
+              - generic [ref=e1848]:
+                - generic [ref=e1849]:
+                  - generic [ref=e1850]: OMAYA-076
+                  - generic [ref=e1851]: •
+                  - generic [ref=e1852]: "OMAYA-5X #76"
+                - paragraph [ref=e1853]: Temperature normalized after cooling cycle
+              - generic [ref=e1854]: 03:38:47 PM
+            - generic [ref=e1856] [cursor=pointer]:
+              - img [ref=e1858]
+              - generic [ref=e1860]:
+                - generic [ref=e1861]:
+                  - generic [ref=e1862]: OMAYA-086
+                  - generic [ref=e1863]: •
+                  - generic [ref=e1864]: "OMAYA-5X #86"
+                - paragraph [ref=e1865]: Temperature normalized after cooling cycle
+              - generic [ref=e1866]: 03:36:47 PM
+            - generic [ref=e1868] [cursor=pointer]:
+              - img [ref=e1870]
+              - generic [ref=e1873]:
+                - generic [ref=e1874]:
+                  - generic [ref=e1875]: OMAYA-054
+                  - generic [ref=e1876]: •
+                  - generic [ref=e1877]: "OMAYA-Mill #54"
+                - paragraph [ref=e1878]: Production cycle completed
+              - generic [ref=e1879]: 03:34:47 PM
+            - generic [ref=e1881] [cursor=pointer]:
+              - img [ref=e1883]
+              - generic [ref=e1885]:
+                - generic [ref=e1886]:
+                  - generic [ref=e1887]: OMAYA-062
+                  - generic [ref=e1888]: •
+                  - generic [ref=e1889]: "OMAYA-3X #62"
+                  - generic [ref=e1890]: NEW
+                - paragraph [ref=e1891]: Spindle speed adjusted to optimal range
+              - generic [ref=e1892]: 03:42:54 PM
+            - generic [ref=e1894] [cursor=pointer]:
+              - img [ref=e1896]
+              - generic [ref=e1898]:
+                - generic [ref=e1899]:
+                  - generic [ref=e1900]: OMAYA-078
+                  - generic [ref=e1901]: •
+                  - generic [ref=e1902]: "OMAYA-Lathe #78"
+                  - generic [ref=e1903]: NEW
+                - paragraph [ref=e1904]: Tool change completed successfully
+              - generic [ref=e1905]: 03:42:51 PM
+            - generic [ref=e1907] [cursor=pointer]:
+              - img [ref=e1909]
+              - generic [ref=e1912]:
+                - generic [ref=e1913]:
+                  - generic [ref=e1914]: OMAYA-043
+                  - generic [ref=e1915]: •
+                  - generic [ref=e1916]: "OMAYA-Lathe #43"
+                - paragraph [ref=e1917]: Spindle speed adjusted to optimal range
+              - generic [ref=e1918]: 03:40:54 PM
+            - generic [ref=e1920] [cursor=pointer]:
+              - img [ref=e1922]
+              - generic [ref=e1924]:
+                - generic [ref=e1925]:
+                  - generic [ref=e1926]: OMAYA-034
+                  - generic [ref=e1927]: •
+                  - generic [ref=e1928]: "OMAYA-Mill #34"
+                - paragraph [ref=e1929]: Tool change completed successfully
+              - generic [ref=e1930]: 03:42:50 PM
+            - generic [ref=e1932] [cursor=pointer]:
+              - img [ref=e1934]
+              - generic [ref=e1937]:
+                - generic [ref=e1938]:
+                  - generic [ref=e1939]: OMAYA-064
+                  - generic [ref=e1940]: •
+                  - generic [ref=e1941]: "OMAYA-Mill #64"
+                - paragraph [ref=e1942]: Temperature normalized after cooling cycle
+              - generic [ref=e1943]: 03:38:54 PM
+            - generic [ref=e1945] [cursor=pointer]:
+              - img [ref=e1947]
+              - generic [ref=e1949]:
+                - generic [ref=e1950]:
+                  - generic [ref=e1951]: OMAYA-070
+                  - generic [ref=e1952]: •
+                  - generic [ref=e1953]: "OMAYA-Router #70"
+                - paragraph [ref=e1954]: Spindle speed adjusted to optimal range
+              - generic [ref=e1955]: 03:17:47 PM
+            - generic [ref=e1957] [cursor=pointer]:
+              - img [ref=e1959]
+              - generic [ref=e1961]:
+                - generic [ref=e1962]:
+                  - generic [ref=e1963]: OMAYA-050
+                  - generic [ref=e1964]: •
+                  - generic [ref=e1965]: "OMAYA-Router #50"
+                - paragraph [ref=e1966]: Tool change completed successfully
+              - generic [ref=e1967]: 03:39:50 PM
+            - generic [ref=e1969] [cursor=pointer]:
+              - img [ref=e1971]
+              - generic [ref=e1974]:
+                - generic [ref=e1975]:
+                  - generic [ref=e1976]: OMAYA-021
+                  - generic [ref=e1977]: •
+                  - generic [ref=e1978]: "OMAYA-5X #21"
+                - paragraph [ref=e1979]: Tool change completed successfully
+              - generic [ref=e1980]: 03:02:47 PM
+            - generic [ref=e1982] [cursor=pointer]:
+              - img [ref=e1984]
+              - generic [ref=e1986]:
+                - generic [ref=e1987]:
+                  - generic [ref=e1988]: OMAYA-019
+                  - generic [ref=e1989]: •
+                  - generic [ref=e1990]: "OMAYA-Mill #19"
+                - paragraph [ref=e1991]: Temperature normalized after cooling cycle
+              - generic [ref=e1992]: 03:36:54 PM
+            - generic [ref=e1994] [cursor=pointer]:
+              - img [ref=e1996]
+              - generic [ref=e1999]:
+                - generic [ref=e2000]:
+                  - generic [ref=e2001]: OMAYA-069
+                  - generic [ref=e2002]: •
+                  - generic [ref=e2003]: "OMAYA-Mill #69"
+                - paragraph [ref=e2004]: Vibration levels within acceptable range
+              - generic [ref=e2005]: 02:52:47 PM
+            - generic [ref=e2007] [cursor=pointer]:
+              - img [ref=e2009]
+              - generic [ref=e2011]:
+                - generic [ref=e2012]:
+                  - generic [ref=e2013]: OMAYA-036
+                  - generic [ref=e2014]: •
+                  - generic [ref=e2015]: "OMAYA-5X #36"
+                - paragraph [ref=e2016]: Spindle speed adjusted to optimal range
+              - generic [ref=e2017]: 02:56:47 PM
+            - generic [ref=e2019] [cursor=pointer]:
+              - img [ref=e2021]
+              - generic [ref=e2023]:
+                - generic [ref=e2024]:
+                  - generic [ref=e2025]: OMAYA-027
+                  - generic [ref=e2026]: •
+                  - generic [ref=e2027]: "OMAYA-3X #27"
+                - paragraph [ref=e2028]: Lubrication cycle initiated
+              - generic [ref=e2029]: 03:35:50 PM
+            - generic [ref=e2031] [cursor=pointer]:
+              - img [ref=e2033]
+              - generic [ref=e2035]:
+                - generic [ref=e2036]:
+                  - generic [ref=e2037]: OMAYA-036
+                  - generic [ref=e2038]: •
+                  - generic [ref=e2039]: "OMAYA-5X #36"
+                - paragraph [ref=e2040]: Lubrication cycle initiated
+              - generic [ref=e2041]: 03:32:54 PM
+            - generic [ref=e2043] [cursor=pointer]:
+              - img [ref=e2045]
+              - generic [ref=e2047]:
+                - generic [ref=e2048]:
+                  - generic [ref=e2049]: OMAYA-037
+                  - generic [ref=e2050]: •
+                  - generic [ref=e2051]: "OMAYA-3X #37"
+                - paragraph [ref=e2052]: Tool change completed successfully
+              - generic [ref=e2053]: 03:33:50 PM
+            - generic [ref=e2055] [cursor=pointer]:
+              - img [ref=e2057]
+              - generic [ref=e2059]:
+                - generic [ref=e2060]:
+                  - generic [ref=e2061]: OMAYA-095
+                  - generic [ref=e2062]: •
+                  - generic [ref=e2063]: "OMAYA-Router #95"
+                - paragraph [ref=e2064]: Production cycle completed
+              - generic [ref=e2065]: 03:29:50 PM
+            - generic [ref=e2067] [cursor=pointer]:
+              - img [ref=e2069]
+              - generic [ref=e2072]:
+                - generic [ref=e2073]:
+                  - generic [ref=e2074]: OMAYA-091
+                  - generic [ref=e2075]: •
+                  - generic [ref=e2076]: "OMAYA-5X #91"
+                - paragraph [ref=e2077]: Production cycle completed
+              - generic [ref=e2078]: 03:29:54 PM
+            - generic [ref=e2080] [cursor=pointer]:
+              - img [ref=e2082]
+              - generic [ref=e2084]:
+                - generic [ref=e2085]:
+                  - generic [ref=e2086]: OMAYA-063
+                  - generic [ref=e2087]: •
+                  - generic [ref=e2088]: "OMAYA-Lathe #63"
+                - paragraph [ref=e2089]: Temperature normalized after cooling cycle
+              - generic [ref=e2090]: 03:23:50 PM
+            - generic [ref=e2092] [cursor=pointer]:
+              - img [ref=e2094]
+              - generic [ref=e2097]:
+                - generic [ref=e2098]:
+                  - generic [ref=e2099]: OMAYA-023
+                  - generic [ref=e2100]: •
+                  - generic [ref=e2101]: "OMAYA-Lathe #23"
+                - paragraph [ref=e2102]: Calibration check passed
+              - generic [ref=e2103]: 03:23:50 PM
+            - generic [ref=e2105] [cursor=pointer]:
+              - img [ref=e2107]
+              - generic [ref=e2109]:
+                - generic [ref=e2110]:
+                  - generic [ref=e2111]: OMAYA-080
+                  - generic [ref=e2112]: •
+                  - generic [ref=e2113]: "OMAYA-Router #80"
+                - paragraph [ref=e2114]: Calibration check passed
+              - generic [ref=e2115]: 03:23:50 PM
+            - generic [ref=e2117] [cursor=pointer]:
+              - img [ref=e2119]
+              - generic [ref=e2121]:
+                - generic [ref=e2122]:
+                  - generic [ref=e2123]: OMAYA-012
+                  - generic [ref=e2124]: •
+                  - generic [ref=e2125]: "OMAYA-3X #12"
+                - paragraph [ref=e2126]: Lubrication cycle initiated
+              - generic [ref=e2127]: 03:29:54 PM
+            - generic [ref=e2129] [cursor=pointer]:
+              - img [ref=e2131]
+              - generic [ref=e2133]:
+                - generic [ref=e2134]:
+                  - generic [ref=e2135]: OMAYA-028
+                  - generic [ref=e2136]: •
+                  - generic [ref=e2137]: "OMAYA-Lathe #28"
+                - paragraph [ref=e2138]: Lubrication cycle initiated
+              - generic [ref=e2139]: 03:09:50 PM
+            - generic [ref=e2141] [cursor=pointer]:
+              - img [ref=e2143]
+              - generic [ref=e2146]:
+                - generic [ref=e2147]:
+                  - generic [ref=e2148]: OMAYA-048
+                  - generic [ref=e2149]: •
+                  - generic [ref=e2150]: "OMAYA-Lathe #48"
+                - paragraph [ref=e2151]: Preventive maintenance reminder
+              - generic [ref=e2152]: 03:11:50 PM
+            - generic [ref=e2154] [cursor=pointer]:
+              - img [ref=e2156]
+              - generic [ref=e2158]:
+                - generic [ref=e2159]:
+                  - generic [ref=e2160]: OMAYA-057
+                  - generic [ref=e2161]: •
+                  - generic [ref=e2162]: "OMAYA-3X #57"
+                - paragraph [ref=e2163]: Production cycle completed
+              - generic [ref=e2164]: 03:28:54 PM
+            - generic [ref=e2166] [cursor=pointer]:
+              - img [ref=e2168]
+              - generic [ref=e2170]:
+                - generic [ref=e2171]:
+                  - generic [ref=e2172]: OMAYA-009
+                  - generic [ref=e2173]: •
+                  - generic [ref=e2174]: "OMAYA-Mill #9"
+                - paragraph [ref=e2175]: Lubrication cycle initiated
+              - generic [ref=e2176]: 03:26:54 PM
+            - generic [ref=e2178] [cursor=pointer]:
+              - img [ref=e2180]
+              - generic [ref=e2182]:
+                - generic [ref=e2183]:
+                  - generic [ref=e2184]: OMAYA-083
+                  - generic [ref=e2185]: •
+                  - generic [ref=e2186]: "OMAYA-Lathe #83"
+                - paragraph [ref=e2187]: Preventive maintenance reminder
+              - generic [ref=e2188]: 03:24:54 PM
+            - generic [ref=e2190] [cursor=pointer]:
+              - img [ref=e2192]
+              - generic [ref=e2195]:
+                - generic [ref=e2196]:
+                  - generic [ref=e2197]: OMAYA-120
+                  - generic [ref=e2198]: •
+                  - generic [ref=e2199]: "OMAYA-Router #120"
+                - paragraph [ref=e2200]: Spindle speed adjusted to optimal range
+              - generic [ref=e2201]: 03:18:54 PM
+            - generic [ref=e2203] [cursor=pointer]:
+              - img [ref=e2205]
+              - generic [ref=e2207]:
+                - generic [ref=e2208]:
+                  - generic [ref=e2209]: OMAYA-036
+                  - generic [ref=e2210]: •
+                  - generic [ref=e2211]: "OMAYA-5X #36"
+                - paragraph [ref=e2212]: Temperature normalized after cooling cycle
+              - generic [ref=e2213]: 03:11:54 PM
+            - generic [ref=e2215] [cursor=pointer]:
+              - img [ref=e2217]
+              - generic [ref=e2219]:
+                - generic [ref=e2220]:
+                  - generic [ref=e2221]: OMAYA-004
+                  - generic [ref=e2222]: •
+                  - generic [ref=e2223]: "OMAYA-Mill #4"
+                - paragraph [ref=e2224]: Tool change completed successfully
+              - generic [ref=e2225]: 03:10:54 PM
+            - generic [ref=e2227] [cursor=pointer]:
+              - img [ref=e2229]
+              - generic [ref=e2231]:
+                - generic [ref=e2232]:
+                  - generic [ref=e2233]: OMAYA-028
+                  - generic [ref=e2234]: •
+                  - generic [ref=e2235]: "OMAYA-Lathe #28"
+                - paragraph [ref=e2236]: Vibration levels within acceptable range
+              - generic [ref=e2237]: 03:09:54 PM
+            - generic [ref=e2239] [cursor=pointer]:
+              - img [ref=e2241]
+              - generic [ref=e2243]:
+                - generic [ref=e2244]:
+                  - generic [ref=e2245]: OMAYA-013
+                  - generic [ref=e2246]: •
+                  - generic [ref=e2247]: "OMAYA-Lathe #13"
+                - paragraph [ref=e2248]: Calibration check passed
+              - generic [ref=e2249]: 03:09:54 PM
+```
