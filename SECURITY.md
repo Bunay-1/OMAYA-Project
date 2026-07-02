@@ -34,5 +34,16 @@
 
 Платформата OMAYA идва с конфигурации за разработка, които НЕ са сигурни за производствена среда. Винаги следвайте ръководството в `docker-compose.prod.yml` и настройте HashiCorp Vault преди пускане в експлоатация.
 
+## Съвместимост и стандарти
+
+- В процес на подготовка за **ISO 27001** и **IEC 62443** сертификация.
+- GDPR политика за задържане на данни и право на изтриване.
+- Планирани audit и compliance reviews преди окончателно enterprise release.
+- Препоръчваме използване на отделни production `vault` и `minio` инстанции с криптиране на rest и transit данни.
+
+## Disaster Recovery
+
+- Вижте [Docs/DISASTER_RECOVERY.md](./Docs/DISASTER_RECOVERY.md) за RTO/RPO цели, backup стратегия и recovery план за TimescaleDB, Kafka, Redis и MinIO.
+
 ---
 *Последна актуализация: Юни 2026*
