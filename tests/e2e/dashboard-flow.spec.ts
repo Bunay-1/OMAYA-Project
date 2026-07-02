@@ -7,23 +7,25 @@ test.describe('OMAYA dashboard flow', () => {
     await expect(page.getByText('OMAYA Platform')).toBeVisible();
     await expect(page.getByRole('button', { name: 'Alerts' })).toBeVisible();
 
-    await page.getByRole('button', { name: 'Alerts' }).click();
+    const sidebar = page.locator('aside');
+
+    await sidebar.getByRole('button', { name: 'Alerts' }).click();
     await expect(page.getByText('Alert Center')).toBeVisible();
 
-    await page.getByRole('button', { name: 'Predictive AI' }).click();
+    await sidebar.getByRole('button', { name: 'Predictive AI' }).click();
     await expect(page.getByText('Predictive Analytics')).toBeVisible();
 
-    await page.getByRole('button', { name: 'Tool Wear' }).click();
+    await sidebar.getByRole('button', { name: 'Tool Wear' }).click();
     await expect(page.getByText('Tool Wear Tracking')).toBeVisible();
 
-    await page.getByRole('button', { name: 'Live Telemetry' }).click();
+    await sidebar.getByRole('button', { name: 'Live Telemetry' }).click();
     await expect(page.getByRole('heading', { name: 'Live Telemetry' })).toBeVisible();
   });
 
   test('fleet overview search filters machine list', async ({ page }) => {
     await page.goto('/');
 
-    await expect(page.getByText('Fleet Overview')).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Fleet Overview' })).toBeVisible();
     const searchInput = page.locator('input[placeholder="Search machines by ID or name..."]');
     await expect(searchInput).toBeVisible();
 
