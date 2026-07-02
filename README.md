@@ -354,6 +354,11 @@ If you want to include a visual demo, add a screenshot at `Docs/demo-screenshot.
 - Готови за автоматична release notes генерация с GitHub Actions `release.yml`.
 - Автоматичен dependency scanning чрез `dependabot.yml` за npm, pip, GitHub Actions и Docker.
 - Документация за процеса: [Docs/RELEASE_PROCESS.md](./Docs/RELEASE_PROCESS.md).
+- Препоръчва се `main` branch protection с изискване на статус проверките:
+  - `backend-tests`
+  - `frontend-build`
+  - `security-scan`
+  - `Run pre-commit`
 
 ---
 

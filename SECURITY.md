@@ -51,6 +51,11 @@
 - Не разкриватe тайни на PR-и от fork-ове; използвайте условни проверки преди стъпки, които изискват тайни или write-достъп.
 - Използвайте `concurrency` за предотвратяване на паралелни, конфликтни build-ове при една и съща клон/реф.
 - Сканирайте container images и зависимости в CI (Trivy / Snyk) преди публикуване.
+- Настройте branch protection на `main` с изискване на статус проверките:
+  - `backend-tests`
+  - `frontend-build`
+  - `security-scan`
+  - `Run pre-commit`
 
 Пример: в `.github/workflows/ci.yml` е добавен `permissions` блок и `concurrency` за минимизиране на риска.
 
